@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hayden Harms</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Mono:wght@300;400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --ink: #1A1710;
+    --gold: #B8972A;
+    --gold-light: #D4AF47;
+    --rust: #8B3A2A;
+    --warm-gray: #6B6358;
+    --rule: #C8BEA8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'Libre Baskerville', Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    border-bottom: 3px double var(--ink);
+    background: var(--cream);
+  }
+
+  .masthead-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 60px;
+    border-bottom: 1px solid var(--rule);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--warm-gray);
+    text-transform: uppercase;
+  }
+
+  .masthead-contact a {
+    color: var(--warm-gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .masthead-contact a:hover { color: var(--gold); }
+
+  .masthead-title {
+    text-align: center;
+    padding: 40px 60px 30px;
+  }
+
+  .masthead-title h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(52px, 8vw, 96px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
+    color: var(--ink);
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .masthead-title .subtitle {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    margin-top: 18px;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+
+  .gold-rule {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 14px auto 0;
+    animation: expandWidth 0.8s 0.4s ease both;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-top: 20px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  nav a {
+    display: block;
+    padding: 12px 28px;
+    color: var(--ink);
+    text-decoration: none;
+    border-right: 1px solid var(--rule);
+    transition: background 0.2s, color 0.2s;
+  }
+  nav a:first-child { border-left: 1px solid var(--rule); }
+  nav a:hover { background: var(--ink); color: var(--cream); }
+
+  /* LAYOUT */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* HERO STRIP */
+  .hero-strip {
+    display: grid;
+    grid-template-columns: 1fr 2px 1fr 2px 1fr;
+    border-bottom: 2px solid var(--ink);
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+
+  .hero-col { padding: 50px 40px; }
+
+  .hero-col-divider {
+    background: var(--ink);
+    margin: 30px 0;
+  }
+
+  .hero-col .col-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hero-col .col-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .hero-col h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .hero-col p {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--warm-gray);
+  }
+
+  .hero-col .stat {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .hero-col .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--warm-gray);
+    margin-top: 4px;
+  }
+
+  /* MAIN CONTENT */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 2fr 1px 1fr;
+    border-bottom: 2px solid var(--ink);
+    animation: fadeUp 0.8s 0.5s ease both;
+  }
+
+  .main-col { padding: 50px 50px 50px 0; }
+  .sidebar-divider { background: var(--ink); margin: 30px 0; }
+  .sidebar { padding: 50px 0 50px 40px; }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .section-head h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .section-head .issue-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--warm-gray);
+    letter-spacing: 0.1em;
+  }
+
+  /* EXPERIENCE */
+  .exp-item {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    align-items: start;
+  }
+  .exp-item:last-child { border-bottom: none; }
+
+  .exp-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.3;
+    grid-column: 1;
+  }
+
+  .exp-company {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 4px 0 8px;
+  }
+
+  .exp-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--warm-gray);
+    grid-column: 2;
+    grid-row: 1;
+    white-space: nowrap;
+    padding-top: 4px;
+  }
+
+  .exp-desc {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--warm-gray);
+    grid-column: 1 / -1;
+  }
+
+  /* SIDEBAR */
+  .sidebar-section {
+    margin-bottom: 36px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sidebar-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .sidebar-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+
+  .sidebar-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .sidebar-section p {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--warm-gray);
+  }
+
+  .pill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid var(--rule);
+    padding: 5px 10px;
+    color: var(--warm-gray);
+    transition: all 0.2s;
+    cursor: default;
+  }
+  .pill:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ROADMAP */
+  .roadmap-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+
+  .roadmap-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--rule);
+    line-height: 1;
+    min-width: 32px;
+  }
+
+  .roadmap-text h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+
+  .roadmap-text p {
+    font-size: 12.5px;
+    color: var(--warm-gray);
+    line-height: 1.5;
+  }
+
+  /* PULL QUOTE */
+  .pull-quote {
+    border-left: 4px solid var(--gold);
+    padding: 20px 24px;
+    margin: 30px 0;
+    background: rgba(184, 151, 42, 0.04);
+  }
+
+  .pull-quote p {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  .pull-quote cite {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-style: normal;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 10px;
+  }
+
+  /* GITHUB SECTION */
+  .github-section {
+    border-top: 2px solid var(--ink);
+    padding: 50px 0;
+    animation: fadeUp 0.8s 0.6s ease both;
+  }
+
+  .github-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .github-section .sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--warm-gray);
+    margin-bottom: 32px;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .step {
+    border: 1px solid var(--rule);
+    padding: 24px;
+  }
+
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--rule);
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+
+  .step h3 {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+
+  .step p {
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--warm-gray);
+  }
+
+  .code-block {
+    background: var(--ink);
+    color: #C8BEA8;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 20px 24px;
+    line-height: 1.8;
+    margin-top: 24px;
+    border-left: 4px solid var(--gold);
+  }
+
+  .code-block .comment { color: #6B6358; }
+  .code-block .cmd { color: var(--gold-light); }
+
+  /* FOOTER */
+  footer {
+    border-top: 3px double var(--ink);
+    padding: 30px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--warm-gray);
+  }
+
+  footer a {
+    color: var(--warm-gray);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  footer a:hover { color: var(--gold); }
+
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--ink);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes expandWidth {
+    from { width: 0; }
+    to { width: 60px; }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .masthead-top { padding: 12px 20px; flex-wrap: wrap; gap: 6px; font-size: 9px; }
+    .masthead-title { padding: 30px 20px 20px; }
+    nav a { padding: 10px 14px; font-size: 9px; }
+    .hero-strip { grid-template-columns: 1fr; }
+    .hero-col-divider { height: 1px; width: 100%; margin: 0; }
+    .hero-col { padding: 30px 20px; }
+    .main-grid { grid-template-columns: 1fr; }
+    .sidebar-divider { height: 1px; width: 100%; margin: 0; }
+    .main-col { padding: 30px 20px; }
+    .sidebar { padding: 30px 20px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; padding: 24px 20px; }
+    .container { padding: 0 20px; }
+    .steps { grid-template-columns: 1fr; }
+    .github-section { padding: 30px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-top">
+    <span>Dallas, Texas · Est. 2003</span>
+    <span>Accounting · Finance · Public Service</span>
+    <span class="masthead-contact">
+      <a href="mailto:harms.e.hayden@gmail.com">harms.e.hayden@gmail.com</a>
+    </span>
+  </div>
+
+  <div class="masthead-title">
+    <h1>Hayden Harms</h1>
+    <div class="gold-rule"></div>
+    <p class="subtitle">Accountant &nbsp;·&nbsp; Investor &nbsp;·&nbsp; Writer</p>
+  </div>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="https://secondwitness.substack.com" target="_blank">Substack</a>
+    <a href="https://www.linkedin.com/in/hayden-harms-046558298" target="_blank">LinkedIn</a>
+  </nav>
+</header>
+
+<!-- HERO STRIP -->
+<div class="container">
+  <div class="hero-strip" id="about">
+    <div class="hero-col">
+      <div class="col-label">Who I Am</div>
+      <h2>Building a Foundation in Numbers</h2>
+      <p>I'm a 21-year-old accounting student at Dallas Baptist University's Carter School of Business, interning at Airbus Helicopters and maintaining a 3.78 GPA. My work sits at the intersection of financial rigor and civic ambition.</p>
+    </div>
+    <div class="hero-col-divider"></div>
+    <div class="hero-col" style="display:flex; flex-direction:column; justify-content:center; gap:28px;">
+      <div>
+        <div class="stat">3.78</div>
+        <div class="stat-label">Cumulative GPA · DBU</div>
+      </div>
+      <div>
+        <div class="stat" style="font-size:36px;">May '27</div>
+        <div class="stat-label">Estimated Graduation</div>
+      </div>
+    </div>
+    <div class="hero-col-divider"></div>
+    <div class="hero-col">
+      <div class="col-label">The Bigger Picture</div>
+      <h2>From Ledgers to Legislation</h2>
+      <p>My goal extends beyond accounting. I aim to open my own tax firm — built on trust and technical excellence — and use that platform to engage meaningfully with public policy and political life.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+  <div class="main-grid">
+
+    <div class="main-col" id="experience">
+
+      <div class="section-head">
+        <h2>Experience</h2>
+        <span class="issue-num">5 Roles · 2022–Present</span>
+      </div>
+
+      <div class="pull-quote">
+        <p>"Out with the old wineskins — Generation Z cannot and will not conform to the norm of the past 60 years."</p>
+        <cite>— Second Witness, "Vote Democrat, Fascist"</cite>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-title">Accounting Intern — Accounts Receivable</div>
+        <div class="exp-date">Jun 2025–Present</div>
+        <div class="exp-company">Airbus Helicopters · Dallas/Fort Worth, TX</div>
+        <div class="exp-desc">Automated a Fortune 50 bank report into a live treasury dashboard. Tracking cash and credit card payments, filing invoices, and working directly under an AR specialist in Fortune 500 headquarters — with access to executive staff and intern leadership programming.</div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-title">Treasurer</div>
+        <div class="exp-date">May 2025–Present</div>
+        <div class="exp-company">Tau Alpha Phi · Dallas Baptist University</div>
+        <div class="exp-desc">Elected by 40 members to manage all chapter treasury operations, vendor payments, invoice handling, and dues collection in partnership with the DBU business office.</div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-title">Landscaper</div>
+        <div class="exp-date">Nov 2024–Jun 2025</div>
+        <div class="exp-company">Dallas Baptist University · Dallas, TX</div>
+        <div class="exp-desc">Maintained campus grounds and trained incoming employees in planting, equipment operation, and general upkeep ahead of donor and board visits.</div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-title">Architecture Intern</div>
+        <div class="exp-date">Sep 2022–May 2023</div>
+        <div class="exp-company">Charles R Lynch AIA · Amarillo, TX</div>
+        <div class="exp-desc">Unpaid internship through the PRO Program. Sat in on client-facing meetings, gained hands-on Revit experience, and presented a year-end project with ~$5M in estimated material value.</div>
+      </div>
+
+      <div id="education" style="margin-top: 50px;">
+        <div class="section-head">
+          <h2>Education</h2>
+          <span class="issue-num">May 2027 · Est. Graduation</span>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-title">Bachelor of Business Administration — Accounting</div>
+          <div class="exp-date">2023–2027</div>
+          <div class="exp-company">Dallas Baptist University · Carter School of Business</div>
+          <div class="exp-desc">Cumulative GPA: 3.78 · Major GPA: 3.78. Building a rigorous technical foundation in financial accounting, taxation, and business law with an eye toward CPA licensure.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <aside class="sidebar" id="roadmap">
+
+      <div class="sidebar-section">
+        <div class="sidebar-label">Skills & Tools</div>
+        <div class="pill-list">
+          <span class="pill">SAP</span>
+          <span class="pill">Revit</span>
+          <span class="pill">Excel</span>
+          <span class="pill">Accounts Receivable</span>
+          <span class="pill">Treasury</span>
+          <span class="pill">Financial Reporting</span>
+          <span class="pill">Team Leadership</span>
+          <span class="pill">Client Relations</span>
+          <span class="pill">Investing</span>
+          <span class="pill">Writing</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-label">The Roadmap</div>
+        <div class="roadmap-item">
+          <div class="roadmap-num">01</div>
+          <div class="roadmap-text">
+            <h4>CPA Licensure</h4>
+            <p>Pass all four sections of the CPA exam and build deep expertise in taxation.</p>
+          </div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-num">02</div>
+          <div class="roadmap-text">
+            <h4>Public Accounting</h4>
+            <p>Build credibility and client relationships inside a firm before going independent.</p>
+          </div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-num">03</div>
+          <div class="roadmap-text">
+            <h4>Own Tax Firm</h4>
+            <p>Launch an independent tax practice rooted in trust, precision, and community.</p>
+          </div>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-num">04</div>
+          <div class="roadmap-text">
+            <h4>Civic Engagement</h4>
+            <p>Use the platform of a successful firm to run for or sponsor meaningful public office.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-label">Writing</div>
+        <h3>Second Witness</h3>
+        <p>Essays on politics, economics, and faith. Published on Substack.</p>
+        <p style="margin-top: 10px;">
+          <a href="https://secondwitness.substack.com" target="_blank" style="color: var(--gold); text-decoration: none; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.08em;">Read on Substack →</a>
+        </p>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-label">Contact</div>
+        <p style="margin-bottom: 8px;">
+          <a href="mailto:harms.e.hayden@gmail.com" style="color: var(--gold); text-decoration: none; font-family: 'DM Mono', monospace; font-size: 12px;">harms.e.hayden@gmail.com</a>
+        </p>
+        <p style="margin-bottom: 8px;">
+          <a href="tel:8062903396" style="color: var(--warm-gray); text-decoration: none; font-family: 'DM Mono', monospace; font-size: 12px;">(806) 290-3396</a>
+        </p>
+        <p>
+          <a href="https://www.linkedin.com/in/hayden-harms-046558298" target="_blank" style="color: var(--warm-gray); text-decoration: none; font-family: 'DM Mono', monospace; font-size: 12px;">LinkedIn →</a>
+        </p>
+      </div>
+
+    </aside>
+  </div>
+</div>
+
+<!-- GITHUB INSTRUCTIONS -->
+<div class="container">
+  <div class="github-section" id="deploy">
+    <h2>Deploy to GitHub Pages</h2>
+    <p class="sub">Free hosting at haydenharms.github.io — takes about 5 minutes</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Create a GitHub Account</h3>
+        <p>Go to <strong>github.com</strong> and sign up. Choose a username — ideally <em>haydenharms</em> since it'll appear in your URL.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Create a Repository</h3>
+        <p>Click the <strong>+</strong> icon → New repository. Name it exactly: <em>haydenharms.github.io</em> (replace with your username). Set it to <strong>Public</strong>.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Upload Your File</h3>
+        <p>Inside the new repo, click <strong>Add file → Upload files</strong>. Drag your <em>index.html</em> file in and click <strong>Commit changes</strong>.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3>Enable GitHub Pages</h3>
+        <p>Go to <strong>Settings → Pages</strong>. Under Source, select <em>Deploy from a branch</em>, choose <em>main</em> and <em>/ (root)</em>. Click Save.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">05</div>
+        <h3>Visit Your Site</h3>
+        <p>After ~60 seconds, your site is live at <strong>haydenharms.github.io</strong>. To update it later, just re-upload the file.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">06</div>
+        <h3>Custom Domain (Optional)</h3>
+        <p>Buy <em>haydenharms.com</em> on Namecheap (~$12/yr). In Pages settings, add it under Custom Domain. Takes 10 min to configure.</p>
+      </div>
+    </div>
+
+    <div class="code-block">
+      <span class="comment"># Alternatively, if you prefer the command line:</span><br><br>
+      <span class="cmd">git init</span><br>
+      <span class="cmd">git add index.html</span><br>
+      <span class="cmd">git commit -m "Initial site"</span><br>
+      <span class="cmd">git branch -M main</span><br>
+      <span class="cmd">git remote add origin https://github.com/haydenharms/haydenharms.github.io.git</span><br>
+      <span class="cmd">git push -u origin main</span><br><br>
+      <span class="comment"># Then enable Pages in repo Settings → Pages</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-name">Hayden Harms</span>
+  <span>Dallas, TX &nbsp;·&nbsp; (806) 290-3396</span>
+  <a href="mailto:harms.e.hayden@gmail.com">harms.e.hayden@gmail.com</a>
+</footer>
+
+</body>
+</html>
