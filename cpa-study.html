@@ -5,34 +5,117 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CPA Prep Quiz · Hayden Harms</title>
   <meta name="description" content="CPA Prep Quiz — FAR, AUD, REG, BAR practice questions." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #0A0E14; color: #E2E8F0; font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif; }
-    #site-nav { border-bottom: 1px solid #1a1f2b; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 52px; position: sticky; top: 0; background: rgba(10,14,20,0.95); backdrop-filter: blur(12px); z-index: 1000; }
-    .nav-brand { font-family: 'DM Serif Display', serif; font-size: 1rem; color: #e8eaf0; text-decoration: none; }
-    .nav-links { display: flex; gap: 1.6rem; list-style: none; }
-    .nav-links a { color: #727a96; text-decoration: none; font-size: 0.8rem; letter-spacing: 0.03em; transition: color 0.2s; }
-    .nav-links a:hover { color: #e8eaf0; }
-    .nav-links a.active { color: #C8A96E; }
+    body { background: #0A0E14; color: #E2E8F0; font-family: 'Jost', sans-serif; }
+
+    /* ── TICKER ── */
+    .ticker-wrap {
+      background: #f5f0e8; border-bottom: 1px solid #e0d8c8;
+      height: 36px; overflow: hidden; position: relative;
+    }
+    .ticker-wrap::before, .ticker-wrap::after {
+      content: ''; position: absolute; top: 0; bottom: 0;
+      width: 80px; z-index: 2; pointer-events: none;
+    }
+    .ticker-wrap::before { left: 0;  background: linear-gradient(to right, #f5f0e8, transparent); }
+    .ticker-wrap::after  { right: 0; background: linear-gradient(to left,  #f5f0e8, transparent); }
+    .ticker-track {
+      display: flex; align-items: center; height: 100%;
+      width: max-content; animation: ticker 44.8s linear infinite;
+    }
+    .ticker-wrap:hover .ticker-track { animation-play-state: paused; }
+    .ticker-item {
+      font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400;
+      letter-spacing: .13em; text-transform: uppercase; color: #6b5c3e;
+      white-space: nowrap; padding: 0 6px;
+    }
+    .ticker-sep { color: #c0aa88; padding: 0 10px; font-size: 13px; line-height: 1; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── MASTHEAD ── */
+    .masthead { border-bottom: 2px solid #2c2416; background: #f5f0e8; }
+    .masthead-title { text-align: center; padding: 36px 60px 24px; }
+    .masthead-title h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(48px, 8vw, 88px); font-weight: 600;
+      letter-spacing: -0.01em; line-height: 1.0; color: #2c2416;
+    }
+    .masthead-title h1 a { text-decoration: none; color: inherit; }
+    .masthead-title .subtitle {
+      font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.22em;
+      text-transform: uppercase; color: #a0917a; margin-top: 14px; font-weight: 400;
+    }
+    .gold-rule { width: 48px; height: 1px; background: #b8972a; margin: 12px auto 0; }
+
+    /* ── NAV ── */
+    nav {
+      display: flex; justify-content: center;
+      border-top: 1px solid #e0d8c8; border-bottom: 1px solid #e0d8c8;
+      margin-top: 18px; font-family: 'Jost', sans-serif; font-size: 11px;
+      letter-spacing: 0.15em; text-transform: uppercase; font-weight: 400;
+      overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    }
+    nav::-webkit-scrollbar { display: none; }
+    nav a {
+      display: block; padding: 11px 26px; color: #6b5c3e; text-decoration: none;
+      border-right: 1px solid #e0d8c8; transition: background 0.2s, color 0.2s;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    nav a:first-child { border-left: 1px solid #e0d8c8; }
+    nav a:hover { background: #2c2416; color: #f5f0e8; }
+    nav a.active { background: #2c2416; color: #f5f0e8; }
+
     #root { min-height: calc(100vh - 52px); }
     @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-    @media (max-width: 600px) { #site-nav { padding: 0 1rem; } .nav-links { gap: 1rem; } .nav-links a { font-size: 0.72rem; } }
+    @media (max-width: 600px) {
+      .masthead-title { padding: 28px 20px 18px; }
+      nav a { padding: 10px 16px; font-size: 10px; }
+    }
   </style>
 </head>
 <body>
-<nav id="site-nav">
-  <a class="nav-brand" href="https://haydenharms.github.io/biography/">Hayden Harms</a>
-  <ul class="nav-links">
-    <li><a href="https://haydenharms.github.io/biography/#about">About</a></li>
-    <li><a href="https://haydenharms.github.io/biography/#experience">Experience</a></li>
-    <li><a href="https://haydenharms.github.io/biography/#education">Education</a></li>
-    <li><a href="https://haydenharms.github.io/biography/writing.html">Writing</a></li>
-    <li><a href="https://haydenharms.github.io/biography/projects.html">Projects</a></li>
-    <li><a href="#" class="active">CPA Prep Quiz</a></li>
-  </ul>
-</nav>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item">Accounting Intern @ Airbus Helicopters</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Dallas Baptist University · Class of 2027</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">3.76 GPA · Carter School of Business</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Aspiring CPA</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Published on Substack</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">SAP · Excel · Accounts Receivable</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Treasurer · Tau Alpha Phi</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Dallas, TX</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Accounting Intern @ Airbus Helicopters</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Dallas Baptist University · Class of 2027</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">3.76 GPA · Carter School of Business</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Aspiring CPA</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Published on Substack</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">SAP · Excel · Accounts Receivable</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Treasurer · Tau Alpha Phi</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Dallas, TX</span><span class="ticker-sep">·</span>
+  </div>
+</div>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-title">
+    <h1><a href="https://haydenharms.github.io/biography/">Hayden Harms</a></h1>
+    <div class="gold-rule"></div>
+    <p class="subtitle">Accounting Student &nbsp;·&nbsp; Aspiring CPA / Tax Practice Owner</p>
+  </div>
+  <nav>
+    <a href="https://haydenharms.github.io/biography/#about">About</a>
+    <a href="https://haydenharms.github.io/biography/#experience">Experience</a>
+    <a href="https://haydenharms.github.io/biography/#education">Education</a>
+    <a href="https://haydenharms.github.io/biography/writing.html">Writing</a>
+    <a href="https://haydenharms.github.io/biography/projects.html">Projects</a>
+    <a href="#" class="active">CPA Prep Quiz</a>
+  </nav>
+</header>
+
 <div id="root"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
