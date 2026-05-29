@@ -45,10 +45,14 @@
     border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
     margin-top: 20px; font-family: 'DM Mono', monospace; font-size: 11px;
     letter-spacing: 0.15em; text-transform: uppercase;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
+  nav::-webkit-scrollbar { display: none; }
   nav a {
     display: block; padding: 12px 28px; color: var(--navy); text-decoration: none;
     border-right: 1px solid var(--rule); transition: background 0.2s, color 0.2s;
+    white-space: nowrap; flex-shrink: 0;
   }
   nav a:first-child { border-left: 1px solid var(--rule); }
   nav a:hover { background: var(--navy); color: var(--cream); }
@@ -163,7 +167,7 @@
     <span class="masthead-contact"><a href="mailto:harms.e.hayden@gmail.com">harms.e.hayden@gmail.com</a></span>
   </div>
   <div class="masthead-title">
-    <h1>Hayden Harms</h1>
+    <h1><a href="index.html" style="text-decoration:none;color:inherit;">Hayden Harms</a></h1>
     <div class="gold-rule"></div>
     <p class="subtitle">Accounting Student &nbsp;·&nbsp; Aspiring CPA / Tax Practice Owner</p>
   </div>
@@ -219,7 +223,7 @@
 </div>
 
 <footer>
-  <span class="footer-name">Hayden Harms</span>
+  <span class="footer-name"><a href="index.html" style="text-decoration:none;color:inherit;">Hayden Harms</a></span>
   <span>Dallas, TX &nbsp;·&nbsp; (806) 290-3396</span>
   <a href="mailto:harms.e.hayden@gmail.com">harms.e.hayden@gmail.com</a>
 </footer>
