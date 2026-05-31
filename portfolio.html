@@ -67,16 +67,19 @@
 
   .col-label { font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 28px; }
 
-  /* PIE CHART */
-  .pie-wrap { display: flex; flex-direction: column; align-items: center; gap: 32px; }
-  .pie-svg { width: 240px; height: 240px; }
-  .pie-legend { width: 100%; }
-  .legend-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--rule-lt); }
+  /* PIE CHARTS — two stacked on left */
+  .pie-section { margin-bottom: 48px; padding-bottom: 48px; border-bottom: 1px solid var(--rule-lt); }
+  .pie-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .pie-section-label { font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); font-weight: 400; margin-bottom: 20px; }
+  .pie-wrap { display: flex; gap: 28px; align-items: flex-start; }
+  .pie-svg { width: 140px; height: 140px; flex-shrink: 0; }
+  .pie-legend { flex: 1; }
+  .legend-item { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--rule-lt); }
   .legend-item:last-child { border-bottom: none; }
-  .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
-  .legend-label { font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 400; color: var(--ink); flex: 1; }
-  .legend-pct { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: var(--ink); }
-  .legend-sub { font-family: 'Jost', sans-serif; font-size: 10px; color: var(--muted); font-weight: 300; margin-top: 1px; }
+  .legend-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+  .legend-label { font-family: 'Jost', sans-serif; font-size: 12px; font-weight: 400; color: var(--ink); flex: 1; }
+  .legend-sub { font-family: 'Jost', sans-serif; font-size: 10px; color: var(--muted); font-weight: 300; }
+  .legend-pct { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600; color: var(--ink); }
 
   /* HOLDINGS BREAKDOWN */
   .holding-row { display: flex; align-items: center; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--rule-lt); }
@@ -160,17 +163,29 @@
 <div class="container">
   <div class="page-header">
     <h2>Portfolio</h2>
-    <p>Roth IRA + Individual · Combined · As of May 2026</p>
+    <p>Roth IRA + Individual · Combined · As of May 30, 2026</p>
   </div>
 
   <div class="portfolio-grid">
 
-    <!-- LEFT: PIE CHART -->
+    <!-- LEFT: PIE CHARTS -->
     <div class="port-col">
-      <div class="col-label">Geographic Allocation</div>
-      <div class="pie-wrap">
-        <svg class="pie-svg" viewBox="0 0 200 200" id="pie-svg"></svg>
-        <div class="pie-legend" id="pie-legend"></div>
+      <div class="col-label">Portfolio Breakdown</div>
+
+      <div class="pie-section">
+        <div class="pie-section-label">Geographic Allocation</div>
+        <div class="pie-wrap">
+          <svg class="pie-svg" viewBox="0 0 200 200" id="pie-geo"></svg>
+          <div class="pie-legend" id="legend-geo"></div>
+        </div>
+      </div>
+
+      <div class="pie-section">
+        <div class="pie-section-label">Market Cap Breakdown</div>
+        <div class="pie-wrap">
+          <svg class="pie-svg" viewBox="0 0 200 200" id="pie-cap"></svg>
+          <div class="pie-legend" id="legend-cap"></div>
+        </div>
       </div>
     </div>
 
@@ -208,108 +223,113 @@ if (localStorage.getItem('theme') === 'dark') {
   document.documentElement.classList.add('dark');
 }
 
-// Holdings — market values from your screenshots
-// VT: ~55% intl, 45% domestic
-// VOO: 100% domestic
-// VB: 100% domestic
-// VXUS: 100% international
-// IAU: commodity (gold) — neither
-// IBIT: crypto — neither
-const holdings = [
-  { ticker: 'VT',   name: 'Vanguard Total World Stock ETF',      mktVal: 10368.99, sincePct: +12.3, color: '#2c2416', domPct: 0.58, intlPct: 0.42 },
-  { ticker: 'VOO',  name: 'Vanguard S&P 500 ETF',                mktVal: 7701.52,  sincePct: +16.1, color: '#b8972a', domPct: 1.00, intlPct: 0.00 },
-  { ticker: 'VB',   name: 'Vanguard Small-Cap ETF',              mktVal: 2083.40,  sincePct: +22.4, color: '#6b5c3e', domPct: 1.00, intlPct: 0.00 },
-  { ticker: 'VXUS', name: 'Vanguard Total International Stock',  mktVal: 1324.55,  sincePct: +18.5, color: '#a0917a', domPct: 0.00, intlPct: 1.00 },
-  { ticker: 'IAU',  name: 'iShares Gold Trust',                  mktVal: 683.68,   sincePct: +35.0, color: '#c0aa88', domPct: 0.00, intlPct: 0.00 },
-  { ticker: 'IBIT', name: 'iShares Bitcoin Trust ETF',           mktVal: 124.91,   sincePct: -37.3, color: '#5a5048', domPct: 0.00, intlPct: 0.00 },
+// Holdings data
+var holdings = [
+  { ticker: 'VT',   name: 'Vanguard Total World Stock ETF',     mktVal: 10368.99, sincePct: 12.3,  color: '#2c2416', domPct: 0.58, intlPct: 0.42 },
+  { ticker: 'VOO',  name: 'Vanguard S&P 500 ETF',               mktVal: 7701.52,  sincePct: 16.1,  color: '#b8972a', domPct: 1.00, intlPct: 0.00 },
+  { ticker: 'VB',   name: 'Vanguard Small-Cap ETF',             mktVal: 2083.40,  sincePct: 22.4,  color: '#6b5c3e', domPct: 1.00, intlPct: 0.00 },
+  { ticker: 'VXUS', name: 'Vanguard Total International Stock', mktVal: 1324.55,  sincePct: 18.5,  color: '#a0917a', domPct: 0.00, intlPct: 1.00 },
+  { ticker: 'IAU',  name: 'iShares Gold Trust',                 mktVal: 683.68,   sincePct: 35.0,  color: '#c0aa88', domPct: 0.00, intlPct: 0.00 },
+  { ticker: 'IBIT', name: 'iShares Bitcoin Trust ETF',          mktVal: 124.91,   sincePct: -37.3, color: '#5a5048', domPct: 0.00, intlPct: 0.00 },
 ];
 
-const total = holdings.reduce((s, h) => s + h.mktVal, 0);
-
-// Compute domestic/international
-let domestic = 0, international = 0, other = 0;
-holdings.forEach(h => {
-  domestic     += h.mktVal * h.domPct;
-  international += h.mktVal * h.intlPct;
-  other        += h.mktVal * (1 - h.domPct - h.intlPct);
-});
-const domPct  = domestic / total * 100;
-const intlPct = international / total * 100;
-const othPct  = other / total * 100;
+const portfolioTotal = holdings.reduce(function(s, h) { return s + h.mktVal; }, 0);
 
 // ── PIE CHART ──
-function drawPie() {
-  const svg = document.getElementById('pie-svg');
-  const cx = 100, cy = 100, r = 90, innerR = 52;
-  const segments = [
-    { label: 'Domestic', pct: domPct,  color: '#2c2416', sub: 'U.S. equities' },
-    { label: 'International', pct: intlPct, color: '#b8972a', sub: 'Non-U.S. equities' },
-    { label: 'Other', pct: othPct, color: '#c0aa88', sub: 'Gold + Crypto' },
-  ];
+function drawPie(svgId, legendId, segs) {
+  var svg = document.getElementById(svgId);
+  var legend = document.getElementById(legendId);
+  if (!svg || !legend) return;
+  var cx = 100, cy = 100, r = 88, ir = 50;
+  var angle = -Math.PI / 2;
+  var html = '';
 
-  let startAngle = -Math.PI / 2;
-  let paths = '';
-  segments.forEach(seg => {
-    const angle = (seg.pct / 100) * 2 * Math.PI;
-    const endAngle = startAngle + angle;
-    const x1 = cx + r * Math.cos(startAngle);
-    const y1 = cy + r * Math.sin(startAngle);
-    const x2 = cx + r * Math.cos(endAngle);
-    const y2 = cy + r * Math.sin(endAngle);
-    const ix1 = cx + innerR * Math.cos(endAngle);
-    const iy1 = cy + innerR * Math.sin(endAngle);
-    const ix2 = cx + innerR * Math.cos(startAngle);
-    const iy2 = cy + innerR * Math.sin(startAngle);
-    const largeArc = angle > Math.PI ? 1 : 0;
-    paths += `<path d="M${x1},${y1} A${r},${r} 0 ${largeArc},1 ${x2},${y2} L${ix1},${iy1} A${innerR},${innerR} 0 ${largeArc},0 ${ix2},${iy2} Z" fill="${seg.color}" opacity="0.92" stroke="var(--bg)" stroke-width="2"/>`;
-    startAngle = endAngle;
+  segs.forEach(function(seg) {
+    var sweep = (seg.pct / 100) * 2 * Math.PI;
+    var end = angle + sweep;
+    var x1 = cx + r * Math.cos(angle);
+    var y1 = cy + r * Math.sin(angle);
+    var x2 = cx + r * Math.cos(end);
+    var y2 = cy + r * Math.sin(end);
+    var ix1 = cx + ir * Math.cos(end);
+    var iy1 = cy + ir * Math.sin(end);
+    var ix2 = cx + ir * Math.cos(angle);
+    var iy2 = cy + ir * Math.sin(angle);
+    var la = sweep > Math.PI ? 1 : 0;
+    html += '<path d="M' + x1.toFixed(2) + ',' + y1.toFixed(2) +
+            ' A' + r + ',' + r + ' 0 ' + la + ',1 ' + x2.toFixed(2) + ',' + y2.toFixed(2) +
+            ' L' + ix1.toFixed(2) + ',' + iy1.toFixed(2) +
+            ' A' + ir + ',' + ir + ' 0 ' + la + ',0 ' + ix2.toFixed(2) + ',' + iy2.toFixed(2) +
+            ' Z" fill="' + seg.color + '" opacity="0.93" stroke="var(--bg)" stroke-width="2"/>';
+    angle = end;
   });
 
-  // Center label
-  paths += `<text x="100" y="96" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="22" font-weight="600" fill="var(--ink)">${domPct.toFixed(0)}%</text>`;
-  paths += `<text x="100" y="112" text-anchor="middle" font-family="Jost, sans-serif" font-size="9" letter-spacing="2" fill="var(--muted)" text-transform="uppercase">DOMESTIC</text>`;
-  svg.innerHTML = paths;
+  var biggest = segs.reduce(function(a, b) { return a.pct > b.pct ? a : b; });
+  html += '<text x="100" y="96" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="20" font-weight="600" fill="var(--ink)">' + biggest.pct.toFixed(0) + '%</text>';
+  html += '<text x="100" y="112" text-anchor="middle" font-family="Jost, sans-serif" font-size="8" letter-spacing="2" fill="var(--muted)">' + biggest.label.toUpperCase() + '</text>';
+  svg.innerHTML = html;
 
-  // Legend
-  const legend = document.getElementById('pie-legend');
-  legend.innerHTML = segments.map(s => `
-    <div class="legend-item">
-      <div class="legend-dot" style="background:${s.color}"></div>
-      <div>
-        <div class="legend-label">${s.label}</div>
-        <div class="legend-sub">${s.sub}</div>
-      </div>
-      <div class="legend-pct">${s.pct.toFixed(1)}%</div>
-    </div>`).join('');
-}
-
-// ── HOLDINGS LIST ──
-function drawHoldings() {
-  const list = document.getElementById('holdings-list');
-  const maxVal = Math.max(...holdings.map(h => h.mktVal));
-  list.innerHTML = holdings.map(h => {
-    const alloc = (h.mktVal / total * 100).toFixed(1);
-    const barW  = (h.mktVal / maxVal * 100).toFixed(1);
-    const changeClass = h.sincePct >= 0 ? 'up' : 'down';
-    const changeStr = (h.sincePct >= 0 ? '+' : '') + h.sincePct.toFixed(1) + '%';
-    return `
-      <div class="holding-row">
-        <div class="holding-ticker">${h.ticker}</div>
-        <div class="holding-info">
-          <div class="holding-name">${h.name}</div>
-          <div class="holding-bar-bg">
-            <div class="holding-bar-fill" style="width:${barW}%;background:${h.color}"></div>
-          </div>
-        </div>
-        <div class="holding-right">
-          <div class="holding-alloc ${changeClass}">${changeStr}</div>
-          <div class="holding-change">${alloc}% of portfolio</div>
-        </div>
-      </div>`;
+  legend.innerHTML = segs.map(function(s) {
+    return '<div class="legend-item">' +
+      '<div class="legend-dot" style="background:' + s.color + '"></div>' +
+      '<div style="flex:1"><div class="legend-label">' + s.label + '</div><div class="legend-sub">' + s.sub + '</div></div>' +
+      '<div class="legend-pct">' + s.pct.toFixed(1) + '%</div>' +
+      '</div>';
   }).join('');
 }
 
-drawPie();
+// Geographic segments
+var geoDOM  = holdings[0].mktVal*0.58 + holdings[1].mktVal + holdings[2].mktVal;
+var geoINTL = holdings[0].mktVal*0.42 + holdings[3].mktVal;
+var geoOTH  = holdings[4].mktVal + holdings[5].mktVal;
+var geoSegs = [
+  { label: 'Domestic',      sub: 'U.S. equities',     pct: geoDOM/portfolioTotal*100,  color: '#2c2416' },
+  { label: 'International', sub: 'Non-U.S. equities', pct: geoINTL/portfolioTotal*100, color: '#b8972a' },
+  { label: 'Other',         sub: 'Gold + Crypto',      pct: geoOTH/portfolioTotal*100,  color: '#c0aa88' },
+];
+
+// Market cap segments
+var vtMkt   = holdings[0].mktVal;
+var vooMkt  = holdings[1].mktVal;
+var vbMkt   = holdings[2].mktVal;
+var vxusMkt = holdings[3].mktVal;
+var capLG = vtMkt*0.70 + vooMkt + vxusMkt*0.60;
+var capMD = vtMkt*0.20 + vxusMkt*0.30;
+var capSM = vtMkt*0.10 + vbMkt  + vxusMkt*0.10;
+var capOT = holdings[4].mktVal + holdings[5].mktVal;
+var capSegs = [
+  { label: 'Large Cap', sub: 'VOO, VT, VXUS core', pct: capLG/portfolioTotal*100, color: '#2c2416' },
+  { label: 'Mid Cap',   sub: 'VT, VXUS mid blend',  pct: capMD/portfolioTotal*100, color: '#6b5c3e' },
+  { label: 'Small Cap', sub: 'VB, VT small blend',  pct: capSM/portfolioTotal*100, color: '#b8972a' },
+  { label: 'Other',     sub: 'Gold + Crypto',        pct: capOT/portfolioTotal*100, color: '#c0aa88' },
+];
+
+drawPie('pie-geo', 'legend-geo', geoSegs);
+drawPie('pie-cap', 'legend-cap', capSegs);
+
+// ── HOLDINGS LIST ──
+function drawHoldings() {
+  var list = document.getElementById('holdings-list');
+  var maxVal = Math.max.apply(null, holdings.map(function(h) { return h.mktVal; }));
+  list.innerHTML = holdings.map(function(h) {
+    var alloc = (h.mktVal / portfolioTotal * 100).toFixed(1);
+    var barW  = (h.mktVal / maxVal * 100).toFixed(1);
+    var cls   = h.sincePct >= 0 ? 'up' : 'down';
+    var str   = (h.sincePct >= 0 ? '+' : '') + Math.abs(h.sincePct).toFixed(1) + '%';
+    return '<div class="holding-row">' +
+      '<div class="holding-ticker">' + h.ticker + '</div>' +
+      '<div class="holding-info">' +
+        '<div class="holding-name">' + h.name + '</div>' +
+        '<div class="holding-bar-bg"><div class="holding-bar-fill" style="width:' + barW + '%;background:' + h.color + '"></div></div>' +
+      '</div>' +
+      '<div class="holding-right">' +
+        '<div class="holding-alloc ' + cls + '">' + str + '</div>' +
+        '<div class="holding-change">' + alloc + '% of portfolio</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
 drawHoldings();
 </script>
 
