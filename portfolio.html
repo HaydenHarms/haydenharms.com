@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Hayden Harms</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f0e8; --ink: #2c2416; --sub: #5a5048; --accent: #6b5c3e;
+    --muted: #a0917a; --rule: #c0aa88; --rule-lt: #e0d8c8; --gold: #b8972a;
+    --green: #3a6b4a; --red: #8b3a2a;
+  }
+  html.dark {
+    --bg: #14100a; --ink: #e8dcc8; --sub: #9e8e75; --accent: #c0aa88;
+    --muted: #6b5c3e; --rule: #3a2e1e; --rule-lt: #2a2015; --gold: #c8a84a;
+    --green: #5a9b6a; --red: #c05040;
+  }
+  html.dark body { background: var(--bg); color: var(--ink); }
+  html.dark .ticker-wrap::before { background: linear-gradient(to right, #14100a, transparent); }
+  html.dark .ticker-wrap::after  { background: linear-gradient(to left,  #14100a, transparent); }
+  html.dark .ticker-item { color: #6b5c3e; }
+  html.dark .ticker-sep  { color: #3a2e1e; }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+  /* TICKER */
+  .ticker-wrap { background: var(--bg); border-bottom: 1px solid var(--rule-lt); height: 36px; overflow: hidden; position: relative; }
+  .ticker-wrap::before, .ticker-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none; }
+  .ticker-wrap::before { left: 0; background: linear-gradient(to right, #f5f0e8, transparent); }
+  .ticker-wrap::after  { right: 0; background: linear-gradient(to left,  #f5f0e8, transparent); }
+  .ticker-track { display: flex; align-items: center; height: 100%; width: max-content; animation: ticker 44.8s linear infinite; }
+  .ticker-wrap:hover .ticker-track { animation-play-state: paused; }
+  .ticker-item { font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: .13em; text-transform: uppercase; color: #6b5c3e; white-space: nowrap; padding: 0 6px; }
+  .ticker-sep { color: #c0aa88; padding: 0 10px; font-size: 13px; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* MASTHEAD */
+  .masthead { border-bottom: 2px solid var(--ink); background: var(--bg); }
+  .masthead-title { text-align: center; padding: 36px 60px 24px; }
+  .masthead-title h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(52px,8vw,88px); font-weight: 600; letter-spacing: -0.01em; line-height: 1.0; color: var(--ink); }
+  .masthead-title h1 a { text-decoration: none; color: inherit; }
+  .masthead-title .subtitle { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-top: 14px; font-weight: 400; }
+  .gold-rule { width: 48px; height: 1px; background: var(--gold); margin: 12px auto 0; }
+  nav { display: flex; justify-content: center; border-top: 1px solid var(--rule-lt); border-bottom: 1px solid var(--rule-lt); margin-top: 18px; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 400; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  nav::-webkit-scrollbar { display: none; }
+  nav a { display: block; padding: 11px 26px; color: var(--accent); text-decoration: none; border-right: 1px solid var(--rule-lt); transition: background 0.2s, color 0.2s; white-space: nowrap; flex-shrink: 0; }
+  nav a:first-child { border-left: 1px solid var(--rule-lt); }
+  nav a:hover { background: var(--ink); color: var(--bg); }
+  nav a.active { background: var(--ink); color: var(--bg); }
+  .dm-toggle-btn { display: flex; align-items: center; padding: 11px 18px; border: none; background: none; cursor: pointer; font-size: 16px; color: var(--accent); border-left: 1px solid var(--rule-lt); flex-shrink: 0; transition: background 0.2s, color 0.2s; line-height: 1; }
+  .dm-toggle-btn:hover { background: var(--ink); color: var(--bg); }
+
+  /* LAYOUT */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+  .page-header { padding: 50px 0 30px; border-bottom: 2px solid var(--ink); }
+  .page-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; color: var(--ink); text-transform: uppercase; letter-spacing: 0.06em; }
+  .page-header p { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; margin-top: 8px; font-weight: 400; }
+
+  /* MAIN GRID */
+  .portfolio-grid { display: grid; grid-template-columns: 1fr 1px 1fr; border-bottom: 2px solid var(--ink); }
+  .port-col { padding: 50px 40px; }
+  .port-divider { background: var(--ink); margin: 30px 0; }
+  .port-col-right { padding: 50px 0 50px 50px; }
+
+  .col-label { font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 28px; }
+
+  /* PIE CHART */
+  .pie-wrap { display: flex; flex-direction: column; align-items: center; gap: 32px; }
+  .pie-svg { width: 240px; height: 240px; }
+  .pie-legend { width: 100%; }
+  .legend-item { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--rule-lt); }
+  .legend-item:last-child { border-bottom: none; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .legend-label { font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 400; color: var(--ink); flex: 1; }
+  .legend-pct { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; color: var(--ink); }
+  .legend-sub { font-family: 'Jost', sans-serif; font-size: 10px; color: var(--muted); font-weight: 300; margin-top: 1px; }
+
+  /* HOLDINGS BREAKDOWN */
+  .holding-row { display: flex; align-items: center; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--rule-lt); }
+  .holding-row:last-child { border-bottom: none; }
+  .holding-ticker { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--ink); min-width: 60px; flex-shrink: 0; }
+  .holding-info { flex: 1; min-width: 0; }
+  .holding-name { font-family: 'Jost', sans-serif; font-size: 11px; color: var(--muted); font-weight: 300; margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .holding-bar-bg { height: 4px; background: var(--rule-lt); border-radius: 2px; overflow: hidden; }
+  .holding-bar-fill { height: 100%; border-radius: 2px; transition: width 0.8s ease; }
+  .holding-right { text-align: right; min-width: 80px; flex-shrink: 0; }
+  .holding-alloc { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600; line-height: 1; }
+  .holding-change { font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400; margin-top: 3px; color: var(--muted); }
+
+  .inception-tag { font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); font-weight: 400; margin-bottom: 20px; }
+  .up { color: var(--green); }
+  .down { color: var(--red); }
+
+  /* DISCLAIMER */
+  .disclaimer { font-family: 'Jost', sans-serif; font-size: 11px; color: var(--muted); font-style: italic; padding: 24px 0 50px; line-height: 1.7; }
+
+  /* FOOTER */
+  footer { border-top: 2px solid var(--ink); padding: 28px 60px; display: flex; justify-content: space-between; align-items: center; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); font-weight: 400; text-transform: uppercase; }
+  footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: var(--gold); }
+  .footer-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--ink); text-transform: none; letter-spacing: 0; }
+
+  @media (max-width: 768px) {
+    .masthead-title { padding: 28px 20px 18px; }
+    nav a { padding: 10px 16px; font-size: 10px; }
+    .container { padding: 0 20px; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .port-divider { height: 1px; width: 100%; margin: 0; }
+    .port-col { padding: 36px 20px; }
+    .port-col-right { padding: 36px 20px; }
+    footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker-wrap"><div class="ticker-track">
+  <span class="ticker-item">Accounting Intern @ Airbus Helicopters</span><span class="ticker-sep">·</span>
+  <span class="ticker-item">Dallas Baptist University · Class of 2027</span><span class="ticker-sep">·</span>
+  <span class="ticker-item">3.76 GPA · Carter School of Business</span><span class="ticker-sep">·</span>
+  <span class="ticker-item">Aspiring CPA</span><span class="ticker-sep">·</span>
+  <span class="ticker-item">Published on Substack</span><span class="ticker-sep">·</span>
+  <span class="ticker-item">SAP · Excel · Accounts Receivable</span><span class="ticker-sep">·</span>
+  <span class="ticker-item">Treasurer · Tau Alpha Phi</span><span class="ticker-sep">·</span>
+  <span class="ticker-item">Dallas, TX</span><span class="ticker-sep">·</span>
+  <span class="ticker-item">Accounting Intern @ Airbus Helicopters</span><span class="ticker-sep">·</span>
+  <span class="ticker-item">Dallas Baptist University · Class of 2027</span><span class="ticker-sep">·</span>
+  <span class="ticker-item">3.76 GPA · Carter School of Business</span><span class="ticker-sep">·</span>
+  <span class="ticker-item">Aspiring CPA</span><span class="ticker-sep">·</span>
+  <span class="ticker-item">Published on Substack</span><span class="ticker-sep">·</span>
+  <span class="ticker-item">SAP · Excel · Accounts Receivable</span><span class="ticker-sep">·</span>
+  <span class="ticker-item">Treasurer · Tau Alpha Phi</span><span class="ticker-sep">·</span>
+  <span class="ticker-item">Dallas, TX</span><span class="ticker-sep">·</span>
+</div></div>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-title">
+    <h1><a href="index.html">Hayden Harms</a></h1>
+    <div class="gold-rule"></div>
+    <p class="subtitle">Accounting Student &nbsp;·&nbsp; Aspiring CPA / Tax Practice Owner</p>
+  </div>
+  <nav>
+    <a href="index.html">About</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#education">Education</a>
+    <a href="writing.html">Writing</a>
+    <a href="projects.html">Projects</a>
+    <a href="portfolio.html" class="active">Portfolio</a>
+    <a href="cpa-study.html">CPA Prep Quiz</a>
+    <a href="https://www.linkedin.com/in/hayden-harms-046558298" target="_blank">LinkedIn</a>
+    <button class="dm-toggle-btn" onclick="toggleDark()" aria-label="Toggle dark mode"><span class="dm-icon">☀︎</span></button>
+  </nav>
+</header>
+
+<div class="container">
+  <div class="page-header">
+    <h2>Portfolio</h2>
+    <p>Roth IRA + Individual · Combined · As of May 2026</p>
+  </div>
+
+  <div class="portfolio-grid">
+
+    <!-- LEFT: PIE CHART -->
+    <div class="port-col">
+      <div class="col-label">Geographic Allocation</div>
+      <div class="pie-wrap">
+        <svg class="pie-svg" viewBox="0 0 200 200" id="pie-svg"></svg>
+        <div class="pie-legend" id="pie-legend"></div>
+      </div>
+    </div>
+
+    <div class="port-divider"></div>
+
+    <!-- RIGHT: HOLDINGS -->
+    <div class="port-col-right">
+      <div class="col-label">Holdings Breakdown</div>
+      <div class="inception-tag">Portfolio inception · July 2025</div>
+      <div id="holdings-list"></div>
+    </div>
+
+  </div>
+
+
+</div>
+
+<footer>
+  <span class="footer-name"><a href="index.html" style="text-decoration:none;color:inherit;">Hayden Harms</a></span>
+  <span>Dallas, TX &nbsp;·&nbsp; (806) 290-3396</span>
+  <a href="mailto:harms.e.hayden@gmail.com">harms.e.hayden@gmail.com</a>
+</footer>
+
+<script>
+// Dark mode
+function toggleDark() {
+  const isDark = document.documentElement.classList.toggle('dark');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+}
+if (localStorage.getItem('theme') === 'dark') {
+  document.documentElement.classList.add('dark');
+}
+
+// Holdings — market values from your screenshots
+// VT: ~55% intl, 45% domestic
+// VOO: 100% domestic
+// VB: 100% domestic
+// VXUS: 100% international
+// IAU: commodity (gold) — neither
+// IBIT: crypto — neither
+const holdings = [
+  { ticker: 'VT',   name: 'Vanguard Total World Stock ETF',      mktVal: 10368.99, sincePct: +12.3, color: '#2c2416', domPct: 0.58, intlPct: 0.42 },
+  { ticker: 'VOO',  name: 'Vanguard S&P 500 ETF',                mktVal: 7701.52,  sincePct: +16.1, color: '#b8972a', domPct: 1.00, intlPct: 0.00 },
+  { ticker: 'VB',   name: 'Vanguard Small-Cap ETF',              mktVal: 2083.40,  sincePct: +22.4, color: '#6b5c3e', domPct: 1.00, intlPct: 0.00 },
+  { ticker: 'VXUS', name: 'Vanguard Total International Stock',  mktVal: 1324.55,  sincePct: +18.5, color: '#a0917a', domPct: 0.00, intlPct: 1.00 },
+  { ticker: 'IAU',  name: 'iShares Gold Trust',                  mktVal: 683.68,   sincePct: +11.1, color: '#c0aa88', domPct: 0.00, intlPct: 0.00 },
+  { ticker: 'IBIT', name: 'iShares Bitcoin Trust ETF',           mktVal: 124.91,   sincePct: -37.3, color: '#5a5048', domPct: 0.00, intlPct: 0.00 },
+];
+
+const total = holdings.reduce((s, h) => s + h.mktVal, 0);
+
+// Compute domestic/international
+let domestic = 0, international = 0, other = 0;
+holdings.forEach(h => {
+  domestic     += h.mktVal * h.domPct;
+  international += h.mktVal * h.intlPct;
+  other        += h.mktVal * (1 - h.domPct - h.intlPct);
+});
+const domPct  = domestic / total * 100;
+const intlPct = international / total * 100;
+const othPct  = other / total * 100;
+
+// ── PIE CHART ──
+function drawPie() {
+  const svg = document.getElementById('pie-svg');
+  const cx = 100, cy = 100, r = 90, innerR = 52;
+  const segments = [
+    { label: 'Domestic', pct: domPct,  color: '#2c2416', sub: 'U.S. equities' },
+    { label: 'International', pct: intlPct, color: '#b8972a', sub: 'Non-U.S. equities' },
+    { label: 'Other', pct: othPct, color: '#c0aa88', sub: 'Gold + Crypto' },
+  ];
+
+  let startAngle = -Math.PI / 2;
+  let paths = '';
+  segments.forEach(seg => {
+    const angle = (seg.pct / 100) * 2 * Math.PI;
+    const endAngle = startAngle + angle;
+    const x1 = cx + r * Math.cos(startAngle);
+    const y1 = cy + r * Math.sin(startAngle);
+    const x2 = cx + r * Math.cos(endAngle);
+    const y2 = cy + r * Math.sin(endAngle);
+    const ix1 = cx + innerR * Math.cos(endAngle);
+    const iy1 = cy + innerR * Math.sin(endAngle);
+    const ix2 = cx + innerR * Math.cos(startAngle);
+    const iy2 = cy + innerR * Math.sin(startAngle);
+    const largeArc = angle > Math.PI ? 1 : 0;
+    paths += `<path d="M${x1},${y1} A${r},${r} 0 ${largeArc},1 ${x2},${y2} L${ix1},${iy1} A${innerR},${innerR} 0 ${largeArc},0 ${ix2},${iy2} Z" fill="${seg.color}" opacity="0.92" stroke="var(--bg)" stroke-width="2"/>`;
+    startAngle = endAngle;
+  });
+
+  // Center label
+  paths += `<text x="100" y="96" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="22" font-weight="600" fill="var(--ink)">${domPct.toFixed(0)}%</text>`;
+  paths += `<text x="100" y="112" text-anchor="middle" font-family="Jost, sans-serif" font-size="9" letter-spacing="2" fill="var(--muted)" text-transform="uppercase">DOMESTIC</text>`;
+  svg.innerHTML = paths;
+
+  // Legend
+  const legend = document.getElementById('pie-legend');
+  legend.innerHTML = segments.map(s => `
+    <div class="legend-item">
+      <div class="legend-dot" style="background:${s.color}"></div>
+      <div>
+        <div class="legend-label">${s.label}</div>
+        <div class="legend-sub">${s.sub}</div>
+      </div>
+      <div class="legend-pct">${s.pct.toFixed(1)}%</div>
+    </div>`).join('');
+}
+
+// ── HOLDINGS LIST ──
+function drawHoldings() {
+  const list = document.getElementById('holdings-list');
+  const maxVal = Math.max(...holdings.map(h => h.mktVal));
+  list.innerHTML = holdings.map(h => {
+    const alloc = (h.mktVal / total * 100).toFixed(1);
+    const barW  = (h.mktVal / maxVal * 100).toFixed(1);
+    const changeClass = h.sincePct >= 0 ? 'up' : 'down';
+    const changeStr = (h.sincePct >= 0 ? '+' : '') + h.sincePct.toFixed(1) + '%';
+    return `
+      <div class="holding-row">
+        <div class="holding-ticker">${h.ticker}</div>
+        <div class="holding-info">
+          <div class="holding-name">${h.name}</div>
+          <div class="holding-bar-bg">
+            <div class="holding-bar-fill" style="width:${barW}%;background:${h.color}"></div>
+          </div>
+        </div>
+        <div class="holding-right">
+          <div class="holding-alloc ${changeClass}">${changeStr}</div>
+          <div class="holding-change">${alloc}% of portfolio</div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+drawPie();
+drawHoldings();
+</script>
+
+</body>
+</html>
