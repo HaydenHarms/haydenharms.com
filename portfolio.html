@@ -264,9 +264,6 @@ function drawPie(svgId, legendId, segs) {
     angle = end;
   });
 
-  var biggest = segs.reduce(function(a, b) { return a.pct > b.pct ? a : b; });
-  html += '<text x="100" y="96" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="20" font-weight="600" fill="var(--ink)">' + biggest.pct.toFixed(0) + '%</text>';
-  html += '<text x="100" y="112" text-anchor="middle" font-family="Jost, sans-serif" font-size="8" letter-spacing="2" fill="var(--muted)">' + biggest.label.toUpperCase() + '</text>';
   svg.innerHTML = html;
 
   legend.innerHTML = segs.map(function(s) {
