@@ -73,7 +73,34 @@
       .masthead-title { padding: 28px 20px 18px; }
       nav a { padding: 10px 16px; font-size: 10px; }
     }
-  </style>
+  
+  /* ── DARK MODE ── */
+  html.dark { --bg-dark: #14100a; }
+  html.dark body { background: #14100a !important; }
+  html.dark .masthead { background: #14100a !important; border-bottom-color: #e8dcc8 !important; }
+  html.dark .masthead-title h1 { color: #e8dcc8 !important; }
+  html.dark .masthead-title .subtitle { color: #6b5c3e !important; }
+  html.dark .gold-rule { background: #c8a84a !important; }
+  html.dark nav { border-color: #2a2015 !important; }
+  html.dark nav a { color: #c0aa88 !important; border-color: #2a2015 !important; }
+  html.dark nav a:hover { background: #e8dcc8 !important; color: #14100a !important; }
+  html.dark nav a.active { background: #e8dcc8 !important; color: #14100a !important; }
+  html.dark .ticker-wrap { background: #14100a !important; border-color: #2a2015 !important; }
+  html.dark .ticker-wrap::before { background: linear-gradient(to right, #14100a, transparent) !important; }
+  html.dark .ticker-wrap::after  { background: linear-gradient(to left,  #14100a, transparent) !important; }
+  html.dark .ticker-item { color: #6b5c3e !important; }
+  html.dark .ticker-sep  { color: #3a2e1e !important; }
+  .dm-toggle-btn {
+    display: flex; align-items: center; gap: 7px;
+    padding: 11px 18px; border: none; background: none; cursor: pointer;
+    font-family: 'Jost', sans-serif; font-size: 16px; color: #c0aa88;
+    border-left: 1px solid #2a2015; flex-shrink: 0;
+    transition: background 0.2s, color 0.2s; line-height: 1;
+  }
+  .dm-toggle-btn:hover { background: #e8dcc8; color: #14100a; }
+  html.dark .dm-toggle-btn .dm-icon { transform: rotate(180deg); }
+
+</style>
 </head>
 <body>
 
@@ -113,6 +140,7 @@
     <a href="https://haydenharms.com/writing.html">Writing</a>
     <a href="https://haydenharms.com/projects.html">Projects</a>
     <a href="#" class="active">CPA Prep Quiz</a>
+    <button class="dm-toggle-btn" onclick="toggleDark()" aria-label="Toggle dark mode"><span class="dm-icon">☀︎</span></button>
   </nav>
 </header>
 
@@ -430,6 +458,15 @@ function CPAHub() {
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(CPAHub));
+</script>
+<script>
+  function toggleDark() {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  }
+  if (localStorage.getItem('theme') === 'dark') {
+    document.documentElement.classList.add('dark');
+  }
 </script>
 </body>
 </html>
