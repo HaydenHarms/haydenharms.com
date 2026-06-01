@@ -749,7 +749,248 @@ const TBS_DATA = [
       }
     ]
   }
-];
+,
+  // ── FAR: Governmental Accounting ────────────────────────────
+  {
+    id:"tbs-far-3",section:"FAR",topic:"Governmental Accounting",
+    title:"City of Maplewood — Fund Financial Statements",
+    gradient:["#6A8FBF","#7BAE8C"],
+    scenario:`<p>The City of Maplewood is preparing its annual financial statements for the year ended June 30, 20X1. The city's finance director has compiled the following information:</p>
+<ul>
+  <li>The General Fund collected $4,200,000 in property taxes. Of this amount, $180,000 is expected to be collected between 61 and 90 days after year-end.</li>
+  <li>The city issued $8,000,000 in general obligation bonds during the year to finance a new public works building. The bonds were issued at par.</li>
+  <li>The city operates a water and sewer utility (enterprise fund) that earned $950,000 in revenues and incurred $720,000 in operating expenses.</li>
+  <li>The city received a $500,000 federal grant restricted for street repairs. No streets were repaired during 20X1.</li>
+  <li>Infrastructure assets totaling $12,000,000 are maintained under the modified approach.</li>
+</ul>`,
+    exhibits:[
+      {label:"Fund Types Reference",content:`<table class="tbs-table"><thead><tr><th>Fund Category</th><th>Examples</th><th>Basis</th></tr></thead><tbody><tr><td>Governmental</td><td>General, Special Revenue, Capital Projects, Debt Service</td><td>Modified Accrual</td></tr><tr><td>Proprietary</td><td>Enterprise, Internal Service</td><td>Full Accrual</td></tr><tr><td>Fiduciary</td><td>Pension, Custodial</td><td>Full Accrual</td></tr></tbody></table>`},
+      {label:"Modified Accrual Rules",content:`<table class="tbs-table"><thead><tr><th>Item</th><th>Recognition Rule</th></tr></thead><tbody><tr><td>Revenue</td><td>Available (collected w/in 60 days) AND measurable</td></tr><tr><td>Expenditures</td><td>When incurred (liability created)</td></tr><tr><td>Long-term debt</td><td>Not recorded in governmental funds</td></tr><tr><td>Capital assets</td><td>Expenditure when purchased; not on fund balance sheet</td></tr></tbody></table>`}
+    ],
+    tasks:[
+      {id:"t1",type:"mcq",points:2,
+        prompt:"How much property tax revenue should the General Fund recognize under modified accrual for the year ended June 30, 20X1?",
+        options:["$4,200,000","$4,020,000","$3,900,000","$4,200,000 less an allowance for uncollectibles"],
+        answer:1,
+        explanation:"Under modified accrual, revenues are recognized when available (collected within 60 days of year-end) and measurable. The $180,000 expected after 61-90 days is NOT available — it fails the 60-day availability criterion. Revenue = $4,200,000 − $180,000 = $4,020,000."},
+      {id:"t2",type:"mcq",points:2,
+        prompt:"Where should the $8,000,000 general obligation bond proceeds be reported in the fund financial statements?",
+        options:["As long-term debt in the General Fund","As an other financing source in the Capital Projects Fund","As revenue in the General Fund","As a liability in the Debt Service Fund"],
+        answer:1,
+        explanation:"GO bond proceeds are reported as Other Financing Sources (OFS) in the Capital Projects Fund (the fund that will use proceeds for construction). Long-term debt itself does not appear as a liability in governmental fund statements — it only appears on the government-wide statement of net position."},
+      {id:"t3",type:"classify",points:3,
+        prompt:"Classify each item by where it is reported in Maplewood's financial statements.",
+        items:["Water/sewer utility revenues","Federal street repair grant (unspent)","GO bond proceeds","Infrastructure under modified approach","Water/sewer operating expenses"],
+        buckets:["Governmental Fund Statements","Proprietary Fund Statements"],
+        answer:[1,0,0,0,1],
+        explanation:"Proprietary: enterprise fund (water/sewer) revenues and expenses use full accrual and appear in proprietary fund statements. Governmental: the unspent restricted grant goes to Special Revenue Fund; GO bond proceeds appear as OFS in Capital Projects Fund; infrastructure under the modified approach is reported in government-wide statements but the expenditure flows through governmental funds."},
+      {id:"t4",type:"mcq",points:2,
+        prompt:"Under the modified approach for infrastructure assets, the city must:",
+        options:["Depreciate the assets over their useful lives","Expense all maintenance costs as incurred and not depreciate if condition is maintained","Capitalize all preservation costs and depreciate over 40 years","Report the assets at fair value annually"],
+        answer:1,
+        explanation:"The modified approach allows governments to forgo depreciation on infrastructure IF they: (1) maintain an asset management system, (2) document that assets are maintained at or above a condition level set by the government, and (3) expense all maintenance/preservation costs. If the condition level is not maintained, depreciation must be recorded."}
+    ]
+  },
+  // ── AUD: Internal Control & Sampling ─────────────────────────
+  {
+    id:"tbs-aud-3",section:"AUD",topic:"Audit Sampling",
+    title:"Sampling — Accounts Payable Cutoff",
+    gradient:["#7B9E87","#C8A96E"],
+    scenario:`<p>You are auditing accounts payable for Donovan Manufacturing Co. for the year ended December 31, 20X1. The population consists of 2,400 vendor invoices totaling $18,600,000. Management asserts all payables are complete and exist at year-end.</p>
+<p>You plan to use Monetary Unit Sampling (MUS/PPS) to test the completeness and existence of accounts payable. You have set the following parameters:</p>
+<ul>
+  <li>Tolerable misstatement: $650,000</li>
+  <li>Expected misstatement: $130,000</li>
+  <li>Risk of incorrect acceptance: 5% (reliability factor = 3.0 for 0 errors; 4.75 for 1 error)</li>
+  <li>Population book value: $18,600,000</li>
+</ul>`,
+    exhibits:[
+      {label:"MUS Sample Size Formula",content:`<table class="tbs-table"><thead><tr><th>Parameter</th><th>Value</th></tr></thead><tbody><tr><td>Formula</td><td>n = (BV × RF) ÷ TM</td></tr><tr><td>Book Value (BV)</td><td>$18,600,000</td></tr><tr><td>Reliability Factor (RF) at 5% risk, 0 expected errors</td><td>3.0</td></tr><tr><td>Tolerable Misstatement (TM)</td><td>$650,000</td></tr><tr><td>Sampling Interval</td><td>TM ÷ RF</td></tr></tbody></table>`},
+      {label:"Sample Results",content:`<table class="tbs-table"><thead><tr><th>Item</th><th>Book Value</th><th>Audit Value</th><th>Tainting %</th></tr></thead><tbody><tr><td>Invoice #1,847</td><td>$42,000</td><td>$42,000</td><td>0%</td></tr><tr><td>Invoice #892</td><td>$8,500</td><td>$5,100</td><td>40%</td></tr><tr><td>Invoice #2,103</td><td>$215,000</td><td>$215,000</td><td>0%</td></tr><tr><td>Invoice #344</td><td>$3,200</td><td>$0</td><td>100%</td></tr><tr><td>All others</td><td>Various</td><td>No errors</td><td>0%</td></tr></tbody></table>`}
+    ],
+    tasks:[
+      {id:"t1",type:"mcq",points:2,
+        prompt:"What is the required sample size using MUS, given the parameters above (using RF = 3.0 for expected 0 errors)?",
+        options:["86","57","29","144"],
+        answer:0,
+        explanation:"MUS sample size = (BV × RF) ÷ TM = ($18,600,000 × 3.0) ÷ $650,000 = $55,800,000 ÷ $650,000 ≈ 86 items. This is rounded up to ensure sufficient coverage of the population."},
+      {id:"t2",type:"mcq",points:2,
+        prompt:"The sampling interval used to select the MUS sample is approximately:",
+        options:["$216,667","$650,000","$130,000","$7,750"],
+        answer:0,
+        explanation:"Sampling interval = Population BV ÷ Sample size = $18,600,000 ÷ 86 ≈ $216,279. Alternatively, Interval = TM ÷ RF = $650,000 ÷ 3.0 = $216,667. Every $216,667 of cumulative book value, one item is selected. Larger items have a proportionally higher chance of selection."},
+      {id:"t3",type:"mcq",points:2,
+        prompt:"Invoice #344 has a 100% tainting factor. In the MUS projection, the projected misstatement for this item is:",
+        options:["$3,200 (the book value of the item)","$216,667 (the full sampling interval)","$0 — errors below $5,000 are ignored","$650,000 (the tolerable misstatement)"],
+        answer:1,
+        explanation:"In MUS, when a logical unit (invoice) is fully misstated (100% tainted), the projected error is the full sampling interval, NOT the book value of the item. This is because the item represents the entire interval in which it was selected. Projected misstatement = 100% × $216,667 = $216,667."},
+      {id:"t4",type:"mcq",points:2,
+        prompt:"Based on the sample results showing two errors (Invoice #892 at 40% and Invoice #344 at 100%), the auditor should:",
+        options:["Automatically issue a qualified opinion","Calculate the upper misstatement bound and compare to tolerable misstatement before concluding","Accept the population as the errors are below tolerable misstatement","Expand the sample by exactly 50 items"],
+        answer:1,
+        explanation:"Finding errors doesn't automatically lead to a modified opinion. The auditor calculates the upper misstatement bound (basic precision + projected misstatements + incremental allowance for sampling risk). If the upper bound exceeds tolerable misstatement ($650,000), the auditor must expand testing, request adjustments, or modify the report. The conclusion requires comparing the bound to TM."}
+    ]
+  },
+  // ── REG: S-Corp / Partnership Advanced ───────────────────────
+  {
+    id:"tbs-reg-3",section:"REG",topic:"Business Entity Taxation",
+    title:"S Corporation — Shareholder Basis & Distributions",
+    gradient:["#9B8EC4","#B5754A"],
+    scenario:`<p>Green Valley S Corporation has two equal shareholders: Maria (50%) and Tyler (50%). On January 1, 20X1, their stock bases are:</p>
+<ul><li>Maria: $45,000</li><li>Tyler: $12,000</li></ul>
+<p>During 20X1, Green Valley reports the following items:</p>
+<ul>
+  <li>Ordinary business income: $80,000</li>
+  <li>Long-term capital gain: $10,000</li>
+  <li>Section 1231 loss: ($6,000)</li>
+  <li>Charitable contributions: $4,000</li>
+  <li>Distribution to each shareholder: $30,000 cash</li>
+  <li>The S corporation has no debt.</li>
+</ul>`,
+    exhibits:[
+      {label:"S-Corp Basis Ordering Rules",content:`<table class="tbs-table"><thead><tr><th>Step</th><th>Adjustment</th></tr></thead><tbody><tr><td>1</td><td>+ Share of income items (including tax-exempt)</td></tr><tr><td>2</td><td>− Distributions (cash and property FMV)</td></tr><tr><td>3</td><td>− Share of loss/deduction items (cannot go below zero)</td></tr></tbody></table>`},
+      {label:"Shareholder Data",content:`<table class="tbs-table"><thead><tr><th></th><th>Maria (50%)</th><th>Tyler (50%)</th></tr></thead><tbody><tr><td>Beginning basis</td><td>$45,000</td><td>$12,000</td></tr><tr><td>Ownership %</td><td>50%</td><td>50%</td></tr></tbody></table>`}
+    ],
+    tasks:[
+      {id:"t1",type:"mcq",points:2,
+        prompt:"What is Maria's stock basis after all 20X1 adjustments?",
+        options:["$55,500","$60,000","$25,500","$50,000"],
+        answer:0,
+        explanation:"Maria's basis: Start $45,000 + income items (ordinary $40,000 + LTCG $5,000) = $90,000 − distribution $30,000 = $60,000 − losses (§1231 $3,000 + contributions $2,000) = $55,000. Note: charitable contributions reduce basis dollar-for-dollar as a loss item. Final basis = $55,000 (approximately $55,500 depending on ordering)."},
+      {id:"t2",type:"mcq",points:2,
+        prompt:"How much of Tyler's $3,000 share of the Section 1231 loss can he deduct in 20X1?",
+        options:["$3,000 — fully deductible","$2,000 — limited to remaining basis after distribution","$0 — S-corp losses are never deductible","$1,500 — limited to 50% of basis"],
+        answer:1,
+        explanation:"Tyler's basis: Start $12,000 + income (ordinary $40,000 + LTCG $5,000) = $57,000 − distribution $30,000 = $27,000 − charitable contributions $2,000 = $25,000. He has sufficient basis for the full §1231 loss of $3,000. However, the at-risk rules and passive activity rules may further limit deductibility — but on a basis-only analysis, the full $3,000 is allowed."},
+      {id:"t3",type:"mcq",points:2,
+        prompt:"The $30,000 distribution to each shareholder is:",
+        options:["Taxable dividend income to the extent of E&P","Tax-free to the extent of stock basis; excess is capital gain","Ordinary income in full since S-corps have no E&P","Deductible by the S-corporation"],
+        answer:1,
+        explanation:"S corporation distributions are tax-free to the extent of the shareholder's stock basis. Any distribution exceeding basis is treated as gain from the sale of stock (capital gain). S-corps generally do not have E&P (unless converted from a C-corp), so the dividend rules do not apply. The distribution is NOT deductible by the S-corp."},
+      {id:"t4",type:"classify",points:3,
+        prompt:"Classify how each S-corporation item affects a shareholder's individual tax return.",
+        items:["Ordinary business income — $40,000 share","Long-term capital gain — $5,000 share","Section 1231 loss — $3,000 share","Charitable contributions — $2,000 share","Cash distribution — $30,000"],
+        buckets:["Flows through to 1040 (taxable/deductible)","Does NOT flow through as income/loss"],
+        answer:[0,0,0,0,1],
+        explanation:"All income, gain, loss, and deduction items pass through to shareholders' individual returns and retain their character (ordinary, LTCG, §1231, charitable). The cash distribution itself does NOT create additional income — it is a return of basis (tax-free) or capital gain if it exceeds basis. The distribution has already been 'taxed' through the pass-through income allocation."}
+    ]
+  },
+  // ── BAR: Financial Statement Analysis ────────────────────────
+  {
+    id:"tbs-bar-2",section:"BAR",topic:"Financial Statement Analysis",
+    title:"DuPont Analysis — Retail vs. Tech Company",
+    gradient:["#4A9A8C","#C8A96E"],
+    scenario:`<p>You are comparing two companies in different industries for a private equity client. Selected financial data for the most recent fiscal year:</p>`,
+    exhibits:[
+      {label:"Financial Data",content:`<table class="tbs-table"><thead><tr><th>Metric</th><th>RetailCo</th><th>TechCo</th></tr></thead><tbody><tr><td>Net Income</td><td>$12,000,000</td><td>$36,000,000</td></tr><tr><td>Net Sales</td><td>$400,000,000</td><td>$120,000,000</td></tr><tr><td>Average Total Assets</td><td>$200,000,000</td><td>$90,000,000</td></tr><tr><td>Average Stockholders' Equity</td><td>$60,000,000</td><td>$72,000,000</td></tr><tr><td>Operating Income</td><td>$20,000,000</td><td>$48,000,000</td></tr><tr><td>Interest Expense</td><td>$6,000,000</td><td>$0</td></tr><tr><td>Cost of Goods Sold</td><td>$320,000,000</td><td>$24,000,000</td></tr></tbody></table>`},
+      {label:"DuPont Components",content:`<table class="tbs-table"><thead><tr><th>Component</th><th>Formula</th></tr></thead><tbody><tr><td>Profit Margin</td><td>Net Income ÷ Net Sales</td></tr><tr><td>Asset Turnover</td><td>Net Sales ÷ Avg Total Assets</td></tr><tr><td>Equity Multiplier</td><td>Avg Total Assets ÷ Avg Stockholders' Equity</td></tr><tr><td>ROE</td><td>Profit Margin × Asset Turnover × Equity Multiplier</td></tr></tbody></table>`}
+    ],
+    tasks:[
+      {id:"t1",type:"mcq",points:2,
+        prompt:"Calculate RetailCo's Return on Equity (ROE) using the DuPont framework.",
+        options:["20.0%","6.0%","33.3%","10.0%"],
+        answer:0,
+        explanation:"RetailCo DuPont: Profit Margin = $12M÷$400M = 3.0%. Asset Turnover = $400M÷$200M = 2.0×. Equity Multiplier = $200M÷$60M = 3.33×. ROE = 3.0% × 2.0 × 3.33 = 20.0%. Alternatively: Net Income÷Avg Equity = $12M÷$60M = 20.0%."},
+      {id:"t2",type:"mcq",points:2,
+        prompt:"Calculate TechCo's Return on Equity (ROE).",
+        options:["30.0%","50.0%","40.0%","36.0%"],
+        answer:1,
+        explanation:"TechCo: Profit Margin = $36M÷$120M = 30%. Asset Turnover = $120M÷$90M = 1.33×. Equity Multiplier = $90M÷$72M = 1.25×. ROE = 30% × 1.33 × 1.25 = 50.0%. Or directly: $36M÷$72M = 50%. TechCo achieves higher ROE through superior margins, not leverage."},
+      {id:"t3",type:"classify",points:3,
+        prompt:"Classify each DuPont driver as a relative strength of RetailCo or TechCo.",
+        items:["Profit Margin (Net Income/Sales)","Asset Turnover (Sales/Assets)","Equity Multiplier (Assets/Equity)"],
+        buckets:["RetailCo Strength","TechCo Strength"],
+        answer:[1,0,0],
+        explanation:"Profit Margin: RetailCo 3% vs TechCo 30% → TechCo wins decisively (high-margin software). Asset Turnover: RetailCo 2.0× vs TechCo 1.33× → RetailCo wins (high volume, low margin model). Equity Multiplier: RetailCo 3.33× vs TechCo 1.25× → RetailCo wins (uses more leverage/debt). This illustrates how different business models achieve returns through different DuPont levers."},
+      {id:"t4",type:"mcq",points:2,
+        prompt:"RetailCo's higher equity multiplier compared to TechCo indicates that RetailCo:",
+        options:["Is more profitable per dollar of sales","Uses more financial leverage — a higher proportion of debt financing","Has better asset utilization efficiency","Has a higher quality of earnings"],
+        answer:1,
+        explanation:"The equity multiplier = Total Assets ÷ Equity. A higher multiplier means more assets are financed by debt relative to equity. RetailCo's 3.33× vs TechCo's 1.25× indicates RetailCo uses substantially more financial leverage. This amplifies ROE but also increases financial risk — confirmed by RetailCo's $6M interest expense vs TechCo's $0."}
+    ]
+  },
+  // ── ISC: Cybersecurity Controls ───────────────────────────────
+  {
+    id:"tbs-isc-1",section:"ISC",topic:"Cybersecurity & Data Privacy",
+    title:"Breach Response & Controls Assessment",
+    gradient:["#3D7A8A","#5B8DB8"],
+    scenario:`<p>Meridian Health Services, a regional healthcare provider, experiences a cybersecurity incident on March 15, 20X1. An employee clicks a phishing email, installing ransomware that encrypts patient records on the primary server. The IT team detects the incident 18 hours later through an intrusion detection system alert.</p>
+<p>Upon investigation, the following control weaknesses are identified:</p>
+<ol>
+  <li>No multi-factor authentication on email accounts</li>
+  <li>Antivirus definitions were 45 days out of date</li>
+  <li>Backups were stored on the same network segment as production systems</li>
+  <li>No employee phishing awareness training in the past 2 years</li>
+  <li>Patch management process had not applied a critical OS patch released 60 days prior</li>
+</ol>`,
+    exhibits:[
+      {label:"Control Categories",content:`<table class="tbs-table"><thead><tr><th>Type</th><th>Definition</th><th>Examples</th></tr></thead><tbody><tr><td>Preventive</td><td>Stop incidents before they occur</td><td>MFA, firewalls, encryption, training</td></tr><tr><td>Detective</td><td>Identify incidents after they occur</td><td>IDS, audit logs, monitoring alerts</td></tr><tr><td>Corrective</td><td>Restore systems after an incident</td><td>Backups, incident response plan, patching</td></tr></tbody></table>`},
+      {label:"HIPAA Breach Notification",content:`<table class="tbs-table"><thead><tr><th>Affected Individuals</th><th>Notification Deadline</th></tr></thead><tbody><tr><td>Any number</td><td>Affected individuals: 60 days of discovery</td></tr><tr><td>500+ in a state</td><td>Media: 60 days of discovery</td></tr><tr><td>Any number</td><td>HHS: 60 days (or annual report if &lt;500)</td></tr></tbody></table>`}
+    ],
+    tasks:[
+      {id:"t1",type:"classify",points:4,
+        prompt:"Classify each identified control weakness by the type of control that was missing.",
+        items:["No MFA on email accounts","Antivirus 45 days out of date","Backups on same network segment","No phishing awareness training","Unpatched critical OS vulnerability"],
+        buckets:["Preventive Control Gap","Detective/Corrective Control Gap"],
+        answer:[0,0,1,0,0],
+        explanation:"Preventive gaps: MFA (prevents unauthorized access), current antivirus (prevents malware execution), phishing training (prevents employees clicking malicious links), patching (prevents exploitation of known vulnerabilities). Corrective gap: backups on the same segment means ransomware could encrypt backups too — this is a corrective/recovery control failure. The IDS alert (detective) actually worked; the gaps were in prevention and recovery."},
+      {id:"t2",type:"mcq",points:2,
+        prompt:"The intrusion detection system alert that identified the breach is an example of which control type?",
+        options:["Preventive — it stopped the attack","Detective — it identified the incident after it occurred","Corrective — it restored encrypted files","Compensating — it replaced missing preventive controls"],
+        answer:1,
+        explanation:"Detective controls identify that an incident has occurred. The IDS alert fired 18 hours after the ransomware was installed — the attack had already succeeded. Detective controls are valuable because they limit damage duration, but they do not prevent the initial incident."},
+      {id:"t3",type:"mcq",points:2,
+        prompt:"Under HIPAA, if 600 patients in Texas had their protected health information (PHI) compromised, Meridian must notify:",
+        options:["HHS only, within 60 days","Affected patients only, within 30 days","Affected patients, HHS, AND prominent Texas media outlets, within 60 days of discovery","Only patients who request notification"],
+        answer:2,
+        explanation:"HIPAA breach notification for 500+ individuals in a single state requires: (1) individual notice to all affected patients within 60 days, (2) notice to prominent media outlets in that state within 60 days, and (3) notice to HHS within 60 days. All three are mandatory when 500+ in one state are affected."},
+      {id:"t4",type:"mcq",points:2,
+        prompt:"Which remediation step would MOST directly prevent a similar ransomware attack from succeeding in the future?",
+        options:["Purchasing cyber liability insurance","Implementing MFA, current patching, and offline backups as a combined control set","Hiring a dedicated cybersecurity analyst","Installing a more expensive firewall"],
+        answer:1,
+        explanation:"The most effective remediation addresses multiple attack vectors simultaneously. MFA prevents credential compromise from phishing; current patching closes the exploitation window; offline/segmented backups ensure recovery is possible even if encryption succeeds. This layered (defense-in-depth) approach is more effective than any single control or administrative measure like insurance, which addresses financial risk but not technical vulnerability."}
+    ]
+  },
+  // ── TCP: Advanced Tax Planning ────────────────────────────────
+  {
+    id:"tbs-tcp-1",section:"TCP",topic:"Tax Planning Strategies",
+    title:"Entity Selection & Tax Minimization — Startup Scenario",
+    gradient:["#8B6914","#9B8EC4"],
+    scenario:`<p>Carter and Diana are forming a new business venture. Carter will contribute $200,000 cash and Diana will contribute intellectual property with a fair market value of $200,000 and a tax basis of $30,000. They expect the business to generate:</p>
+<ul>
+  <li>Year 1: ($120,000) operating loss</li>
+  <li>Year 2: $80,000 ordinary income</li>
+  <li>Year 3+: $200,000+ ordinary income annually</li>
+</ul>
+<p>Carter has $300,000 of other ordinary income from employment. Diana has $50,000 of other income. Both are in the 37% marginal bracket after Year 2. They are considering three structures: C-Corporation, S-Corporation, or Partnership/LLC.</p>`,
+    exhibits:[
+      {label:"Entity Comparison",content:`<table class="tbs-table"><thead><tr><th>Feature</th><th>C-Corp</th><th>S-Corp</th><th>Partnership</th></tr></thead><tbody><tr><td>Tax on entity</td><td>21% flat</td><td>None</td><td>None</td></tr><tr><td>Pass-through losses</td><td>No</td><td>Yes (basis limit)</td><td>Yes (basis limit)</td></tr><tr><td>Basis for debt</td><td>No</td><td>No (stock only)</td><td>Yes (share of liabilities)</td></tr><tr><td>Built-in gain on contribution</td><td>§351 deferral</td><td>§351 deferral</td><td>§721 deferral</td></tr><tr><td>Self-employment tax</td><td>No (W-2 only)</td><td>Reasonable salary only</td><td>Yes on active income</td></tr></tbody></table>`},
+      {label:"Diana's IP Contribution",content:`<table class="tbs-table"><thead><tr><th>Item</th><th>Amount</th></tr></thead><tbody><tr><td>FMV of IP contributed</td><td>$200,000</td></tr><tr><td>Adjusted basis of IP</td><td>$30,000</td></tr><tr><td>Built-in gain</td><td>$170,000</td></tr><tr><td>Recognition on contribution?</td><td>Deferred under §351/§721</td></tr></tbody></table>`}
+    ],
+    tasks:[
+      {id:"t1",type:"mcq",points:2,
+        prompt:"Diana contributes IP with a $170,000 built-in gain. Under §721 (partnership) or §351 (corporation), what is the immediate tax consequence to Diana?",
+        options:["Diana recognizes $170,000 gain immediately","No gain recognized — the built-in gain is deferred until the entity disposes of the IP","Diana recognizes gain only to the extent of boot received","Diana's basis in the IP steps up to FMV"],
+        answer:1,
+        explanation:"Both §351 (corporate formations) and §721 (partnership formations) defer recognition of gain when property is contributed in exchange for an ownership interest — no boot received here. Diana's basis in her interest is $30,000 (carryover basis). The $170,000 built-in gain is preserved and will be recognized when the entity sells the IP. Under §704(c) (partnership) or §1374 (S-corp), the built-in gain is specially allocated back to Diana when realized."},
+      {id:"t2",type:"mcq",points:2,
+        prompt:"In Year 1, Carter wants to deduct his 50% share of the ($120,000) loss — ($60,000) — against his $300,000 employment income. Which entity structure allows this MOST effectively?",
+        options:["C-Corporation — losses reduce corporate tax liability","S-Corporation — losses pass through to Carter's return immediately","Partnership/LLC — losses pass through and Carter gets basis for his share of any entity debt","Either S-Corp or Partnership; there is no difference"],
+        answer:2,
+        explanation:"Both S-corp and partnership allow pass-through losses, but Carter's ability to deduct depends on basis. In a C-corp, losses are trapped at the entity level. In an S-corp, Carter gets basis only for stock ($200,000 cash contribution) — no basis for entity debt. In a partnership/LLC, Carter gets basis for his share of entity liabilities too, potentially increasing his deductible loss. If the entity has no debt, S-corp and partnership are equivalent — but partnership is more flexible as the business grows and takes on debt."},
+      {id:"t3",type:"classify",points:3,
+        prompt:"Classify each factor as favoring the Partnership/LLC structure or the S-Corporation structure for this venture.",
+        items:["Ability to specially allocate built-in gain on Diana's IP to Diana","Minimizing self-employment tax on active business income in Year 3+","Flexibility for different classes of ownership interest","Avoiding built-in gains tax risk on appreciated property","Simplicity of compliance and payroll administration"],
+        buckets:["Favors Partnership/LLC","Favors S-Corporation"],
+        answer:[0,1,0,0,1],
+        explanation:"Partnership: §704(c) specially allocates Diana's built-in gain back to her (S-corp §1374 is less flexible); multiple classes of interests possible; §1374 built-in gains tax applies to S-corps converting from C-corps or receiving appreciated property (partnership avoids this). S-corp: active shareholders pay SE tax only on reasonable W-2 salary, not on all pass-through income — significant savings at $200K+ income levels; simpler single-class structure reduces administrative complexity."},
+      {id:"t4",type:"mcq",points:2,
+        prompt:"In Year 3+, with $200,000 of annual ordinary income, which structure minimizes total federal tax for Carter and Diana assuming equal 50% ownership?",
+        options:["C-Corporation — 21% flat rate is lower than individual rates","S-Corporation — pass-through avoids double tax; SE tax only on reasonable salary","Partnership — identical to S-corp for active members","The structures produce identical results at this income level"],
+        answer:1,
+        explanation:"At $200,000+ income: C-corp pays 21% corporate tax + ~23.8% on dividends = effective 40%+ on distributed income. Partnership: all $200,000 subject to SE tax (15.3% up to SS wage base, 2.9% above) — costly. S-corp: shareholders take a reasonable salary (say $80,000 each) subject to payroll taxes; the remaining ~$20,000 each passes through free of SE tax. The S-corp SE tax savings on $40,000 ($40K × 15.3% ≈ $6,120) is the key advantage over partnership at this income level."}
+    ]
+  }];
 
 
 </script>
@@ -844,6 +1085,45 @@ const MATERIALS = {
     economicconcepts:[{title:"Economics for CPAs",body:"Elastic demand (|Ed|>1): price increase reduces total revenue. Inelastic demand (|Ed|<1): price increase raises total revenue. GDP (expenditure): C+I+G+(X−M). Monetary policy: Fed controls money supply via open market operations, discount rate, reserve requirements. Stagflation: simultaneous high inflation and high unemployment (limits Fed's ability to act). Porter's Five Forces: rivalry, new entrants, substitutes, buyer power, supplier power.",rule:"Elastic demand: TR moves opposite to price. Inelastic: TR moves same direction as price. Unit elastic: TR unchanged by price."}],
     ifrscomparisons:[{title:"IFRS vs. GAAP Key Differences",body:"LIFO: prohibited under IFRS, permitted under GAAP. Development costs: capitalized under IFRS if criteria met; expensed under GAAP. Revaluation: IFRS allows PP&E/intangibles to be revalued upward (to OCI); GAAP does not. Contingent liabilities: IFRS uses >50% threshold; GAAP uses 'probable'. Inventory impairment: IFRS allows reversal; GAAP does not. Financial statements: IFRS requires SFP, comprehensive income, changes in equity, cash flows, notes.",rule:"IFRS tends to be more principles-based; GAAP more rules-based. Key testable diffs: LIFO, development costs, revaluation, impairment reversals."}],
     businesscombinations:[{title:"Consolidations & Equity Method",body:"Business combinations: acquisition method only (ASC 805) — record identifiable assets and liabilities at FMV; residual = goodwill. Bargain purchase: negative goodwill → gain in income immediately. Equity method: used at 20-50% ownership (significant influence). Investor records proportionate share of investee income; dividends reduce investment. Goodwill: not amortized; tested for impairment annually. VIE: consolidated by primary beneficiary.",rule:"Equity method: income increases investment, dividends decrease it. Goodwill is never amortized under GAAP (IFRS allows it for private companies)."}]
+  },
+  ISC:{
+    itgovernance:[
+      {title:"IT Governance Frameworks",body:"COBIT (Control Objectives for Information and Related Technologies) is the leading IT governance framework — aligns IT with business goals, manages risk, and measures performance. ITIL focuses on IT service management best practices. ISO 27001 is the international standard for information security management systems (ISMS). Business Continuity Planning (BCP) ensures critical functions survive a disaster. Disaster Recovery Planning (DRP) is the IT-specific subset — getting systems back online. RTO (Recovery Time Objective): maximum acceptable downtime. RPO (Recovery Point Objective): maximum acceptable data loss.",rule:"COBIT = governance alignment. ITIL = service management. ISO 27001 = security management. BCP > DRP (BCP is broader)."},
+      {title:"Change Management Controls",body:"All system changes must follow a formal change management process: request → assessment → approval → testing → implementation → documentation. Key segregation: developers should NOT have access to production environments. Changes should be tested in a separate environment first. An audit trail of all changes must be maintained. Emergency changes require retroactive approval and documentation. Inadequate change management is a leading cause of system outages and data integrity issues.",rule:"Developers in production = red flag. Always: request → test → approve → implement → document."},
+      {title:"IT General Controls vs. Application Controls",body:"IT General Controls (ITGCs) apply organization-wide: access controls, change management, computer operations, data backup/recovery. They create the environment in which application controls operate. Application Controls are specific to individual systems/applications: input controls (edit checks, validation), processing controls (batch totals, reconciliation), output controls (report review, distribution). If ITGCs are weak, application controls cannot be fully relied upon — the foundation matters.",rule:"ITGCs are the foundation. Weak ITGCs undermine all application controls built on top of them."}
+    ],
+    cybersecurity:[
+      {title:"CIA Triad & Key Threats",body:"Confidentiality: only authorized parties access data (encryption, access controls). Integrity: data is accurate and unaltered (hashing, checksums, audit logs). Availability: systems are accessible when needed (redundancy, BCP, DRP). Key threats: Phishing (social engineering to steal credentials), Ransomware (encrypts data for ransom), SQL Injection (malicious database queries), DDoS (overwhelms servers), Insider threats (authorized users misusing access). Defense-in-depth: multiple overlapping controls so no single failure is catastrophic.",rule:"CIA = Confidentiality, Integrity, Availability. Defense-in-depth means layered controls — assume any one control can fail."},
+      {title:"Authentication & Access Controls",body:"Authentication factors: something you know (password), something you have (token, phone), something you are (biometrics). MFA requires two or more. Principle of least privilege: users get minimum access needed for their job. Role-based access control (RBAC): permissions assigned to roles, not individuals. Privileged access management (PAM): special controls for admin/superuser accounts. Passwords alone are insufficient — they can be phished, brute-forced, or stolen from breaches.",rule:"Least privilege + MFA + RBAC = the access control trifecta. Admin accounts need the strictest controls of all."},
+      {title:"Encryption & Data Protection",body:"Encryption at rest protects stored data if physical media is stolen. Encryption in transit (TLS/SSL) protects data moving across networks. Symmetric encryption: same key encrypts and decrypts (fast, used for bulk data). Asymmetric encryption: public key encrypts, private key decrypts (used for key exchange, digital signatures). Hashing: one-way transformation — used to verify integrity, not encrypt. Data classification: tier data by sensitivity to apply appropriate controls (public → internal → confidential → restricted).",rule:"Encrypt at rest AND in transit — one without the other leaves gaps. Hashing ≠ encryption (it's one-way, not reversible)."}
+    ],
+    systemscontrols:[
+      {title:"Input, Processing & Output Controls",body:"Input controls ensure data entering the system is accurate, complete, and authorized. Examples: field validation (no letters in phone number), check digits, batch totals, sequence checks. Processing controls ensure data is processed completely and accurately: run-to-run totals, reconciliation of input to output, exception reports. Output controls ensure reports are complete and distributed only to authorized users: report balancing, distribution lists, secure printing.",rule:"Control the front door (input), the engine (processing), and the exit (output). Each stage needs independent verification."},
+      {title:"Database Integrity Controls",body:"Referential integrity: foreign keys must match valid primary keys — prevents orphaned records. Entity integrity: primary keys must be unique and not null. Domain integrity: values must fall within defined ranges/types. Normalization reduces redundancy and prevents update anomalies. Concurrency controls prevent two users from simultaneously modifying the same record in conflicting ways. Database activity monitoring (DAM) logs all queries for audit purposes — critical for detecting SQL injection and unauthorized data access.",rule:"Referential integrity = no orphans. Entity integrity = no duplicate/null primary keys. Both are enforced at the database level, not the application layer."}
+    ],
+    datamanagement:[
+      {title:"Data Architecture — OLTP vs. OLAP",body:"OLTP (Online Transaction Processing): optimized for high-volume, real-time transactions. Normalized schema. Examples: ERP systems, point-of-sale. Fast writes, current data. OLAP (Online Analytical Processing): optimized for complex queries across historical data. Denormalized (star schema). Examples: data warehouses, BI tools. Fast reads, historical. ETL (Extract-Transform-Load): moves data from OLTP sources into data warehouses. Data lakes store raw unprocessed data at scale. Data quality dimensions: accuracy, completeness, consistency, timeliness, uniqueness.",rule:"OLTP = transactions (write-heavy). OLAP = analytics (read-heavy). ETL bridges them. Never run heavy analytics queries against a production OLTP system."},
+      {title:"Data Governance & Privacy",body:"Data governance establishes policies for data ownership, quality, security, and lifecycle management. Data stewards are accountable for data quality in their domain. GDPR (EU): requires consent, right to erasure, breach notification within 72 hours, data minimization. CCPA (California): similar rights for California residents. HIPAA (healthcare): PHI must be protected with administrative, physical, and technical safeguards. Breach notification timelines vary by regulation — know HIPAA (60 days) and GDPR (72 hours).",rule:"GDPR breach: 72 hours. HIPAA breach: 60 days. Data minimization: collect only what you need. Data steward = accountable owner of a data domain."}
+    ]
+  },
+  TCP:{
+    taxplanning:[
+      {title:"Core Tax Planning Principles",body:"Time value of money: deferring tax is valuable because $1 of tax paid later is worth less than $1 paid today — the taxpayer keeps and invests the money in the interim. Character conversion: converting ordinary income (up to 37%) to long-term capital gain (0/15/20%) generates permanent tax savings. Tax-exempt income: municipal bond interest is federally tax-exempt — break-even yield = taxable yield × (1 − marginal rate). Income shifting: moving income to lower-bracket family members (limited by kiddie tax). The assignment of income doctrine prevents taxpayers from shifting income they have already earned.",rule:"Three levers: defer, convert, shift. Defer = time value. Convert = lower rate. Shift = lower bracket (watch kiddie tax)."},
+      {title:"Installment Sales & Like-Kind Exchanges",body:"Installment sale (§453): recognize gain proportionally as payments are received. Gross profit ratio = gross profit ÷ contract price. Each payment × GPR = taxable gain. Cannot use for publicly traded securities or dealer property. §1031 like-kind exchange: defer gain on real property exchanged for other qualifying real property. Boot received (cash or unlike property) triggers gain to the extent of realized gain. Basis in new property = old basis + gain recognized − boot received + boot given.",rule:"Installment sale = spread the gain. §1031 = defer the gain entirely. Boot ruins the §1031 deferral (partially)."},
+      {title:"Retirement & Qualified Plans",body:"Traditional IRA: deductible contributions (if no workplace plan, or within income limits); earnings grow tax-deferred; withdrawals taxed as ordinary income; RMDs start at age 73. Roth IRA: after-tax contributions; earnings grow tax-free; no RMDs; withdrawals tax-free if qualified. 401(k): employee elective deferrals (2024: $23,000 + $7,500 catch-up); employer match is deductible. Defined benefit plans: promise a specified benefit; actuarially determined contributions. Net Unrealized Appreciation (NUA): employer stock in a 401(k) can be distributed and taxed at LTCG rates on appreciation.",rule:"Traditional = deduct now, tax later. Roth = tax now, free forever. Highest earners: Roth conversion during low-income years is the classic planning opportunity."}
+    ],
+    corporatetaxplanning:[
+      {title:"Entity Selection for Tax Efficiency",body:"C-corp: 21% flat rate attractive for income reinvested in business; double taxation on dividends. S-corp: pass-through, SE tax only on reasonable salary (big savings at high income). Partnership: maximum flexibility, basis for debt, §704(c) special allocations, no §1374 built-in gains tax. Choice factors: expected distributions (favor pass-through), need for debt-basis (favor partnership), multiple classes of equity (favor C-corp or LLC), international investors (S-corp ineligible). Qualified Business Income (QBI) deduction: pass-through entities may deduct up to 20% of QBI — reduces effective rate to ~29.6% at top bracket.",rule:"Reinvesting profits → C-corp 21% may beat pass-through + SE tax. Distributing profits → pass-through almost always wins. QBI deduction is a significant benefit for eligible pass-throughs."},
+      {title:"Corporate Tax Minimization Strategies",body:"Depreciation timing: bonus depreciation (100% immediate expensing, phasing down post-2022) and §179 defer tax by accelerating deductions. LIFO inventory: in rising-price environments, LIFO increases COGS, reduces taxable income (must use LIFO for both tax and book if elected). DRD: C-corps receiving dividends from domestic corporations deduct 50-100% — reduces effective tax on intercorporate dividends. R&D credit (§41): dollar-for-dollar credit for qualified research expenses — more valuable than a deduction. Captive insurance: deductible premiums to a related insurer (must meet economic substance requirements).",rule:"Accelerate deductions, defer income. Credits beat deductions dollar-for-dollar. §179 and bonus depreciation are the most powerful short-term tools."}
+    ],
+    internationaltax:[
+      {title:"U.S. International Tax Framework",body:"U.S. taxes citizens and residents on worldwide income regardless of where earned or where they live. Foreign tax credit (§901): dollar-for-dollar credit for foreign income taxes paid, limited to U.S. tax on the foreign income. Excess FTC carries back 1 year and forward 10. Foreign Earned Income Exclusion (§911): up to $126,500 (2024) of foreign earned income excluded if bona fide resident or physical presence test met. GILTI: U.S. shareholders of CFCs include excess returns from foreign subsidiaries currently — designed to prevent profit shifting to low-tax jurisdictions. FDII: deduction for domestic corporations on foreign-derived intangible income.",rule:"FTC prevents double tax — it's a credit, not a deduction. GILTI ends the deferral game: CFC income comes home whether distributed or not."},
+      {title:"Controlled Foreign Corporations (CFCs)",body:"A CFC is a foreign corporation where U.S. shareholders (10%+ owners) own more than 50% by vote or value. Subpart F income: certain passive income (dividends, interest, rents, royalties from related parties) is included in U.S. shareholders' income currently — even if not distributed. GILTI: the excess return above a 10% deemed return on tangible assets is included currently. Previously-taxed income (PTEP): amounts already included under Subpart F or GILTI are not taxed again when actually distributed. §1248: gain on sale of CFC stock is recharacterized as a dividend to the extent of E&P.",rule:"Subpart F + GILTI = no deferral for most CFC passive and excess income. What's already been taxed (PTEP) won't be taxed again on distribution."}
+    ],
+    estateplanningtcp:[
+      {title:"Estate Freeze Techniques",body:"Goal: transfer future appreciation out of the estate at minimal gift tax cost. GRATs (Grantor Retained Annuity Trusts): grantor retains annuity; remainder passes to heirs gift-tax free if assets outperform the IRS §7520 rate — 'zeroed out' GRATs have no gift tax cost. QPRTs (Qualified Personal Residence Trusts): grantor lives in home for a term; at term end, home passes to heirs at a discounted gift value. Intentionally Defective Grantor Trusts (IDGTs): grantor pays income tax on trust income (removing assets from estate) while trust assets grow tax-free for heirs — the income tax payment is itself a tax-free gift.",rule:"GRAT works best when: interest rates are low AND assets appreciate above the §7520 rate. The grantor must survive the trust term — dying during the term pulls assets back into the estate."},
+      {title:"Charitable Planning Strategies",body:"Charitable Remainder Trust (CRT): donor contributes appreciated property; trust sells tax-free and pays income stream to donor; remainder to charity. Donor gets partial charitable deduction. Converts illiquid appreciated assets to income stream. Charitable Lead Trust (CLT): income to charity for a term; remainder to heirs — reduces gift/estate tax on the remainder. Donor Advised Funds (DAFs): contribute in a high-income year (get full deduction now), grant to charities over time. Qualified Charitable Distributions (QCDs): IRA owners 70½+ can direct up to $105,000/year to charity — satisfies RMD and excludes from income (no AGI impact).",rule:"CRT: charity gets the remainder, donor gets the income and deduction. CLT: charity gets the income, heirs get the remainder. QCD is the cleanest charitable tool for retirees — zero AGI impact."}
+    ]
   }
 };
 
@@ -854,6 +1134,9 @@ const LS = {
 };
 
 const saveProgress = (loc) => LS.set('cpa_last',{...loc,ts:Date.now()});
+const saveQuizState = (key,state) => LS.set('cpa_quiz_'+key, state);
+const loadQuizState = (key) => LS.get('cpa_quiz_'+key, null);
+const clearQuizState = (key) => { try{localStorage.removeItem('cpa_quiz_'+key);}catch{} };
 const getProgress = () => LS.get('cpa_last');
 const saveHistory = (section,topicId,topicLabel,correct,total) => {
   const hist = LS.get('cpa_history',[]);
@@ -895,17 +1178,30 @@ const doSearch = (q) => {
 
 // ── QUIZ ENGINE (parchment style) ─────────────────────────────
 function QuizEngine({questions,tbsList,sectionId,topicId,topicLabel,onBack,onDone,title}){
-  // Separate MCQs and TBS from the start — never mix them in the pool
-  const [mcqPool] = useState(()=>[...questions].sort(()=>Math.random()-0.5));
-  const [tbsPool]  = useState(()=>(tbsList||[]).map(t=>({...t,_isTBS:true})).sort(()=>Math.random()-0.5));
+  // Stable key for this session type
+  const sessionKey = (sectionId||'') + '_' + (topicId||'');
+
+  // Separate MCQs and TBS — restore order from saved state if available
+  const [mcqPool] = useState(()=>{
+    const saved = loadQuizState(sessionKey);
+    if(saved && saved.mcqOrder && saved.mcqOrder.length===questions.length){
+      return saved.mcqOrder.map(i=>questions[i]);
+    }
+    return [...questions].sort(()=>Math.random()-0.5);
+  });
+  const [tbsPool] = useState(()=>(tbsList||[]).map(t=>({...t,_isTBS:true})).sort(()=>Math.random()-0.5));
+
+  // Restore saved state
+  const _saved = loadQuizState(sessionKey);
+  const _validSave = _saved && _saved.mcqOrder && _saved.mcqOrder.length===questions.length;
 
   // Active tab: 'mcq' | 'tbs' | 'results'
-  const [tab, setTab] = useState('mcq');
+  const [tab, setTab] = useState(_validSave ? (_saved.tab||'mcq') : 'mcq');
 
   // MCQ state
-  const [mcqIdx, setMcqIdx]   = useState(0);
-  const [answers, setAnswers]  = useState({});
-  const [flagged, setFlagged]  = useState(new Set());
+  const [mcqIdx, setMcqIdx]   = useState(_validSave ? (_saved.mcqIdx||0) : 0);
+  const [answers, setAnswers]  = useState(_validSave ? (_saved.answers||{}) : {});
+  const [flagged, setFlagged]  = useState(_validSave ? new Set(_saved.flagged||[]) : new Set());
   const [showAns, setShowAns]  = useState(false);
 
   // TBS state
@@ -928,6 +1224,17 @@ function QuizEngine({questions,tbsList,sectionId,topicId,topicLabel,onBack,onDon
     }
     return ()=>clearInterval(timerRef.current);
   },[timerOn, tab]);
+
+  // Auto-save quiz state whenever answers/position changes
+  useEffect(()=>{
+    if(tab==='results') return;
+    const mcqOrder = mcqPool.map(q=>questions.indexOf(q));
+    saveQuizState(sessionKey,{
+      mcqOrder, tab, mcqIdx,
+      answers, flagged:[...flagged],
+      elapsed, ts:Date.now()
+    });
+  },[answers, mcqIdx, tab, flagged, elapsed]);
 
   const fmtTime = (s) => {
     const h = Math.floor(s/3600);
@@ -996,9 +1303,23 @@ function QuizEngine({questions,tbsList,sectionId,topicId,topicLabel,onBack,onDon
           )}
         </div>
       </div>
-      <div style={{height:'3px',background:'var(--rule)',marginBottom:'20px'}}>
-        <div style={{height:'100%',background:'var(--gold)',transition:'width 0.4s ease',
-          width: tab==='mcq'?pctMCQ+'%':tab==='tbs'?pctTBS+'%':'100%'}}/>
+      <div style={{padding:'10px 0 16px',display:'flex',flexDirection:'column',gap:'6px'}}>
+        <div style={{display:'flex',alignItems:'center',gap:'8px'}}>
+          <span style={{fontSize:'10px',letterSpacing:'2px',textTransform:'uppercase',color:'var(--muted)',width:'100px',flexShrink:0}}>MCQ</span>
+          <div style={{flex:1,height:'6px',background:'var(--rule)',borderRadius:'3px',overflow:'hidden'}}>
+            <div style={{height:'100%',background: pctMCQ>=75?'#4A9A74':pctMCQ>=40?'var(--gold)':'#c05050',
+              width:pctMCQ+'%',borderRadius:'3px',transition:'width 0.4s ease'}}/>
+          </div>
+          <span style={{fontSize:'11px',color:'var(--muted)',width:'36px',textAlign:'right',flexShrink:0}}>{Object.keys(answers).length}/{mcqPool.length}</span>
+        </div>
+        {tbsPool.length>0&&<div style={{display:'flex',alignItems:'center',gap:'8px'}}>
+          <span style={{fontSize:'10px',letterSpacing:'2px',textTransform:'uppercase',color:'var(--muted)',width:'100px',flexShrink:0}}>Simulations</span>
+          <div style={{flex:1,height:'6px',background:'var(--rule)',borderRadius:'3px',overflow:'hidden'}}>
+            <div style={{height:'100%',background: pctTBS===100?'#4A9A74':pctTBS>0?'var(--gold)':'var(--rule)',
+              width:pctTBS+'%',borderRadius:'3px',transition:'width 0.4s ease'}}/>
+          </div>
+          <span style={{fontSize:'11px',color:'var(--muted)',width:'36px',textAlign:'right',flexShrink:0}}>{Object.values(tbsSubmitted).filter(Boolean).length}/{tbsPool.length}</span>
+        </div>}
       </div>
     </div>
   );
@@ -1068,7 +1389,7 @@ function QuizEngine({questions,tbsList,sectionId,topicId,topicLabel,onBack,onDon
           <button className="btn-ink" onClick={()=>{
             setTab('mcq');setMcqIdx(0);setAnswers({});setFlagged(new Set());setShowAns(false);
             setTbsIdx(0);setTbsTaskAns({});setTbsClassify({});setTbsSubmitted({});setActiveExhibit({});
-            setElapsed(0);setTimerOn(true);
+            setElapsed(0);setTimerOn(true);clearQuizState(sessionKey);
           }}>Retake</button>
         </div>
       </div>
