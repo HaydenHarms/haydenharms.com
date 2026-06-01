@@ -3,154 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projects — Hayden Harms</title>
+<title>Hayden Harms</title>
+<meta name="description" content="Accounting student at Dallas Baptist University, AR intern at Airbus Helicopters, and aspiring CPA. Featuring projects, portfolio, CPA prep tools, and a free 2025 federal tax calculator." />
+<meta property="og:title" content="Hayden Harms" />
+<meta property="og:description" content="Accounting Student · Aspiring CPA · Dallas, TX" />
+<meta property="og:image" content="https://haydenharms.com/preview.jpg" />
+<meta property="og:url" content="https://haydenharms.com/" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Hayden Harms" />
+<meta name="twitter:description" content="Accounting Student · Aspiring CPA · Dallas, TX" />
+<meta name="twitter:image" content="https://haydenharms.com/preview.jpg" />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f5f0e8; --ink: #2c2416; --sub: #5a5048; --accent: #6b5c3e;
-    --muted: #a0917a; --rule: #c0aa88; --rule-lt: #e0d8c8; --gold: #b8972a;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body { background: var(--bg); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; overflow-x: hidden; }
-
-  /* TICKER */
-  .ticker-wrap { background: var(--bg); border-bottom: 1px solid var(--rule-lt); height: 36px; overflow: hidden; position: relative; }
-  .ticker-wrap::before, .ticker-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none; }
-  .ticker-wrap::before { left: 0; background: linear-gradient(to right, #f5f0e8, transparent); }
-  .ticker-wrap::after  { right: 0; background: linear-gradient(to left, #f5f0e8, transparent); }
-  .ticker-track { display: flex; align-items: center; height: 100%; width: max-content; animation: ticker 44.8s linear infinite; }
-  .ticker-wrap:hover .ticker-track { animation-play-state: paused; }
-  .ticker-item { font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 400; letter-spacing: .13em; text-transform: uppercase; color: #6b5c3e; white-space: nowrap; padding: 0 6px; }
-  .ticker-sep { color: #c0aa88; padding: 0 10px; font-size: 13px; }
-  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-  /* MASTHEAD */
-  .masthead { border-bottom: 2px solid var(--ink); background: var(--bg); }
-  .masthead-title { text-align: center; padding: 36px 60px 24px; }
-  .masthead-title h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(52px,8vw,88px); font-weight: 600; letter-spacing: -0.01em; line-height: 1.0; color: var(--ink); }
-  .masthead-title h1 a { text-decoration: none; color: inherit; }
-  .masthead-title .subtitle { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-top: 14px; font-weight: 400; }
-  .gold-rule { width: 48px; height: 1px; background: var(--gold); margin: 12px auto 0; }
-  nav { display: flex; justify-content: center; border-top: 1px solid var(--rule-lt); border-bottom: 1px solid var(--rule-lt); margin-top: 18px; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 400; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
-  nav::-webkit-scrollbar { display: none; }
-  nav a { display: block; padding: 11px 26px; color: var(--accent); text-decoration: none; border-right: 1px solid var(--rule-lt); transition: background 0.2s, color 0.2s; white-space: nowrap; flex-shrink: 0; }
-  nav a:first-child { border-left: 1px solid var(--rule-lt); }
-  nav a:hover { background: var(--ink); color: var(--bg); }
-  nav a.active { background: var(--ink); color: var(--bg); }
-
-  /* LAYOUT */
-  .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
-  .page-header { padding: 50px 0 30px; border-bottom: 2px solid var(--ink); }
-  .page-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; color: var(--ink); text-transform: uppercase; letter-spacing: 0.06em; }
-  .page-header p { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; margin-top: 8px; font-weight: 400; }
-
-  .project-section { padding: 60px 0; border-bottom: 2px solid var(--ink); }
-  .project-section:last-child { border-bottom: none; }
-  .project-label { font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 10px; }
-  .project-title { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 600; color: var(--ink); margin-bottom: 8px; line-height: 1.1; }
-  .project-meta { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 400; margin-bottom: 20px; }
-  .project-desc { font-family: 'Jost', sans-serif; font-size: 14px; font-weight: 300; color: var(--sub); line-height: 1.8; max-width: 700px; margin-bottom: 40px; }
-
-  /* METRICS */
-  .metrics-row { display: flex; border: 1px solid var(--rule-lt); margin-bottom: 40px; }
-  .metric { flex: 1; padding: 22px 24px; border-right: 1px solid var(--rule-lt); }
-  .metric:last-child { border-right: none; }
-  .metric-val { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 600; color: var(--ink); line-height: 1; margin-bottom: 5px; }
-  .metric-label { font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
-
-  /* ═══ EXCEL WINDOW ═══ */
-  .excel-window { border: 1px solid #aaa; box-shadow: 0 8px 40px rgba(0,0,0,0.18); border-radius: 4px; overflow: hidden; font-family: 'Calibri', 'Segoe UI', Arial, sans-serif; font-size: 12px; }
-
-  /* Title bar */
-  .xl-titlebar { background: #217346; padding: 0 12px; height: 32px; display: flex; align-items: center; justify-content: space-between; }
-  .xl-titlebar-left { display: flex; align-items: center; gap: 8px; }
-  .xl-titlebar-dots { display: flex; gap: 5px; }
-  .xl-titlebar-dots span { width: 12px; height: 12px; border-radius: 50%; display: block; }
-  .xl-filename { color: white; font-size: 12px; font-family: 'Segoe UI', sans-serif; font-weight: 400; opacity: 0.95; }
-  .xl-titlebar-right { display: flex; gap: 14px; }
-  .xl-titlebar-right span { color: rgba(255,255,255,0.7); font-size: 14px; cursor: default; }
-
-  /* Ribbon */
-  .xl-ribbon { background: #f3f3f3; border-bottom: 1px solid #d0d0d0; }
-  .xl-ribbon-tabs { display: flex; background: #217346; padding: 0 8px; }
-  .xl-rtab { padding: 6px 14px; font-size: 11px; color: rgba(255,255,255,0.8); cursor: default; font-family: 'Segoe UI', sans-serif; }
-  .xl-rtab.active { background: #f3f3f3; color: #217346; font-weight: 600; border-radius: 2px 2px 0 0; }
-  .xl-ribbon-tools { display: flex; align-items: center; gap: 2px; padding: 4px 8px; border-bottom: 1px solid #d0d0d0; }
-  .xl-tool { padding: 3px 8px; font-size: 11px; color: #333; cursor: default; font-family: 'Segoe UI', sans-serif; border-radius: 2px; }
-  .xl-tool:hover { background: #e0e0e0; }
-  .xl-tool-sep { width: 1px; height: 18px; background: #d0d0d0; margin: 0 4px; }
-
-  /* Formula bar */
-  .xl-formulabar { display: flex; align-items: center; border-bottom: 1px solid #d0d0d0; background: white; height: 26px; }
-  .xl-cellref { width: 80px; border-right: 1px solid #d0d0d0; padding: 0 8px; font-size: 11px; color: #333; font-family: 'Segoe UI', sans-serif; flex-shrink: 0; height: 100%; display: flex; align-items: center; }
-  .xl-fx { padding: 0 8px; font-size: 11px; color: #888; font-family: 'Segoe UI', sans-serif; flex-shrink: 0; }
-  .xl-formula { flex: 1; padding: 0 8px; font-size: 11px; color: #333; font-family: 'Consolas', monospace; white-space: nowrap; overflow: hidden; }
-
-  /* Sheet tabs */
-  .xl-sheettabs { display: flex; align-items: flex-end; background: #f0f0f0; border-top: 1px solid #d0d0d0; padding: 0 4px; overflow-x: auto; scrollbar-width: none; min-height: 26px; }
-  .xl-sheettabs::-webkit-scrollbar { display: none; }
-  .xl-stab { padding: 4px 14px; font-size: 11px; font-family: 'Segoe UI', sans-serif; cursor: pointer; border: 1px solid transparent; border-bottom: none; white-space: nowrap; border-radius: 2px 2px 0 0; transition: background 0.15s; color: #333; }
-  .xl-stab:hover { background: #e0e0e0; }
-  .xl-stab.active { background: white; border-color: #d0d0d0; color: #217346; font-weight: 600; }
-
-  /* Grid */
-  .xl-grid-wrap { overflow: auto; max-height: 520px; background: white; }
-  .xl-grid { border-collapse: collapse; min-width: 100%; width: max-content; }
-  .xl-grid th, .xl-grid td { border: 1px solid #d0d0d0; white-space: nowrap; }
-
-  /* Row/col headers */
-  .xl-col-header { background: #f2f2f2; text-align: center; font-size: 11px; color: #333; font-family: 'Segoe UI', sans-serif; padding: 2px 6px; border: 1px solid #d0d0d0; position: sticky; top: 0; z-index: 2; min-width: 28px; font-weight: 400; }
-  .xl-row-header { background: #f2f2f2; text-align: center; font-size: 11px; color: #333; font-family: 'Segoe UI', sans-serif; padding: 2px 4px; border: 1px solid #d0d0d0; min-width: 28px; font-weight: 400; position: sticky; left: 0; z-index: 1; }
-
-  /* Cells */
-  .xl-cell { padding: 2px 6px; font-size: 11px; font-family: 'Calibri', Arial, sans-serif; color: #212121; min-width: 60px; height: 20px; cursor: default; }
-  .xl-cell:hover { background: #e8f0fe !important; }
-  .xl-cell.selected { background: #c7dce8 !important; outline: 2px solid #217346; outline-offset: -2px; }
-
-  /* Cell styling classes */
-  .xl-title { font-size: 14px; font-weight: 700; color: #1f4e79; font-family: 'Calibri', Arial, sans-serif; }
-  .xl-header { background: #217346 !important; color: white !important; font-weight: 700; text-align: center; }
-  .xl-subheader { background: #375623 !important; color: white !important; font-weight: 700; }
-  .xl-label { font-weight: 700; color: #212121; }
-  .xl-green-bg { background: #e2efda !important; }
-  .xl-yellow-bg { background: #fff2cc !important; }
-  .xl-blue-bg { background: #dae3f3 !important; }
-  .xl-orange-bg { background: #fce4d6 !important; }
-  .xl-money { text-align: right; color: #212121; }
-  .xl-money-green { text-align: right; color: #375623; }
-  .xl-money-red { text-align: right; color: #c00000; }
-  .xl-center { text-align: center; }
-  .xl-date { color: #595959; }
-  .xl-formula-cell { color: #1f4e79; font-style: italic; }
-  .xl-pif-yes { color: #375623; font-weight: 700; text-align: center; }
-  .xl-pif-no { color: #c00000; font-weight: 700; text-align: center; }
-  .xl-merged { border-right: none !important; }
-  .xl-bold { font-weight: 700; }
-  .xl-total-row { background: #d9d9d9 !important; font-weight: 700; }
-  .xl-stripe { background: #f9f9f9 !important; }
-
-  /* Status bar */
-  .xl-statusbar { background: #217346; padding: 2px 12px; display: flex; justify-content: space-between; align-items: center; }
-  .xl-statusbar span { color: rgba(255,255,255,0.85); font-size: 11px; font-family: 'Segoe UI', sans-serif; }
-
-  /* Sheet content wrappers */
-  .xl-sheet { display: none; }
-  .xl-sheet.active { display: block; }
-
-  /* FOOTER */
-  footer { border-top: 2px solid var(--ink); padding: 28px 60px; display: flex; justify-content: space-between; align-items: center; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); font-weight: 400; text-transform: uppercase; }
-  footer a { color: var(--muted); text-decoration: none; }
-  footer a:hover { color: var(--gold); }
-  .footer-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--ink); text-transform: none; letter-spacing: 0; }
-
-  @media (max-width: 768px) {
-    .masthead-title { padding: 28px 20px 18px; }
-    nav a { padding: 10px 16px; font-size: 10px; }
-    .container { padding: 0 20px; }
-    .metrics-row { flex-wrap: wrap; }
-    .metric { flex: 1 1 45%; border-bottom: 1px solid var(--rule-lt); }
-    footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px 20px; }
+    --bg:       #f5f0e8;
+    --ink:      #2c2416;
+    --sub:      #5a5048;
+    --accent:   #6b5c3e;
+    --muted:    #a0917a;
+    --rule:     #c0aa88;
+    --rule-lt:  #e0d8c8;
+    --gold:     #b8972a;
   }
 
   /* ── DARK MODE ── */
@@ -169,573 +43,444 @@
   html.dark .ticker-wrap::after  { background: linear-gradient(to left,  #14100a, transparent); }
   html.dark .ticker-item { color: #6b5c3e; }
   html.dark .ticker-sep  { color: #3a2e1e; }
+  html.dark .hero-right img { opacity: 0.88; }
+
+  /* Dark mode toggle button */
   .dm-toggle-btn {
     display: flex; align-items: center; gap: 7px;
-    padding: 11px 18px; border: none; background: none; cursor: pointer;
-    font-family: 'Jost', sans-serif; font-size: 16px; color: var(--accent);
-    border-left: 1px solid var(--rule-lt); flex-shrink: 0;
-    transition: background 0.2s, color 0.2s; line-height: 1;
+    padding: 11px 18px;
+    border: none; background: none;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif; font-size: 16px;
+    color: var(--accent);
+    border-left: 1px solid var(--rule-lt);
+    flex-shrink: 0;
+    transition: background 0.2s, color 0.2s;
+    line-height: 1;
   }
   .dm-toggle-btn:hover { background: var(--ink); color: var(--bg); }
+  .dm-toggle-btn .dm-icon { font-size: 14px; transition: transform 0.4s; }
   html.dark .dm-toggle-btn .dm-icon { transform: rotate(180deg); }
 
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+  /* ── TICKER ── */
+  .ticker-wrap {
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule-lt);
+    height: 36px;
+    overflow: hidden;
+    position: relative;
+  }
+  .ticker-wrap::before,
+  .ticker-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 80px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .ticker-wrap::before { left: 0;  background: linear-gradient(to right,  #f5f0e8, transparent); }
+  .ticker-wrap::after  { right: 0; background: linear-gradient(to left,   #f5f0e8, transparent); }
+  .ticker-track {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: max-content;
+    animation: ticker 44.8s linear infinite;
+  }
+  .ticker-wrap:hover .ticker-track { animation-play-state: paused; }
+  .ticker-item {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: #6b5c3e;
+    white-space: nowrap;
+    padding: 0 6px;
+  }
+  .ticker-sep { color: #c0aa88; padding: 0 10px; font-size: 13px; line-height: 1; }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead { border-bottom: 2px solid var(--ink); background: var(--bg); }
+
+
+  .masthead-title { text-align: center; padding: 36px 60px 24px; }
+  .masthead-title h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 8vw, 88px); font-weight: 600;
+    letter-spacing: -0.01em; line-height: 1.0; color: var(--ink);
+    animation: fadeUp 0.8s ease both;
+  }
+  .masthead-title h1 a { text-decoration: none; color: inherit; }
+  .masthead-title .subtitle {
+    font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--muted); margin-top: 14px; font-weight: 400;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+  .gold-rule { width: 48px; height: 1px; background: var(--gold); margin: 12px auto 0; animation: expandWidth 0.8s 0.4s ease both; }
+
+  nav {
+    display: flex; justify-content: center;
+    border-top: 1px solid var(--rule-lt); border-bottom: 1px solid var(--rule-lt);
+    margin-top: 18px;
+    font-family: 'Jost', sans-serif; font-size: 11px;
+    letter-spacing: 0.15em; text-transform: uppercase; font-weight: 400;
+    animation: fadeUp 0.8s 0.3s ease both;
+    overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  nav a {
+    display: block; padding: 11px 26px; color: var(--accent); text-decoration: none;
+    border-right: 1px solid var(--rule-lt); transition: background 0.2s, color 0.2s;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  nav a:first-child { border-left: 1px solid var(--rule-lt); }
+  nav a:hover { background: var(--ink); color: var(--bg); }
+
+  /* ── HERO ── */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 2px solid var(--ink);
+    min-height: 420px;
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+  .hero-left {
+    padding: 60px 56px;
+    display: flex; flex-direction: column; justify-content: center;
+    border-right: 1px solid var(--rule-lt);
+  }
+  .hero-tag {
+    font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--muted); font-weight: 400;
+    margin-bottom: 18px;
+  }
+  .hero-left h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(42px, 4.5vw, 56px); font-weight: 600;
+    color: var(--ink); line-height: 1.05; margin-bottom: 24px;
+    animation: none;
+  }
+  .hero-bio {
+    font-family: 'Jost', sans-serif; font-size: 14.5px; font-weight: 300;
+    color: var(--sub); line-height: 1.8;
+  }
+  .hero-bio p + p { margin-top: 14px; }
+  .hero-right {
+    position: relative; overflow: hidden;
+  }
+  .hero-right img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    display: block;
+  }
+
+  /* ── CONTAINER ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+  /* ── MAIN GRID ── */
+  .main-grid {
+    display: grid; grid-template-columns: 2fr 1px 1fr;
+    border-bottom: 2px solid var(--ink);
+    animation: fadeUp 0.8s 0.5s ease both;
+  }
+  .main-col { padding: 50px 50px 50px 0; }
+  .sidebar-divider { background: var(--ink); margin: 30px 0; }
+  .sidebar { padding: 50px 0 50px 40px; }
+
+  .section-head {
+    display: flex; align-items: baseline; gap: 16px; margin-bottom: 32px;
+    padding-bottom: 12px; border-bottom: 1px solid var(--ink);
+  }
+  .section-head h2 {
+    font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink);
+  }
+  .section-head .issue-num {
+    font-family: 'Jost', sans-serif; font-size: 11px; color: var(--muted);
+    letter-spacing: 0.1em; font-weight: 400;
+  }
+
+  .exp-item {
+    padding: 24px 0; border-bottom: 1px solid var(--rule-lt);
+    display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: start;
+  }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-title {
+    font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 600;
+    line-height: 1.3; grid-column: 1; color: var(--ink);
+  }
+  .exp-company {
+    font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--gold); margin: 4px 0 8px; font-weight: 400;
+  }
+  .exp-date {
+    font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.08em;
+    color: var(--muted); grid-column: 2; grid-row: 1; white-space: nowrap;
+    padding-top: 4px; font-weight: 400;
+  }
+  .exp-desc {
+    font-family: 'Jost', sans-serif; font-size: 13.5px; line-height: 1.75;
+    color: var(--sub); grid-column: 1 / -1; font-weight: 300;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar-section { margin-bottom: 36px; padding-bottom: 36px; border-bottom: 1px solid var(--rule-lt); }
+  .sidebar-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .sidebar-label {
+    font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 14px; font-weight: 500;
+  }
+  .sidebar-section h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600;
+    margin-bottom: 8px; color: var(--ink);
+  }
+  .sidebar-section p {
+    font-family: 'Jost', sans-serif; font-size: 13px; line-height: 1.75;
+    color: var(--sub); font-weight: 300;
+  }
+
+  .pill-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .pill {
+    font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.1em;
+    text-transform: uppercase; border: 1px solid var(--rule-lt); padding: 5px 10px;
+    color: var(--sub); transition: all 0.2s; cursor: default; font-weight: 400;
+  }
+  .pill:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 2px solid var(--ink); padding: 28px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.12em;
+    color: var(--muted); font-weight: 400; text-transform: uppercase;
+  }
+  footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+  footer a:hover { color: var(--gold); }
+  .footer-name {
+    font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600;
+    color: var(--ink); text-transform: none; letter-spacing: 0;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes expandWidth { from { width: 0; } to { width: 48px; } }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+
+    .masthead-title { padding: 28px 20px 18px; }
+    nav a { padding: 10px 16px; font-size: 10px; }
+    .hero { grid-template-columns: 1fr; min-height: unset; }
+    .hero-right { height: 420px; border-top: 1px solid var(--rule-lt); }
+    .hero-right img { object-position: center 10%; }
+    .hero-left { padding: 36px 20px; }
+    .main-grid { grid-template-columns: 1fr; }
+    .sidebar-divider { height: 1px; width: 100%; margin: 0; }
+    .main-col { padding: 30px 20px; }
+    .sidebar { padding: 30px 20px; }
+    footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px 20px; }
+    .container { padding: 0 20px; }
+  }
 </style>
 </head>
 <body>
 
 <!-- TICKER -->
-<div class="ticker-wrap"><div class="ticker-track">
-  <span class="ticker-item">Accounting Intern @ Airbus Helicopters</span><span class="ticker-sep">·</span>
-  <span class="ticker-item">Dallas Baptist University · Class of 2027</span><span class="ticker-sep">·</span>
-  <span class="ticker-item">3.76 GPA · Carter School of Business</span><span class="ticker-sep">·</span>
-  <span class="ticker-item">Aspiring CPA</span><span class="ticker-sep">·</span>
-  <span class="ticker-item">Published on Substack</span><span class="ticker-sep">·</span>
-  <span class="ticker-item">SAP · Excel · Accounts Receivable</span><span class="ticker-sep">·</span>
-  <span class="ticker-item">Treasurer · Tau Alpha Phi</span><span class="ticker-sep">·</span>
-  <span class="ticker-item">Dallas, TX</span><span class="ticker-sep">·</span>
-  <span class="ticker-item">Accounting Intern @ Airbus Helicopters</span><span class="ticker-sep">·</span>
-  <span class="ticker-item">Dallas Baptist University · Class of 2027</span><span class="ticker-sep">·</span>
-  <span class="ticker-item">3.76 GPA · Carter School of Business</span><span class="ticker-sep">·</span>
-  <span class="ticker-item">Aspiring CPA</span><span class="ticker-sep">·</span>
-  <span class="ticker-item">Published on Substack</span><span class="ticker-sep">·</span>
-  <span class="ticker-item">SAP · Excel · Accounts Receivable</span><span class="ticker-sep">·</span>
-  <span class="ticker-item">Treasurer · Tau Alpha Phi</span><span class="ticker-sep">·</span>
-  <span class="ticker-item">Dallas, TX</span><span class="ticker-sep">·</span>
-</div></div>
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item">Accounting Intern @ Airbus Helicopters</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Dallas Baptist University · Class of 2027</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">3.76 GPA · Carter School of Business</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Aspiring CPA</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Published on Substack</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">SAP · Excel · Accounts Receivable</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Treasurer · Tau Alpha Phi</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Dallas, TX</span><span class="ticker-sep">·</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item">Accounting Intern @ Airbus Helicopters</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Dallas Baptist University · Class of 2027</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">3.76 GPA · Carter School of Business</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Aspiring CPA</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Published on Substack</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">SAP · Excel · Accounts Receivable</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Treasurer · Tau Alpha Phi</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Dallas, TX</span><span class="ticker-sep">·</span>
+  </div>
+</div>
 
 <!-- MASTHEAD -->
 <header class="masthead">
+
   <div class="masthead-title">
-    <h1><a href="index.html">Hayden Harms</a></h1>
+    <h1><a href="https://haydenharms.com">Hayden Harms</a></h1>
     <div class="gold-rule"></div>
     <p class="subtitle">Accounting Student &nbsp;·&nbsp; Aspiring CPA / Tax Practice Owner</p>
   </div>
   <nav>
-    <a href="index.html">About</a>
-    <a href="index.html#experience">Experience</a>
-    <a href="index.html#education">Education</a>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
     <a href="writing.html">Writing</a>
-    <a href="projects.html" class="active">Projects</a>
+    <a href="projects.html">Projects</a>
     <a href="portfolio.html">Portfolio</a>
     <a href="https://www.linkedin.com/in/hayden-harms-046558298" target="_blank">LinkedIn</a>
-      <button class="dm-toggle-btn" onclick="toggleDark()" aria-label="Toggle dark mode"><span class="dm-icon">☀︎</span></button>
-
+    <button class="dm-toggle-btn" onclick="toggleDark()" aria-label="Toggle dark mode">
+      <span class="dm-icon">☀︎</span>
+    </button>
   </nav>
 </header>
 
+<!-- HERO -->
+<div class="hero" id="about">
+  <div class="hero-left">
+    <div class="hero-tag">Who I Am</div>
+    <h1>Hayden Harms</h1>
+    <div class="hero-bio">
+      <p>Accounting student at Dallas Baptist University's Carter School of Business, interning at Airbus Helicopters where I've automated treasury reporting using SAP and Bank of America systems. GPA: 3.76. Goal: CPA, public accounting, and eventually my own tax practice.</p>
+      <p>I believe accounting plays a broader role in civil life than most people acknowledge. Outside the office I write about politics, trade, and culture — and I'm actively seeking a public accounting internship for next cycle.</p>
+      <a href="Hayden_Harms_Resume.pdf" download style="
+        display: inline-flex; align-items: center; gap: 10px;
+        margin-top: 28px;
+        font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 500;
+        letter-spacing: 0.16em; text-transform: uppercase;
+        color: var(--bg); background: var(--ink);
+        padding: 13px 28px; text-decoration: none;
+        border: 1px solid var(--ink);
+        transition: background 0.2s, color 0.2s;
+      " onmouseover="this.style.background='var(--gold)';this.style.borderColor='var(--gold)'"
+         onmouseout="this.style.background='var(--ink)';this.style.borderColor='var(--ink)'">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.5 1v8M3 6.5l3.5 3.5 3.5-3.5M1 11.5h11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Download Résumé
+      </a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="TAU Composites-Hayden-003.jpg" alt="Hayden Harms" />
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
 <div class="container">
-  <div class="page-header">
-    <h2>Projects</h2>
-    <p>Applied work in accounting and financial management</p>
+  <div class="main-grid">
+    <div class="main-col" id="experience">
+
+      <div class="section-head">
+        <h2>Experience</h2>
+        <span class="issue-num">4 Roles · 2022–Present</span>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-title">Accounting Intern — Accounts Receivable</div>
+        <div class="exp-date">Jun 2025–Present</div>
+        <div class="exp-company">Airbus Helicopters · Dallas/Fort Worth, TX</div>
+        <div class="exp-desc">Built an Excel macro that automated manual transaction sorting from Bank of America reports, cutting processing time by ~70%. Processes roughly 100 invoices per week as the primary AR intern at a Fortune 500 headquarters, working directly under an account specialist with SAP and Bank of America systems.</div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-title">Treasurer</div>
+        <div class="exp-date">May 2025–Present</div>
+        <div class="exp-company">Tau Alpha Phi · Dallas Baptist University</div>
+        <div class="exp-desc">Elected by 40 members to oversee a ~$24,000 annual budget — managing vendor payments, dues collection, and all business communications with the DBU business office.</div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-title">Landscaper</div>
+        <div class="exp-date">Nov 2024–Jun 2025</div>
+        <div class="exp-company">Dallas Baptist University · Dallas, TX</div>
+        <div class="exp-desc">Trained 5–8 new employees in equipment operation, planting, and grounds upkeep. Became a senior team member due to high staff turnover, maintaining campus grounds ahead of donor and board visits.</div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-title">Architecture Intern</div>
+        <div class="exp-date">Sep 2022–May 2023</div>
+        <div class="exp-company">Charles R Lynch AIA · Amarillo, TX</div>
+        <div class="exp-desc">Presented a year-end project with ~$5M in estimated material value to a class of interns. Gained client-facing experience and hands-on Revit training at a licensed architecture firm.</div>
+      </div>
+
+      <div id="education" style="margin-top: 50px;">
+        <div class="section-head">
+          <h2>Education</h2>
+          <span class="issue-num">Est. Graduation · May 2027</span>
+        </div>
+        <div class="exp-item">
+          <div class="exp-title">Bachelor of Business Administration — Accounting</div>
+          <div class="exp-date">2023–2027</div>
+          <div class="exp-company">Dallas Baptist University · Carter School of Business</div>
+          <div class="exp-desc">Cumulative GPA: 3.76 · Major GPA: 3.78. Building a rigorous technical foundation in financial accounting, taxation, and business law with goals for CPA licensure.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sidebar-divider"></div>
+
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Free Tool</div>
+        <h3>2025 Tax Calculator</h3>
+        <p>Full federal tax breakdown — brackets, deductions, self-employment, capital gains, and year-end planning tools.</p>
+        <p style="margin-top:10px;">
+          <a href="https://haydenharms.com/tax-calculator.html" target="_blank" style="color:var(--gold);text-decoration:none;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:0.08em;font-weight:400;">Try the Calculator →</a>
+        </p>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-label">Skills & Tools</div>
+        <div class="pill-list">
+          <span class="pill">SAP</span>
+          <span class="pill">Excel</span>
+          <span class="pill">Accounts Receivable</span>
+          <span class="pill">Treasury</span>
+          <span class="pill">Financial Reporting</span>
+          <span class="pill">Team Leadership</span>
+          <span class="pill">Client Relations</span>
+          <span class="pill">Investing</span>
+          <span class="pill">Writing</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-label">Writing</div>
+        <h3>Hayden Harms</h3>
+        <p>Essays on politics, trade, and culture. Published on Substack.</p>
+        <p style="margin-top:10px;">
+          <a href="writing.html" style="color:var(--gold);text-decoration:none;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:0.08em;font-weight:400;">View Articles →</a>
+        </p>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-label">Contact</div>
+        <p style="margin-bottom:8px;">
+          <a href="mailto:harms.e.hayden@gmail.com" style="color:var(--gold);text-decoration:none;font-family:'Jost',sans-serif;font-size:12px;font-weight:400;">harms.e.hayden@gmail.com</a>
+        </p>
+        <p style="margin-bottom:8px;">
+          <a href="tel:8062903396" style="color:var(--muted);text-decoration:none;font-family:'Jost',sans-serif;font-size:12px;font-weight:400;">(806) 290-3396</a>
+        </p>
+        <p>
+          <a href="https://www.linkedin.com/in/hayden-harms-046558298" target="_blank" style="color:var(--muted);text-decoration:none;font-family:'Jost',sans-serif;font-size:12px;font-weight:400;">LinkedIn →</a>
+        </p>
+      </div>
+    </aside>
   </div>
-
-  <!-- TAU TREASURY -->
-    <div class="project-section" >
-    <div class="project-label">Tau Alpha Phi · Treasurer</div>
-    <div class="project-title">Chapter Treasury Workbook</div>
-    <div class="project-meta">Excel · Dues Management · 2025–27</div>
-    <div class="project-desc">
-      Built a full accounting workbook from scratch to manage the finances of a 40-member fraternity chapter. Tracks two cash accounts, accounts receivable, dues collection by member, event budgets, shirt orders, and equity — all linked across 13 sheets into a live dashboard. <em>Note: the interactive demo below is a rough model of the real workbook. Member names and certain figures have been replaced with sample data for privacy.</em>
-    </div>
-
-    <div class="metrics-row">
-      <div class="metric"><div class="metric-val">40</div><div class="metric-label">Members tracked</div></div>
-      <div class="metric"><div class="metric-val">13</div><div class="metric-label">Linked sheets</div></div>
-      <div class="metric"><div class="metric-val">~$24K</div><div class="metric-label">Annual budget managed</div></div>
-    </div>
-
-    <!-- ══════════════════════════════════════
-         EXCEL WINDOW
-    ══════════════════════════════════════ -->
-    <div class="excel-window">
-
-      <!-- Title bar -->
-      <div class="xl-titlebar">
-        <div class="xl-titlebar-left">
-          <div class="xl-titlebar-dots">
-            <span style="background:#ff5f57;"></span>
-            <span style="background:#febc2e;"></span>
-            <span style="background:#28c840;"></span>
-          </div>
-          <span class="xl-filename">Treasury_26-27.xlsx — Excel</span>
-        </div>
-        <div class="xl-titlebar-right">
-          <span>—</span><span>⬜</span><span>✕</span>
-        </div>
-      </div>
-
-      <!-- Ribbon tabs -->
-      <div class="xl-ribbon">
-        <div class="xl-ribbon-tabs">
-          <div class="xl-rtab">File</div>
-          <div class="xl-rtab active">Home</div>
-          <div class="xl-rtab">Insert</div>
-          <div class="xl-rtab">Formulas</div>
-          <div class="xl-rtab">Data</div>
-          <div class="xl-rtab">View</div>
-        </div>
-        <div class="xl-ribbon-tools">
-          <div class="xl-tool">✂ Cut</div>
-          <div class="xl-tool">📋 Copy</div>
-          <div class="xl-tool">📌 Paste</div>
-          <div class="xl-tool-sep"></div>
-          <div class="xl-tool"><b>B</b></div>
-          <div class="xl-tool"><i>I</i></div>
-          <div class="xl-tool"><u>U</u></div>
-          <div class="xl-tool-sep"></div>
-          <div class="xl-tool">$ ▾</div>
-          <div class="xl-tool">% </div>
-          <div class="xl-tool">, </div>
-          <div class="xl-tool-sep"></div>
-          <div class="xl-tool">🔍 Find</div>
-          <div class="xl-tool">Σ AutoSum</div>
-        </div>
-      </div>
-
-      <!-- Formula bar (updates per selected cell) -->
-      <div class="xl-formulabar">
-        <div class="xl-cellref" id="xl-cellref">B2</div>
-        <div class="xl-fx"><i>f</i><sub>x</sub></div>
-        <div class="xl-formula" id="xl-formula">TAΦ Books</div>
-      </div>
-
-      <!-- Sheet content -->
-      <div style="position:relative;">
-
-        <!-- DASHBOARD SHEET -->
-        <div class="xl-sheet active" id="sheet-Dashboard">
-          <div class="xl-grid-wrap">
-            <table class="xl-grid" onclick="xlClick(event)">
-              <thead><tr>
-                <th class="xl-col-header" style="width:28px;"></th>
-                <th class="xl-col-header" style="width:30px;">A</th>
-                <th class="xl-col-header" style="min-width:110px;">B</th>
-                <th class="xl-col-header" style="min-width:90px;">C</th>
-                <th class="xl-col-header" style="min-width:90px;">D</th>
-                <th class="xl-col-header" style="min-width:30px;">E</th>
-                <th class="xl-col-header" style="min-width:220px;">F (Chart)</th>
-                <th class="xl-col-header" style="min-width:30px;">G</th>
-                <th class="xl-col-header" style="min-width:90px;">H</th>
-                <th class="xl-col-header" style="min-width:80px;">I</th>
-                <th class="xl-col-header" style="min-width:80px;">J</th>
-              </tr></thead>
-              <tbody>
-                <!-- Row 1: Title bar -->
-                <tr>
-                  <td class="xl-row-header">1</td>
-                  <td class="xl-cell"></td>
-                  <td class="xl-cell xl-header" colspan="3" style="background:#217346!important;color:white!important;font-size:18px;font-weight:900;font-family:'Calibri',sans-serif;padding:10px 14px;" data-ref="B1" data-formula="TAΦ Books">TAΦ Books</td>
-                  <td class="xl-cell xl-header" style="background:#217346!important;"></td>
-                  <td class="xl-cell xl-header" style="background:#217346!important;color:white!important;font-weight:700;" data-ref="F1" data-formula="=&quot;Today's Date: &quot;&amp;TEXT(TODAY(),&quot;M/D/YYYY&quot;)">Today's Date &nbsp; 5/30/2026</td>
-                  <td class="xl-cell xl-header" style="background:#217346!important;"></td>
-                  <td class="xl-cell xl-header" style="background:#217346!important;" colspan="3"></td>
-                </tr>
-                <tr><td class="xl-row-header">2</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <!-- Row 3: Next Event header + chart area starts + Shirt Orders header -->
-                <tr>
-                  <td class="xl-row-header">3</td>
-                  <td class="xl-cell"></td>
-                  <td class="xl-cell xl-header" colspan="3" style="text-align:center;">Next Event</td>
-                  <td class="xl-cell"></td>
-                  <td class="xl-cell" rowspan="13" style="padding:0;vertical-align:top;border:1px solid #d0d0d0;">
-                    <!-- BAR CHART -->
-                    <svg width="220" height="240" style="display:block;font-family:Calibri,Arial,sans-serif;">
-                      <!-- Y axis labels -->
-                      <text x="48" y="22" font-size="9" fill="#595959" text-anchor="end">$3,000.00</text>
-                      <text x="48" y="62" font-size="9" fill="#595959" text-anchor="end">$2,500.00</text>
-                      <text x="48" y="102" font-size="9" fill="#595959" text-anchor="end">$2,000.00</text>
-                      <text x="48" y="142" font-size="9" fill="#595959" text-anchor="end">$1,500.00</text>
-                      <text x="48" y="182" font-size="9" fill="#595959" text-anchor="end">$1,000.00</text>
-                      <text x="48" y="207" font-size="9" fill="#595959" text-anchor="end">$500.00</text>
-                      <text x="48" y="220" font-size="9" fill="#595959" text-anchor="end">$-</text>
-                      <!-- Gridlines -->
-                      <line x1="52" y1="18" x2="210" y2="18" stroke="#e0e0e0" stroke-width="0.5"/>
-                      <line x1="52" y1="58" x2="210" y2="58" stroke="#e0e0e0" stroke-width="0.5"/>
-                      <line x1="52" y1="98" x2="210" y2="98" stroke="#e0e0e0" stroke-width="0.5"/>
-                      <line x1="52" y1="138" x2="210" y2="138" stroke="#e0e0e0" stroke-width="0.5"/>
-                      <line x1="52" y1="178" x2="210" y2="178" stroke="#e0e0e0" stroke-width="0.5"/>
-                      <line x1="52" y1="203" x2="210" y2="203" stroke="#e0e0e0" stroke-width="0.5"/>
-                      <line x1="52" y1="218" x2="210" y2="218" stroke="#d0d0d0" stroke-width="1"/>
-                      <!-- Cash bar (green) ~$7,502 → full height ~200px -->
-                      <rect x="68" y="18" width="36" height="200" fill="#217346"/>
-                      <!-- Event Cost bar (pink/red) ~$2,500 → 83px tall -->
-                      <rect x="138" y="135" width="36" height="83" fill="#FF8FA3"/>
-                      <!-- Data label -->
-                      <text x="156" y="129" font-size="9" fill="#333" text-anchor="middle" font-weight="700">$2,500.00</text>
-                      <!-- Diagonal line from cash bar top to event cost bar -->
-                      <line x1="86" y1="18" x2="138" y2="135" stroke="#aaa" stroke-width="0.8" stroke-dasharray="3,2"/>
-                      <!-- X axis labels -->
-                      <text x="86" y="232" font-size="9" fill="#333" text-anchor="middle">Cash</text>
-                      <text x="156" y="232" font-size="9" fill="#333" text-anchor="middle">Event Cost</text>
-                      <!-- Legend -->
-                      <rect x="60" y="240" width="10" height="8" fill="#217346"/>
-                      <text x="73" y="248" font-size="8" fill="#333">Cash</text>
-                      <rect x="110" y="240" width="10" height="8" fill="#FF8FA3"/>
-                      <text x="123" y="248" font-size="8" fill="#333">Needed</text>
-                    </svg>
-                  </td>
-                  <td class="xl-cell"></td>
-                  <td class="xl-cell xl-header" colspan="3" style="text-align:center;">Shirt Orders</td>
-                </tr>
-                <tr><td class="xl-row-header">4</td><td class="xl-cell"></td><td class="xl-cell xl-center" style="border:1px solid #aaa;"></td><td class="xl-cell xl-center" style="border:1px solid #aaa;"></td><td class="xl-cell xl-center" style="border:1px solid #aaa;"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell xl-header">Members</td><td class="xl-cell xl-header">Orders</td><td class="xl-cell xl-header">Filled</td></tr>
-                <tr>
-                  <td class="xl-row-header">5</td><td class="xl-cell"></td>
-                  <td class="xl-cell xl-bold xl-center" colspan="3" style="border:1px solid #aaa;font-size:13px;" data-ref="B5" data-formula="=Events!C2">Polos</td>
-                  <td class="xl-cell"></td><td class="xl-cell"></td>
-                  <td class="xl-cell xl-center" data-ref="H5" data-formula="=COUNTA(active_list,pledge_list)">0</td>
-                  <td class="xl-cell xl-center" data-ref="I5" data-formula="=Shirts!H12">0</td>
-                  <td class="xl-cell xl-center" data-ref="J5" data-formula="=Shirts!H12-Shirts!H13">0</td>
-                </tr>
-                <tr><td class="xl-row-header">6</td><td class="xl-cell"></td><td class="xl-cell xl-label" style="border:1px solid #aaa;">Date</td><td class="xl-cell xl-money" style="border:1px solid #aaa;" colspan="2" data-ref="C6" data-formula="=Events!B2">8/20/2026</td><td class="xl-cell"></td><td class="xl-cell"></td>
-                  <!-- Donut chart cell spans rows 6-12 -->
-                  <td class="xl-cell" rowspan="8" colspan="3" style="padding:6px;vertical-align:middle;border:1px solid #d0d0d0;text-align:center;">
-                    <svg width="180" height="150" style="display:inline-block;font-family:Calibri,Arial,sans-serif;">
-                      <!-- Donut chart: To collect=15%, Cost TYE=70%, In Accounts=15% -->
-                      <!-- Base circle background -->
-                      <circle cx="70" cy="72" r="52" fill="#FF8FA3"/>
-                      <!-- Cost TYE slice (large, ~252deg) — already covered by base pink -->
-                      <!-- To collect slice (small top-right, ~54deg) -->
-                      <path d="M70,72 L70,20 A52,52 0 0,1 120,46 Z" fill="#FF8FA3" opacity="0.7"/>
-                      <!-- In Accounts slice (small bottom-right, ~54deg) -->
-                      <path d="M70,72 L120,46 A52,52 0 0,1 115,100 Z" fill="#c0392b" opacity="0.5"/>
-                      <!-- Inner white hole for donut -->
-                      <circle cx="70" cy="72" r="28" fill="white"/>
-                      <!-- Legend -->
-                      <rect x="138" y="30" width="10" height="8" fill="#FF8FA3"/>
-                      <text x="152" y="38" font-size="9" fill="#333">To collect</text>
-                      <rect x="138" y="50" width="10" height="8" fill="#FF8FA3" opacity="0.7"/>
-                      <text x="152" y="58" font-size="9" fill="#333">Cost TYE</text>
-                      <rect x="138" y="70" width="10" height="8" fill="#c0392b" opacity="0.5"/>
-                      <text x="152" y="78" font-size="9" fill="#333">In Accounts</text>
-                    </svg>
-                  </td>
-                </tr>
-                <tr><td class="xl-row-header">7</td><td class="xl-cell"></td><td class="xl-cell xl-label" style="border:1px solid #aaa;">Cost</td><td class="xl-cell xl-money" style="border:1px solid #aaa;" colspan="2" data-ref="C7" data-formula="=Events!E2">$2,500</td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">8</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">9</td><td class="xl-cell"></td><td class="xl-cell xl-header" colspan="3" style="text-align:center;">Cash Accounts</td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">10</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">11</td><td class="xl-cell"></td><td class="xl-cell xl-bold" style="border:1px solid #aaa;">DBU Account</td><td class="xl-cell xl-bold" style="border:1px solid #aaa;">On-Hand</td><td class="xl-cell xl-bold" style="border:1px solid #aaa;text-decoration:underline;" data-ref="D11">Total</td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">12</td><td class="xl-cell"></td><td class="xl-cell" style="border:1px solid #aaa;">Balance</td><td class="xl-cell" style="border:1px solid #aaa;">Balance</td><td class="xl-cell xl-money xl-bold" style="border:1px solid #aaa;" data-ref="D12" data-formula="=Accounts!Q8">$ &nbsp;&nbsp;&nbsp;&nbsp;-</td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">13</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">14</td><td class="xl-cell"></td><td class="xl-cell xl-header" colspan="3" style="text-align:center;">To Collect</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">15</td><td class="xl-cell"></td><td class="xl-cell xl-bold" style="border:1px solid #aaa;">Actives</td><td class="xl-cell xl-bold" style="border:1px solid #aaa;">Pledges</td><td class="xl-cell xl-bold" style="border:1px solid #aaa;text-decoration:underline;">Total</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">16</td><td class="xl-cell"></td><td class="xl-cell xl-money" style="border:1px solid #aaa;" data-ref="B16" data-formula="='Active Dues'!K7">$ &nbsp;&nbsp;&nbsp;-</td><td class="xl-cell xl-money" style="border:1px solid #aaa;" data-ref="C16" data-formula="='Pledge Dues'!K7">$ &nbsp;&nbsp;&nbsp;-</td><td class="xl-cell xl-money xl-bold" style="border:1px solid #aaa;" data-ref="D16" data-formula="=SUM(B16,C16)">$ &nbsp;&nbsp;&nbsp;-</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">17</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">18</td><td class="xl-cell"></td><td class="xl-cell xl-header" style="text-align:left;" colspan="2">Estimated Cost to Year-End</td><td class="xl-cell xl-header" style="text-align:center;">Difference</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">19</td><td class="xl-cell"></td><td class="xl-cell xl-money" style="border:1px solid #aaa;" data-ref="B19" data-formula="=SUM(IF(TODAY()>Events))">$ &nbsp;3,400.00</td><td class="xl-cell"></td><td class="xl-cell xl-money" style="border:1px solid #aaa;" data-ref="D19" data-formula="=B19+SUM(D12,D16)">$ &nbsp;3,400.00</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-
-        <!-- ACCOUNTS SHEET -->
-        <div class="xl-sheet" id="sheet-Accounts">
-          <div class="xl-grid-wrap">
-            <table class="xl-grid" onclick="xlClick(event)">
-              <thead><tr>
-                <th class="xl-col-header" style="width:28px;"></th>
-                <th class="xl-col-header" style="width:30px;">A</th>
-                <th class="xl-col-header" style="min-width:90px;">B</th>
-                <th class="xl-col-header" style="min-width:80px;">C</th>
-                <th class="xl-col-header" style="min-width:80px;">D</th>
-                <th class="xl-col-header" style="min-width:90px;">E</th>
-                <th class="xl-col-header" style="min-width:140px;">F</th>
-                <th class="xl-col-header" style="min-width:80px;">G</th>
-                <th class="xl-col-header" style="min-width:90px;">H</th>
-                <th class="xl-col-header" style="min-width:80px;">I</th>
-                <th class="xl-col-header" style="min-width:80px;">J</th>
-                <th class="xl-col-header" style="min-width:80px;">K</th>
-                <th class="xl-col-header" style="min-width:90px;">L</th>
-                <th class="xl-col-header" style="min-width:140px;">M</th>
-              </tr></thead>
-              <tbody>
-                <tr><td class="xl-row-header">1</td><td class="xl-cell"></td><td class="xl-cell xl-title xl-merged" colspan="12" data-ref="B1">TAΦ Books</td></tr>
-                <tr><td class="xl-row-header">2</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">3</td><td class="xl-cell"></td><td class="xl-cell xl-subheader xl-bold xl-merged" colspan="6">DBU Account</td><td class="xl-cell"></td><td class="xl-cell xl-subheader xl-bold xl-merged" colspan="5">On-Hand</td></tr>
-                <tr><td class="xl-row-header">4</td><td class="xl-cell"></td><td class="xl-cell xl-header" data-ref="B4">Date</td><td class="xl-cell xl-header">Debit</td><td class="xl-cell xl-header">Credit</td><td class="xl-cell xl-header">Balance</td><td class="xl-cell xl-header">Narration</td><td class="xl-cell xl-header">Current</td><td class="xl-cell"></td><td class="xl-cell xl-header">Date</td><td class="xl-cell xl-header">Debit</td><td class="xl-cell xl-header">Credit</td><td class="xl-cell xl-header">Balance</td><td class="xl-cell xl-header">Narration</td></tr>
-                <tr><td class="xl-row-header">5</td><td class="xl-cell"></td><td class="xl-cell xl-label">Starting</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell xl-money">$854.82</td><td class="xl-cell"></td><td class="xl-cell xl-formula-cell" data-formula="={BALANCE}">▣</td><td class="xl-cell"></td><td class="xl-cell xl-label">Starting</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell xl-money"></td><td class="xl-cell"></td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">6</td><td class="xl-cell"></td><td class="xl-cell xl-date">5/12/2025</td><td class="xl-cell xl-money xl-money-green">81</td><td class="xl-cell"></td><td class="xl-cell xl-money">$935.82</td><td class="xl-cell">Chili's fundraiser</td><td class="xl-cell xl-formula-cell" data-formula="=BALANCE+DEBIT-CREDIT">▣</td><td class="xl-cell"></td><td class="xl-cell xl-date">5/12/2025</td><td class="xl-cell xl-money xl-money-green">81</td><td class="xl-cell"></td><td class="xl-cell xl-money">$81.00</td><td class="xl-cell">Chili's</td></tr>
-                <tr><td class="xl-row-header">7</td><td class="xl-cell"></td><td class="xl-cell xl-date">6/18/2025</td><td class="xl-cell xl-money xl-money-green">919</td><td class="xl-cell"></td><td class="xl-cell xl-money">$1,854.82</td><td class="xl-cell">Dues</td><td class="xl-cell xl-formula-cell">▣</td><td class="xl-cell"></td><td class="xl-cell xl-date">6/18/2025</td><td class="xl-cell xl-money xl-money-green">919</td><td class="xl-cell"></td><td class="xl-cell xl-money">$1,000.00</td><td class="xl-cell">Dues</td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">8</td><td class="xl-cell"></td><td class="xl-cell xl-date">7/11/2025</td><td class="xl-cell xl-money xl-money-green">1,000</td><td class="xl-cell"></td><td class="xl-cell xl-money">$2,854.82</td><td class="xl-cell">Dues</td><td class="xl-cell xl-formula-cell">▣</td><td class="xl-cell"></td><td class="xl-cell xl-date">7/11/2025</td><td class="xl-cell xl-money xl-money-green">1,000</td><td class="xl-cell"></td><td class="xl-cell xl-money">$2,000.00</td><td class="xl-cell">Dues</td></tr>
-                <tr><td class="xl-row-header">9</td><td class="xl-cell"></td><td class="xl-cell xl-date">7/12/2025</td><td class="xl-cell xl-money xl-money-green">1,000</td><td class="xl-cell"></td><td class="xl-cell xl-money">$3,854.82</td><td class="xl-cell">Dues</td><td class="xl-cell xl-formula-cell">▣</td><td class="xl-cell"></td><td class="xl-cell xl-date">7/12/2025</td><td class="xl-cell xl-money xl-money-green">1,100</td><td class="xl-cell"></td><td class="xl-cell xl-money">$3,100.00</td><td class="xl-cell">Dues</td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">10</td><td class="xl-cell"></td><td class="xl-cell xl-date">7/12/2025</td><td class="xl-cell xl-money xl-money-green">100</td><td class="xl-cell"></td><td class="xl-cell xl-money">$3,954.82</td><td class="xl-cell">Dues</td><td class="xl-cell xl-formula-cell">▣</td><td class="xl-cell"></td><td class="xl-cell xl-date">7/17/2025</td><td class="xl-cell xl-money xl-money-green">700</td><td class="xl-cell"></td><td class="xl-cell xl-money">$3,800.00</td><td class="xl-cell">Dues</td></tr>
-                <tr><td class="xl-row-header">11</td><td class="xl-cell"></td><td class="xl-cell xl-date">7/17/2025</td><td class="xl-cell xl-money xl-money-green">500</td><td class="xl-cell"></td><td class="xl-cell xl-money">$4,454.82</td><td class="xl-cell">Dues</td><td class="xl-cell xl-formula-cell">▣</td><td class="xl-cell"></td><td class="xl-cell xl-date">7/18/2025</td><td class="xl-cell xl-money xl-money-green">1,300</td><td class="xl-cell"></td><td class="xl-cell xl-money">$5,100.00</td><td class="xl-cell">Dues</td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">12</td><td class="xl-cell"></td><td class="xl-cell xl-date">7/17/2025</td><td class="xl-cell xl-money xl-money-green">300</td><td class="xl-cell"></td><td class="xl-cell xl-money">$4,754.82</td><td class="xl-cell">Dues</td><td class="xl-cell xl-formula-cell">▣</td><td class="xl-cell"></td><td class="xl-cell xl-date">7/19/2025</td><td class="xl-cell xl-money xl-money-green">200</td><td class="xl-cell"></td><td class="xl-cell xl-money">$5,300.00</td><td class="xl-cell">Dues</td></tr>
-                <tr><td class="xl-row-header">13</td><td class="xl-cell"></td><td class="xl-cell xl-date">7/18/2025</td><td class="xl-cell xl-money xl-money-green">700</td><td class="xl-cell xl-money xl-money-red">560</td><td class="xl-cell xl-money">$4,894.82</td><td class="xl-cell">Dues</td><td class="xl-cell xl-formula-cell">▣</td><td class="xl-cell"></td><td class="xl-cell xl-date">7/21/2025</td><td class="xl-cell xl-money xl-money-green">100</td><td class="xl-cell"></td><td class="xl-cell xl-money">$5,400.00</td><td class="xl-cell">Dues</td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">14</td><td class="xl-cell"></td><td class="xl-cell xl-date">7/18/2025</td><td class="xl-cell xl-money xl-money-green">100</td><td class="xl-cell"></td><td class="xl-cell xl-money">$4,994.82</td><td class="xl-cell">Dues</td><td class="xl-cell xl-formula-cell">▣</td><td class="xl-cell"></td><td class="xl-cell xl-date">8/10/2025</td><td class="xl-cell"></td><td class="xl-cell xl-money xl-money-red">952</td><td class="xl-cell xl-money">$4,448.00</td><td class="xl-cell">Shirts pmt</td></tr>
-                <tr><td class="xl-row-header">15</td><td class="xl-cell"></td><td class="xl-cell xl-date">7/18/2025</td><td class="xl-cell xl-money xl-money-green">500</td><td class="xl-cell"></td><td class="xl-cell xl-money">$5,494.82</td><td class="xl-cell">Dues</td><td class="xl-cell xl-formula-cell">▣</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell xl-money"></td><td class="xl-cell"></td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">16</td><td class="xl-cell"></td><td class="xl-cell xl-date">7/19/2025</td><td class="xl-cell xl-money xl-money-green">200</td><td class="xl-cell"></td><td class="xl-cell xl-money">$5,694.82</td><td class="xl-cell">Dues</td><td class="xl-cell xl-formula-cell">▣</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell xl-money"></td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">17</td><td class="xl-cell"></td><td class="xl-cell xl-date">7/21/2025</td><td class="xl-cell xl-money xl-money-green">100</td><td class="xl-cell"></td><td class="xl-cell xl-money">$5,794.82</td><td class="xl-cell">Dues</td><td class="xl-cell xl-formula-cell">▣</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell xl-money"></td><td class="xl-cell"></td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">18</td><td class="xl-cell"></td><td class="xl-cell xl-date">8/10/2025</td><td class="xl-cell"></td><td class="xl-cell xl-money xl-money-red">952</td><td class="xl-cell xl-money">$4,842.82</td><td class="xl-cell">On a Boat shirts</td><td class="xl-cell xl-formula-cell">▣</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell xl-money"></td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">19</td><td class="xl-cell"></td><td class="xl-cell xl-total-row xl-label">Total</td><td class="xl-cell xl-total-row xl-money xl-money-green">$6,500</td><td class="xl-cell xl-total-row xl-money xl-money-red">$1,512</td><td class="xl-cell xl-total-row xl-money xl-bold">$7,502.32</td><td class="xl-cell xl-total-row"></td><td class="xl-cell xl-total-row"></td><td class="xl-cell xl-total-row"></td><td class="xl-cell xl-total-row"></td><td class="xl-cell xl-total-row"></td><td class="xl-cell xl-total-row"></td><td class="xl-cell xl-total-row xl-money xl-bold">$4,448</td><td class="xl-cell xl-total-row"></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- ACTIVE DUES SHEET -->
-        <div class="xl-sheet" id="sheet-Active Dues">
-          <div class="xl-grid-wrap">
-            <table class="xl-grid" onclick="xlClick(event)">
-              <thead><tr>
-                <th class="xl-col-header" style="width:28px;"></th>
-                <th class="xl-col-header" style="width:30px;">A</th>
-                <th class="xl-col-header" style="min-width:150px;">B (Name)</th>
-                <th class="xl-col-header" style="min-width:80px;">C (1/3)</th>
-                <th class="xl-col-header" style="min-width:80px;">D (2/3)</th>
-                <th class="xl-col-header" style="min-width:80px;">E (3/3)</th>
-                <th class="xl-col-header" style="min-width:80px;">F (Full)</th>
-                <th class="xl-col-header" style="min-width:60px;">G (PIF)</th>
-                <th class="xl-col-header" style="min-width:30px;"></th>
-                <th class="xl-col-header" style="min-width:150px;">I (Analytics)</th>
-                <th class="xl-col-header" style="min-width:80px;">J</th>
-              </tr></thead>
-              <tbody>
-                <tr><td class="xl-row-header">1</td><td class="xl-cell"></td><td class="xl-cell xl-title xl-merged" colspan="9">TAΦ Books</td></tr>
-                <tr><td class="xl-row-header">2</td><td class="xl-cell"></td><td class="xl-cell xl-header">Name</td><td class="xl-cell xl-header">1/3 Dues</td><td class="xl-cell xl-header">2/3 Dues</td><td class="xl-cell xl-header">3/3 Dues</td><td class="xl-cell xl-header">Full Dues</td><td class="xl-cell xl-header">PIF</td><td class="xl-cell"></td><td class="xl-cell xl-header">Analytics</td><td class="xl-cell xl-header"></td></tr>
-                <tr><td class="xl-row-header">3</td><td class="xl-cell"></td><td class="xl-cell">Blake, T.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-yes">TRUE</td><td class="xl-cell"></td><td class="xl-cell xl-label">Total to Collect:</td><td class="xl-cell xl-money xl-blue-bg" data-ref="J3" data-formula="=active_list[0]*300">$6,000</td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">4</td><td class="xl-cell"></td><td class="xl-cell">Castillo, R.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-no">FALSE</td><td class="xl-cell"></td><td class="xl-cell xl-label">Left to Collect</td><td class="xl-cell xl-money xl-yellow-bg" data-ref="J4" data-formula="=J3-J5">$1,500</td></tr>
-                <tr><td class="xl-row-header">5</td><td class="xl-cell"></td><td class="xl-cell">Crawford, M.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-yes">TRUE</td><td class="xl-cell"></td><td class="xl-cell xl-label">Collected:</td><td class="xl-cell xl-money xl-green-bg" data-ref="J5" data-formula="=SUM(L4:O4)">$4,500</td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">6</td><td class="xl-cell"></td><td class="xl-cell">Dixon, A.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-center"></td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-no">FALSE</td><td class="xl-cell"></td><td class="xl-cell xl-formula-cell" data-formula="=J5/J3">75%</td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">7</td><td class="xl-cell"></td><td class="xl-cell">Fletcher, J.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-yes">TRUE</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">8</td><td class="xl-cell"></td><td class="xl-cell">Garrett, S.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-yes">TRUE</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">9</td><td class="xl-cell"></td><td class="xl-cell">Hayes, C.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-no">FALSE</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">10</td><td class="xl-cell"></td><td class="xl-cell">Jensen, B.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-yes">TRUE</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">11</td><td class="xl-cell"></td><td class="xl-cell">Kelley, D.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-center"></td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-no">FALSE</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">12</td><td class="xl-cell"></td><td class="xl-cell">Larson, P.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-yes">TRUE</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">13</td><td class="xl-cell"></td><td class="xl-cell">Mason, E.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-yes">TRUE</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">14</td><td class="xl-cell"></td><td class="xl-cell">Norris, W.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-no">FALSE</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">15</td><td class="xl-cell"></td><td class="xl-cell">Owens, L.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-yes">TRUE</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">16</td><td class="xl-cell"></td><td class="xl-cell">Parker, H.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-yes">TRUE</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">17</td><td class="xl-cell"></td><td class="xl-cell">Quinn, F.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-center"></td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-no">FALSE</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">18</td><td class="xl-cell"></td><td class="xl-cell">Reynolds, K.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-yes">TRUE</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">19</td><td class="xl-cell"></td><td class="xl-cell">Shaw, N.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-no">FALSE</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">20</td><td class="xl-cell"></td><td class="xl-cell">Turner, G.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-yes">TRUE</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- PLEDGE DUES SHEET -->
-        <div class="xl-sheet" id="sheet-Pledge Dues">
-          <div class="xl-grid-wrap">
-            <table class="xl-grid" onclick="xlClick(event)">
-              <thead><tr>
-                <th class="xl-col-header" style="width:28px;"></th>
-                <th class="xl-col-header" style="width:30px;">A</th>
-                <th class="xl-col-header" style="min-width:150px;">B (Name)</th>
-                <th class="xl-col-header" style="min-width:80px;">C (1/3)</th>
-                <th class="xl-col-header" style="min-width:80px;">D (2/3)</th>
-                <th class="xl-col-header" style="min-width:80px;">E (3/3)</th>
-                <th class="xl-col-header" style="min-width:80px;">F (Full)</th>
-                <th class="xl-col-header" style="min-width:60px;">G (PIF)</th>
-                <th class="xl-col-header" style="min-width:30px;"></th>
-                <th class="xl-col-header" style="min-width:150px;">I (Analytics)</th>
-                <th class="xl-col-header" style="min-width:80px;">J</th>
-              </tr></thead>
-              <tbody>
-                <tr><td class="xl-row-header">1</td><td class="xl-cell"></td><td class="xl-cell xl-title xl-merged" colspan="9">TAΦ Books</td></tr>
-                <tr><td class="xl-row-header">2</td><td class="xl-cell"></td><td class="xl-cell xl-header">Name</td><td class="xl-cell xl-header">1/3 Dues</td><td class="xl-cell xl-header">2/3 Dues</td><td class="xl-cell xl-header">3/3 Dues</td><td class="xl-cell xl-header">Full Dues</td><td class="xl-cell xl-header">PIF</td><td class="xl-cell"></td><td class="xl-cell xl-header">Analytics</td><td class="xl-cell xl-header"></td></tr>
-                <tr><td class="xl-row-header">3</td><td class="xl-cell"></td><td class="xl-cell">Allen, C.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-yes">TRUE</td><td class="xl-cell"></td><td class="xl-cell xl-label">Total to Collect:</td><td class="xl-cell xl-money xl-blue-bg" data-ref="J3" data-formula="=pledge_list[0]*300">$3,000</td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">4</td><td class="xl-cell"></td><td class="xl-cell">Brooks, M.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-center"></td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-no">FALSE</td><td class="xl-cell"></td><td class="xl-cell xl-label">Left to Collect</td><td class="xl-cell xl-money xl-yellow-bg" data-ref="J4" data-formula="=J3-J5">$900</td></tr>
-                <tr><td class="xl-row-header">5</td><td class="xl-cell"></td><td class="xl-cell">Coleman, J.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-no">FALSE</td><td class="xl-cell"></td><td class="xl-cell xl-label">Collected:</td><td class="xl-cell xl-money xl-green-bg" data-ref="J5" data-formula="=SUM(L4:O4)">$2,100</td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">6</td><td class="xl-cell"></td><td class="xl-cell">Dunn, R.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-yes">TRUE</td><td class="xl-cell"></td><td class="xl-cell xl-formula-cell" data-formula="=J5/J3">70%</td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">7</td><td class="xl-cell"></td><td class="xl-cell">Elliott, T.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-yes">TRUE</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">8</td><td class="xl-cell"></td><td class="xl-cell">Ford, A.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-center"></td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-no">FALSE</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr><td class="xl-row-header">9</td><td class="xl-cell"></td><td class="xl-cell">Grant, L.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-yes">TRUE</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">10</td><td class="xl-cell"></td><td class="xl-cell">Holt, S.</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center xl-green-bg">yes</td><td class="xl-cell xl-center"></td><td class="xl-cell xl-center"></td><td class="xl-cell xl-pif-no">FALSE</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell"></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- EVENTS SHEET -->
-        <div class="xl-sheet" id="sheet-Events">
-          <div class="xl-grid-wrap">
-            <table class="xl-grid" onclick="xlClick(event)">
-              <thead><tr>
-                <th class="xl-col-header" style="width:28px;"></th>
-                <th class="xl-col-header" style="width:30px;">A</th>
-                <th class="xl-col-header" style="min-width:90px;">B (Date)</th>
-                <th class="xl-col-header" style="min-width:170px;">C (Event Name)</th>
-                <th class="xl-col-header" style="min-width:100px;">D (Expenses)</th>
-                <th class="xl-col-header" style="min-width:120px;">E (Total Expenses)</th>
-              </tr></thead>
-              <tbody>
-                <tr><td class="xl-row-header">1</td><td class="xl-cell"></td><td class="xl-cell xl-header">Date</td><td class="xl-cell xl-header">Event Name</td><td class="xl-cell xl-header">Expenses</td><td class="xl-cell xl-header">Total Expenses</td></tr>
-                <tr><td class="xl-row-header">2</td><td class="xl-cell"></td><td class="xl-cell xl-date">8/20/2026</td><td class="xl-cell xl-bold">Polos</td><td class="xl-cell"></td><td class="xl-cell xl-money xl-formula-cell" data-formula="={SUMIF(Events,Polos)}">$2,500</td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">3</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell xl-blue-bg">Polos</td><td class="xl-cell xl-money xl-blue-bg">$2,500</td><td class="xl-cell xl-formula-cell xl-blue-bg">▣</td></tr>
-                <tr><td class="xl-row-header">4</td><td class="xl-cell"></td><td class="xl-cell xl-date">8/22/2026</td><td class="xl-cell xl-bold">Welcome Back Party</td><td class="xl-cell"></td><td class="xl-cell xl-money xl-formula-cell" data-formula="={SUMIF(Events,WBP)}">$900</td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">5</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell xl-blue-bg"></td><td class="xl-cell xl-money xl-blue-bg">$500</td><td class="xl-cell xl-formula-cell xl-blue-bg">▣</td></tr>
-                <tr><td class="xl-row-header">6</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell xl-blue-bg"></td><td class="xl-cell xl-money xl-blue-bg">$400</td><td class="xl-cell xl-formula-cell xl-blue-bg">▣</td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">7</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell xl-blue-bg"></td><td class="xl-cell xl-blue-bg"></td><td class="xl-cell xl-formula-cell xl-blue-bg">▣</td></tr>
-                <tr><td class="xl-row-header">8</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell xl-blue-bg"></td><td class="xl-cell xl-blue-bg"></td><td class="xl-cell xl-formula-cell xl-blue-bg">▣</td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">9</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell xl-blue-bg"></td><td class="xl-cell xl-blue-bg"></td><td class="xl-cell xl-formula-cell xl-blue-bg">▣</td></tr>
-                <tr><td class="xl-row-header">10</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell xl-blue-bg"></td><td class="xl-cell xl-blue-bg"></td><td class="xl-cell xl-formula-cell xl-blue-bg">▣</td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">11</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell xl-blue-bg"></td><td class="xl-cell xl-blue-bg"></td><td class="xl-cell xl-formula-cell xl-blue-bg">▣</td></tr>
-                <tr><td class="xl-row-header">12</td><td class="xl-cell"></td><td class="xl-cell"></td><td class="xl-cell xl-blue-bg"></td><td class="xl-cell xl-blue-bg"></td><td class="xl-cell xl-formula-cell xl-blue-bg">▣</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- SPRING EVENTS SHEET -->
-        <div class="xl-sheet" id="sheet-SPRING EVENTS">
-          <div class="xl-grid-wrap">
-            <table class="xl-grid" onclick="xlClick(event)">
-              <thead><tr>
-                <th class="xl-col-header" style="width:28px;"></th>
-                <th class="xl-col-header" style="width:30px;"></th>
-                <th class="xl-col-header" style="min-width:90px;">A (Date)</th>
-                <th class="xl-col-header" style="min-width:140px;">B (Event)</th>
-                <th class="xl-col-header" style="min-width:70px;">C (Shirts)</th>
-                <th class="xl-col-header" style="min-width:70px;">D (Venue)</th>
-                <th class="xl-col-header" style="min-width:80px;">E (Food)</th>
-                <th class="xl-col-header" style="min-width:70px;">F (Supplies)</th>
-                <th class="xl-col-header" style="min-width:60px;">G (Help)</th>
-                <th class="xl-col-header" style="min-width:60px;">H (Misc)</th>
-                <th class="xl-col-header" style="min-width:80px;">I (Revenue)</th>
-                <th class="xl-col-header" style="min-width:80px;">J (Total)</th>
-              </tr></thead>
-              <tbody>
-                <tr><td class="xl-row-header">1</td><td class="xl-cell"></td><td class="xl-cell xl-header">DATE</td><td class="xl-cell xl-header">EVENTS</td><td class="xl-cell xl-header">SHIRTS</td><td class="xl-cell xl-header">VENUE</td><td class="xl-cell xl-header">FOOD/DRINKS</td><td class="xl-cell xl-header">SUPPLIES</td><td class="xl-cell xl-header">HELP</td><td class="xl-cell xl-header">MISC.</td><td class="xl-cell xl-header">REVENUE</td><td class="xl-cell xl-header">TOTAL</td></tr>
-                <tr><td class="xl-row-header">2</td><td class="xl-cell"></td><td class="xl-cell xl-date">2/21/2025</td><td class="xl-cell xl-bold">INITIATION</td><td class="xl-cell xl-center xl-stripe">x</td><td class="xl-cell xl-money">$650</td><td class="xl-cell xl-center xl-stripe">x</td><td class="xl-cell xl-money">$100</td><td class="xl-cell xl-center xl-stripe">x</td><td class="xl-cell xl-center xl-stripe">x</td><td class="xl-cell xl-center xl-stripe">x</td><td class="xl-cell xl-money xl-formula-cell" data-formula="=SUM(C2:I2)">$750</td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">3</td><td class="xl-cell"></td><td class="xl-cell xl-date">3/6/2025</td><td class="xl-cell xl-bold">FORMAL</td><td class="xl-cell xl-money">$2,075</td><td class="xl-cell xl-money">$4,530</td><td class="xl-cell xl-money">$75</td><td class="xl-cell xl-center">x</td><td class="xl-cell xl-money">$600</td><td class="xl-cell xl-center">x</td><td class="xl-cell xl-money xl-money-red">–$825</td><td class="xl-cell xl-money xl-formula-cell" data-formula="=SUM(C3:I3)">$6,455</td></tr>
-                <tr><td class="xl-row-header">4</td><td class="xl-cell"></td><td class="xl-cell xl-date">3/18/2025</td><td class="xl-cell xl-bold">CRAWFISH BOIL</td><td class="xl-cell xl-money">$3,485</td><td class="xl-cell xl-center xl-stripe">x</td><td class="xl-cell xl-money">$1,680</td><td class="xl-cell xl-money">$306</td><td class="xl-cell xl-center xl-stripe">x</td><td class="xl-cell xl-center xl-stripe">x</td><td class="xl-cell xl-money xl-money-red">–$2,970</td><td class="xl-cell xl-money xl-formula-cell" data-formula="=SUM(C4:I4)">$2,501</td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">5</td><td class="xl-cell"></td><td class="xl-cell xl-date">4/5/2025</td><td class="xl-cell xl-bold">SPRING SING</td><td class="xl-cell xl-center">x</td><td class="xl-cell xl-center">x</td><td class="xl-cell xl-center">x</td><td class="xl-cell xl-money">$500</td><td class="xl-cell xl-center">x</td><td class="xl-cell xl-center">x</td><td class="xl-cell xl-center">x</td><td class="xl-cell xl-money xl-formula-cell">$500</td></tr>
-                <tr><td class="xl-row-header">6</td><td class="xl-cell"></td><td class="xl-cell xl-date">4/12/2025</td><td class="xl-cell xl-bold">GOLF TOURNAMENT</td><td class="xl-cell xl-center xl-stripe">x</td><td class="xl-cell xl-center xl-stripe">x</td><td class="xl-cell xl-center xl-stripe">x</td><td class="xl-cell xl-center xl-stripe">x</td><td class="xl-cell xl-center xl-stripe">x</td><td class="xl-cell xl-center xl-stripe">x</td><td class="xl-cell xl-center xl-stripe">x</td><td class="xl-cell xl-center xl-stripe">x</td></tr>
-                <tr class="xl-stripe"><td class="xl-row-header">7</td><td class="xl-cell"></td><td class="xl-cell xl-date">4/25/2025</td><td class="xl-cell xl-bold">SERVICE RETREAT</td><td class="xl-cell xl-center">x</td><td class="xl-cell xl-center">x</td><td class="xl-cell xl-center">x</td><td class="xl-cell xl-center">x</td><td class="xl-cell xl-center">x</td><td class="xl-cell xl-center">x</td><td class="xl-cell xl-center">x</td><td class="xl-cell xl-center">x</td></tr>
-                <tr><td class="xl-row-header">8</td><td class="xl-cell"></td><td class="xl-cell xl-date">5/3/2025</td><td class="xl-cell xl-bold">ON A BOAT</td><td class="xl-cell xl-center xl-stripe">x</td><td class="xl-cell xl-money">$3,425</td><td class="xl-cell xl-center xl-stripe">x</td><td class="xl-cell xl-center xl-stripe">x</td><td class="xl-cell xl-center xl-stripe">x</td><td class="xl-cell xl-center xl-stripe">x</td><td class="xl-cell xl-center xl-stripe">x</td><td class="xl-cell xl-center xl-stripe">x</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-      </div><!-- end sheets -->
-
-      <!-- Sheet tabs -->
-      <div class="xl-sheettabs" id="xl-sheettabs">
-        <div class="xl-stab active" onclick="switchXLSheet('Dashboard', this)">Dashboard</div>
-        <div class="xl-stab" onclick="switchXLSheet('Accounts', this)">Accounts</div>
-        <div class="xl-stab" onclick="switchXLSheet('Active Dues', this)">Active Dues</div>
-        <div class="xl-stab" onclick="switchXLSheet('Pledge Dues', this)">Pledge Dues</div>
-        <div class="xl-stab" onclick="switchXLSheet('Events', this)">Events</div>
-        <div class="xl-stab" onclick="switchXLSheet('SPRING EVENTS', this)">SPRING EVENTS</div>
-        <div class="xl-stab" style="color:#aaa;cursor:default;padding:4px 14px;font-size:11px;font-family:'Segoe UI',sans-serif;">Book-Assets</div>
-        <div class="xl-stab" style="color:#aaa;cursor:default;padding:4px 14px;font-size:11px;font-family:'Segoe UI',sans-serif;">Book-Equity</div>
-        <div class="xl-stab" style="color:#aaa;cursor:default;padding:4px 14px;font-size:11px;font-family:'Segoe UI',sans-serif;">Shirts</div>
-        <div class="xl-stab" style="color:#aaa;cursor:default;padding:4px 14px;font-size:11px;font-family:'Segoe UI',sans-serif;">Calculations</div>
-      </div>
-
-      <!-- Status bar -->
-      <div class="xl-statusbar">
-        <span>Ready</span>
-        <span id="xl-status-avg">Average: $854.82 &nbsp; Count: 21 &nbsp; Sum: $7,502.32</span>
-      </div>
-
-    </div><!-- end excel-window -->
-
-  </div><!-- end project-section -->
-  <!-- CPA PREP QUIZ PROJECT -->
-  <div class="project-section" >
-    <div class="project-label">Study Tool</div>
-    <div class="project-title">CPA Prep Quiz</div>
-    <div class="project-meta">HTML · CSS · JavaScript · React · 2025</div>
-    <div class="project-desc">
-      An interactive CPA exam practice tool covering all four sections — FAR, AUD, REG, and BAR. Features timed quizzes, instant answer feedback, flagging for review, and a results screen with a study resources section that pulls targeted YouTube lessons and Accounting Test Prep materials for any topic you got wrong. Built for my own exam prep and made public.
-    </div>
-
-    <div class="metrics-row">
-      <div class="metric"><div class="metric-val">4</div><div class="metric-label">Exam Sections</div></div>
-      <div class="metric"><div class="metric-val">FAR · AUD<br>REG · BAR</div><div class="metric-label" style="font-size:9px;">Coverage</div></div>
-      <div class="metric"><div class="metric-val">Live</div><div class="metric-label">Study Resources</div></div>
-    </div>
-
-    <a href="cpa-study.html" style="
-      display:inline-flex;align-items:center;gap:10px;
-      font-family:'Jost',sans-serif;font-size:11px;font-weight:500;
-      letter-spacing:0.16em;text-transform:uppercase;
-      color:var(--bg);background:var(--ink);
-      padding:13px 28px;text-decoration:none;
-      border:1px solid var(--ink);transition:background 0.2s, color 0.2s;
-    " onmouseover="this.style.background='var(--gold)';this.style.borderColor='var(--gold)'"
-       onmouseout="this.style.background='var(--ink)';this.style.borderColor='var(--ink)'">
-      Try the Quiz →
-    </a>
-  </div>
-
-    <!-- TAX CALCULATOR PROJECT -->
-  <div class="project-section" style="border-bottom:none;">
-    <div class="project-label">Free Public Tool</div>
-    <div class="project-title">2025 Federal Tax Calculator</div>
-    <div class="project-meta">HTML · CSS · JavaScript · IRS Publication 15-T · 2025</div>
-    <div class="project-desc">
-      A full-featured federal income tax calculator built from scratch using 2025 IRS parameters. Handles W-2 and self-employed filers, itemized deductions, capital gains (long and short-term), NIIT, credits, and withholding — outputting a refund or amount owed. Includes a year-end planning suite with underpayment penalty checks, remaining paycheck withholding, tax-loss harvesting analysis, Roth conversion cost, and bonus impact.
-    </div>
-
-    <div class="metrics-row">
-      <div class="metric"><div class="metric-val">W-2 + SE</div><div class="metric-label">Filer Types</div></div>
-      <div class="metric"><div class="metric-val">7+</div><div class="metric-label">Deduction & Credit Types</div></div>
-      <div class="metric"><div class="metric-val">5</div><div class="metric-label">Year-End Planning Tools</div></div>
-    </div>
-
-    <a href="https://haydenharms.com/tax-calculator.html" target="_blank" style="
-      display:inline-flex;align-items:center;gap:10px;
-      font-family:'Jost',sans-serif;font-size:11px;font-weight:500;
-      letter-spacing:0.16em;text-transform:uppercase;
-      color:var(--bg);background:var(--ink);
-      padding:13px 28px;text-decoration:none;
-      border:1px solid var(--ink);transition:background 0.2s, color 0.2s;
-    " onmouseover="this.style.background='var(--gold)';this.style.borderColor='var(--gold)'"
-       onmouseout="this.style.background='var(--ink)';this.style.borderColor='var(--ink)'">
-      Try the Calculator →
-    </a>
-  </div>
-
-
 </div>
 
 <footer>
-  <span class="footer-name"><a href="index.html" style="text-decoration:none;color:inherit;">Hayden Harms</a></span>
+  <span class="footer-name"><a href="https://haydenharms.com" style="text-decoration:none;color:inherit;">Hayden Harms</a></span>
   <span>Dallas, TX &nbsp;·&nbsp; (806) 290-3396</span>
   <a href="mailto:harms.e.hayden@gmail.com">harms.e.hayden@gmail.com</a>
 </footer>
-
-<script>
-// Sheet switching
-function switchXLSheet(name, btn) {
-  document.querySelectorAll('.xl-sheet').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.xl-stab').forEach(t => t.classList.remove('active'));
-  const sheet = document.getElementById('sheet-' + name);
-  if (sheet) { sheet.classList.add('active'); }
-  if (btn) btn.classList.add('active');
-  document.getElementById('xl-cellref').textContent = 'B2';
-  document.getElementById('xl-formula').textContent = 'TAΦ Books';
-
-  const statusMap = {
-    'Dashboard':      'Average: $7,502  Count: 8  Sum: $12,852.32',
-    'Accounts':       'Average: $854.82  Count: 21  Sum: $7,502.32',
-    'Active Dues':    'Count: 20  Collected: $4,500  Left: $1,500',
-    'Pledge Dues':    'Count: 10  Collected: $2,100  Left: $900',
-    'Events':         'Count: 2  Total Budgeted: $3,400',
-    'SPRING EVENTS':  'Average: $2,540  Count: 7  Sum: $10,206',
-  };
-  document.getElementById('xl-status-avg').textContent = statusMap[name] || 'Ready';
-}
-
-// Cell click — update formula bar
-function xlClick(e) {
-  const td = e.target.closest('td.xl-cell');
-  if (!td) return;
-  document.querySelectorAll('.xl-cell.selected').forEach(c => c.classList.remove('selected'));
-  td.classList.add('selected');
-  const ref = td.dataset.ref || '';
-  const formula = td.dataset.formula || td.textContent.trim();
-  if (ref) document.getElementById('xl-cellref').textContent = ref;
-  if (formula) document.getElementById('xl-formula').textContent = formula;
-}
-</script>
 
 <script>
   function toggleDark() {
