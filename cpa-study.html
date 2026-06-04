@@ -3020,8 +3020,8 @@ function HistoryPage({onNav}){
   const hist=getHistory();
   if(hist.length===0) return(
     <div className="history-wrap fade-in">
-      <div className="breadcrumb"><span onClick={()=>onNav('home')}>Home</span><span className="sep">·</span><span style={{color:'var(--ink)',fontWeight:'600'}}>History</span></div>
-      <div className="section-header"><h2>History</h2></div>
+      <div className="breadcrumb"><span onClick={()=>onNav('home')}>Home</span><span className="sep">·</span><span style={{color:'var(--ink)',fontWeight:'600'}}>Dashboard</span></div>
+      <div className="section-header"><h2>Dashboard</h2></div>
       <div className="hist-empty"><div className="he-serif">No history yet</div><div>Complete a practice test or chapter session to see your performance history here.</div></div>
     </div>
   );
@@ -3120,7 +3120,7 @@ function HistoryPage({onNav}){
 
   return(
     <div className="history-wrap fade-in">
-      <div className="breadcrumb"><span onClick={()=>onNav('home')}>Home</span><span className="sep">·</span><span style={{color:'var(--ink)',fontWeight:'600'}}>History</span></div>
+      <div className="breadcrumb"><span onClick={()=>onNav('home')}>Home</span><span className="sep">·</span><span style={{color:'var(--ink)',fontWeight:'600'}}>Dashboard</span></div>
       <div className="section-header"><h2>Progress Dashboard</h2><p>{sessions} sessions · {totalQ} questions attempted</p></div>
 
       {/* stat cards */}
@@ -3177,7 +3177,7 @@ function HistoryPage({onNav}){
         ))}
       </div>}
 
-      <button className="btn-ghost" style={{marginTop:'8px'}} onClick={()=>{if(confirm('Clear all history?')){LS.set('cpa_history',[]);window.location.reload();}}}>Clear History</button>
+      <button className="btn-ghost" style={{marginTop:'8px'}} onClick={()=>{if(confirm('Clear all history?')){LS.set('cpa_history',[]);window.location.reload();}}}>Clear Dashboard</button>
     </div>
   );
 }
@@ -3242,7 +3242,7 @@ function HomePage({onNav}){
         {[
           {id:'topics',icon:'📚',label:'Study Mode',title:'Topics',desc:'Browse by section and chapter. Access notes, questions, and flashcards for each topic.',meta:`${TOTAL_Q} questions · ${EXAMS.reduce((s,e)=>s+e.topics.length,0)} chapters`},
           {id:'test',icon:'✏️',label:'Exam Mode',title:'Test',desc:'Full practice exam with randomized questions and simulations mixed in. Timed or untimed.',meta:`${TOTAL_Q} MCQs + ${TBS_DATA.length} simulations`},
-          {id:'history',icon:'📊',label:'Performance',title:'History',desc:'Track your scores over time, identify weak topics, and surface what needs review.',meta:`${getHistory().length} sessions recorded`}
+          {id:'history',icon:'📊',label:'Performance',title:'Progress Dashboard',desc:'Track your scores over time, identify weak topics, and surface what needs review.',meta:`${getHistory().length} sessions recorded`}
         ].map((tile,i)=>(
           <button key={i} className="dash-tile" onClick={()=>onNav(tile.id)}>
             <span className="tile-icon">{tile.icon}</span>
