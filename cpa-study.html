@@ -2106,30 +2106,6 @@ ${d3err}`},
 </script>
 <script type="text/babel">
 // ── FLASHCARD DATA (generated from exam topics) ──────────────
-const FLASHCARDS = {};
-EXAMS.forEach(exam=>{
-  exam.topics.forEach(topic=>{
-    const key = exam.id+'_'+topic.id;
-    const notes = (MATERIALS[exam.id]||{})[topic.id]||[];
-    if(notes.length>0){
-      // Notes-based flashcards: front = concept title, back = rule/takeaway
-      FLASHCARDS[key] = notes.map(n=>({
-        front: n.title,
-        back: n.rule || n.body.slice(0,200)+(n.body.length>200?'...':''),
-        hint: topic.label,
-        detail: n.body
-      }));
-    } else {
-      // Fallback: question-based for topics without notes
-      FLASHCARDS[key] = topic.questions.slice(0,15).map(q=>({
-        front: q.q,
-        back: q.options[q.answer],
-        hint: topic.label
-      }));
-    }
-  });
-});
-
 // ── MATERIALS DATA ────────────────────────────────────────────
 const MATERIALS = {
   FAR:{
@@ -2343,6 +2319,31 @@ const MATERIALS = {
     ]
   }
 };
+
+const FLASHCARDS = {};
+EXAMS.forEach(exam=>{
+  exam.topics.forEach(topic=>{
+    const key = exam.id+'_'+topic.id;
+    const notes = (MATERIALS[exam.id]||{})[topic.id]||[];
+    if(notes.length>0){
+      // Notes-based flashcards: front = concept title, back = rule/takeaway
+      FLASHCARDS[key] = notes.map(n=>({
+        front: n.title,
+        back: n.rule || n.body.slice(0,200)+(n.body.length>200?'...':''),
+        hint: topic.label,
+        detail: n.body
+      }));
+    } else {
+      // Fallback: question-based for topics without notes
+      FLASHCARDS[key] = topic.questions.slice(0,15).map(q=>({
+        front: q.q,
+        back: q.options[q.answer],
+        hint: topic.label
+      }));
+    }
+  });
+});
+
 
 // ── STORAGE UTILS ─────────────────────────────────────────────
 const LS = {
