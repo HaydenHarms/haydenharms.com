@@ -259,38 +259,8 @@
   </div>
 
   
-  <!-- TAX CALCULATOR PROJECT -->
-  <div class="project-section" >
-    <div class="project-label">Free Public Tool</div>
-    <div class="project-title">2025 Federal Tax Calculator</div>
-    <div class="project-meta">HTML · CSS · JavaScript · IRS Publication 15-T · 2025</div>
-    <div class="project-desc">
-      A full-featured federal income tax calculator built from scratch using 2025 IRS parameters. Handles W-2 and self-employed filers, itemized deductions, capital gains (long and short-term), NIIT, credits, and withholding — outputting a refund or amount owed. Includes a year-end planning suite with underpayment penalty checks, remaining paycheck withholding, tax-loss harvesting analysis, Roth conversion cost, and bonus impact.
-    </div>
-
-    <div class="metrics-row">
-      <div class="metric"><div class="metric-val">W-2 + SE</div><div class="metric-label">Filer Types</div></div>
-      <div class="metric"><div class="metric-val">7+</div><div class="metric-label">Deduction & Credit Types</div></div>
-      <div class="metric"><div class="metric-val">5</div><div class="metric-label">Year-End Planning Tools</div></div>
-    </div>
-
-    <a href="tax-calculator.html" target="_blank" style="
-      display:inline-flex;align-items:center;gap:10px;
-      font-family:'Jost',sans-serif;font-size:11px;font-weight:500;
-      letter-spacing:0.16em;text-transform:uppercase;
-      color:var(--bg);background:var(--ink);
-      padding:13px 28px;text-decoration:none;
-      border:1px solid var(--ink);transition:background 0.2s, color 0.2s;
-    " onmouseover="this.style.background='var(--gold)';this.style.borderColor='var(--gold)'"
-       onmouseout="this.style.background='var(--ink)';this.style.borderColor='var(--ink)'">
-      Try the Calculator →
-    </a>
-  </div>
-
-
-
   <!-- TAU TREASURY APP -->
-  <div class="project-section" style="border-bottom:none;">
+  <div id="tao-treasurer" class="project-section" >
     <div class="project-label">Tau Alpha Phi · Treasurer</div>
     <div class="project-title">TAΦ Treasurer Portal</div>
     <div class="project-meta">Electron · React · Tailwind CSS · Python · FastAPI · SQLite · 2026</div>
@@ -353,7 +323,139 @@
               <div style="background:#1a1a2e;border:1px solid #222;border-radius:8px;padding:16px;"><div style="color:#f59e0b;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">! Dues Owed</div><div style="color:#f59e0b;font-size:22px;font-weight:700;">$4,200.00</div><div style="color:#555;font-size:11px;margin-top:4px;">14 members unpaid</div></div>
               <div style="background:#1a1a2e;border:1px solid #222;border-radius:8px;padding:16px;"><div style="color:#3b5bdb;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;">◈ Events This Month</div><div style="color:white;font-size:22px;font-weight:700;">2</div><div style="color:#555;font-size:11px;margin-top:4px;">2 upcoming</div></div>
             </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <!-- BALANCE GRAPH -->
+            <div style="background:#1a1a2e;border:1px solid #222;border-radius:8px;padding:16px;overflow:hidden;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+                <div>
+                  <div style="color:#3b5bdb;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;">$ Account Balance</div>
+                  <div style="color:#22c55e;font-size:22px;font-weight:700;">$8,240.50</div>
+                  <div style="color:#555;font-size:11px;margin-top:2px;">actuals + projected through Jan</div>
+                </div>
+                <span style="background:#0d2b1a;color:#34d399;font-size:11px;font-weight:600;padding:3px 9px;border-radius:4px;">In the green</span>
+              </div>
+
+              <!-- Chart -->
+              <div style="position:relative;overflow-x:auto;">
+                <div style="min-width:420px;">
+                <svg viewBox="0 0 640 140" style="width:100%;height:130px;display:block;overflow:visible;">
+                  <defs>
+                    <linearGradient id="tapGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#3b5bdb" stop-opacity="0.2"/>
+                      <stop offset="100%" stop-color="#3b5bdb" stop-opacity="0"/>
+                    </linearGradient>
+                    <linearGradient id="tapGradP" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#3b5bdb" stop-opacity="0.06"/>
+                      <stop offset="100%" stop-color="#3b5bdb" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+
+                  <!-- Grid lines -->
+                  <line x1="0" y1="18" x2="640" y2="18" stroke="#1e2035" stroke-width="1"/>
+                  <line x1="0" y1="48" x2="640" y2="48" stroke="#1e2035" stroke-width="1"/>
+                  <line x1="0" y1="78" x2="640" y2="78" stroke="#1e2035" stroke-width="1"/>
+                  <line x1="0" y1="108" x2="640" y2="108" stroke="#1e2035" stroke-width="1"/>
+
+                  <!-- Y axis labels -->
+                  <text x="2" y="16" font-size="8" fill="#444" font-family="Segoe UI,sans-serif">$14K</text>
+                  <text x="2" y="46" font-size="8" fill="#444" font-family="Segoe UI,sans-serif">$10K</text>
+                  <text x="2" y="76" font-size="8" fill="#444" font-family="Segoe UI,sans-serif">$6K</text>
+                  <text x="2" y="106" font-size="8" fill="#444" font-family="Segoe UI,sans-serif">$2K</text>
+
+                  <!-- X axis labels -->
+                  <text x="38"  y="128" font-size="8" fill="#444" font-family="Segoe UI,sans-serif">Aug</text>
+                  <text x="128" y="128" font-size="8" fill="#444" font-family="Segoe UI,sans-serif">Sep</text>
+                  <text x="218" y="128" font-size="8" fill="#444" font-family="Segoe UI,sans-serif">Oct</text>
+                  <text x="308" y="128" font-size="8" fill="#444" font-family="Segoe UI,sans-serif">Nov</text>
+                  <text x="398" y="128" font-size="8" fill="#444" font-family="Segoe UI,sans-serif">Dec</text>
+                  <text x="488" y="128" font-size="8" fill="#444" font-family="Segoe UI,sans-serif">Jan</text>
+                  <text x="578" y="128" font-size="8" fill="#444" font-family="Segoe UI,sans-serif">Feb</text>
+
+                  <!-- TODAY divider -->
+                  <line x1="262" y1="12" x2="262" y2="115" stroke="#2a2d4a" stroke-width="1" stroke-dasharray="3,3"/>
+                  <text x="266" y="20" font-size="7.5" fill="#444" font-family="Segoe UI,sans-serif" letter-spacing="0.08em">TODAY</text>
+
+                  <!-- ACTUAL area + line (Aug → today) -->
+                  <path d="M42,90 L132,74 L222,52 L262,44 L262,108 L42,108 Z" fill="url(#tapGrad)"/>
+                  <polyline points="42,90 132,74 222,52 262,44"
+                    fill="none" stroke="#3b5bdb" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+
+                  <!-- PROJECTED area + line (today → Feb) -->
+                  <path d="M262,44 L352,66 L442,32 L532,82 L592,75 L592,108 L262,108 Z" fill="url(#tapGradP)"/>
+                  <polyline points="262,44 352,66 442,32 532,82 592,75"
+                    fill="none" stroke="#3b5bdb" stroke-width="1.5" stroke-dasharray="5,3"
+                    stroke-linejoin="round" stroke-linecap="round" opacity="0.5"/>
+
+                  <!-- Actual dots -->
+                  <circle cx="42"  cy="90" r="3.5" fill="#3b5bdb" stroke="#0f0f1a" stroke-width="1.5"/>
+                  <circle cx="132" cy="74" r="3.5" fill="#3b5bdb" stroke="#0f0f1a" stroke-width="1.5"/>
+                  <circle cx="222" cy="52" r="3.5" fill="#3b5bdb" stroke="#0f0f1a" stroke-width="1.5"/>
+                  <circle cx="262" cy="44" r="4"   fill="#3b5bdb" stroke="#0f0f1a" stroke-width="2"/>
+
+                  <!-- Projected dots (hollow) -->
+                  <circle cx="352" cy="66" r="3.5" fill="#0f0f1a" stroke="#3b5bdb" stroke-width="1.2" opacity="0.55"/>
+                  <circle cx="442" cy="32" r="3.5" fill="#0f0f1a" stroke="#3b5bdb" stroke-width="1.2" opacity="0.55"/>
+                  <circle cx="532" cy="82" r="3.5" fill="#0f0f1a" stroke="#3b5bdb" stroke-width="1.2" opacity="0.55"/>
+                  <circle cx="592" cy="75" r="3.5" fill="#0f0f1a" stroke="#3b5bdb" stroke-width="1.2" opacity="0.55"/>
+
+                  <!-- EVENT PIN — Golf Tournament (Sep, actual) -->
+                  <line x1="132" y1="74" x2="132" y2="28" stroke="#f59e0b" stroke-width="1" stroke-dasharray="2,2"/>
+                  <circle cx="132" cy="74" r="5" fill="#f59e0b" stroke="#0f0f1a" stroke-width="1.5"/>
+
+                  <!-- EVENT PIN — Fall Formal (Oct, actual) -->
+                  <line x1="222" y1="52" x2="222" y2="28" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,2"/>
+                  <circle cx="222" cy="52" r="5" fill="#ef4444" stroke="#0f0f1a" stroke-width="1.5"/>
+
+                  <!-- EVENT PIN — Initiation (Nov, projected) -->
+                  <line x1="352" y1="66" x2="352" y2="28" stroke="#60a5fa" stroke-width="1" stroke-dasharray="2,3" opacity="0.6"/>
+                  <circle cx="352" cy="66" r="4.5" fill="#0f0f1a" stroke="#60a5fa" stroke-width="1.2" opacity="0.6"/>
+
+                  <!-- EVENT PIN — Spring Banquet (Jan, projected) -->
+                  <line x1="532" y1="82" x2="532" y2="28" stroke="#ef4444" stroke-width="1" stroke-dasharray="2,3" opacity="0.5"/>
+                  <circle cx="532" cy="82" r="4.5" fill="#0f0f1a" stroke="#ef4444" stroke-width="1.2" opacity="0.5"/>
+
+                  <!-- Event flag labels -->
+                  <rect x="80" y="15" width="96" height="16" rx="3" fill="#1e2035" stroke="#2a2d4a" stroke-width="1"/>
+                  <text x="88" y="26" font-size="8" fill="#f59e0b" font-family="Segoe UI,sans-serif" font-weight="600">Golf Tournament  –$1,200</text>
+
+                  <rect x="168" y="15" width="88" height="16" rx="3" fill="#1e2035" stroke="#2a2d4a" stroke-width="1"/>
+                  <text x="175" y="26" font-size="8" fill="#ef4444" font-family="Segoe UI,sans-serif" font-weight="600">Fall Formal  –$6,500</text>
+
+                  <rect x="300" y="15" width="76" height="16" rx="3" fill="#1a1a2e" stroke="#2a2d4a" stroke-width="1" stroke-dasharray="3,2" opacity="0.7"/>
+                  <text x="308" y="26" font-size="8" fill="#60a5fa" font-family="Segoe UI,sans-serif" font-weight="600" opacity="0.7">Initiation  –$750</text>
+
+                  <rect x="474" y="15" width="108" height="16" rx="3" fill="#1a1a2e" stroke="#2a2d4a" stroke-width="1" stroke-dasharray="3,2" opacity="0.6"/>
+                  <text x="481" y="26" font-size="8" fill="#ef4444" font-family="Segoe UI,sans-serif" font-weight="600" opacity="0.6">Spring Banquet  –$3,200</text>
+                </svg>
+              </div>
+                </div>
+
+              <!-- Legend -->
+              <div style="display:flex;gap:16px;margin-top:10px;flex-wrap:wrap;">
+                <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:#555;">
+                  <div style="width:18px;height:2px;background:#3b5bdb;border-radius:1px;"></div>
+                  Actual balance
+                </div>
+                <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:#555;">
+                  <div style="width:18px;height:0;border-top:2px dashed #3b5bdb;opacity:0.5;"></div>
+                  Projected
+                </div>
+                <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:#555;">
+                  <div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;"></div>
+                  Philanthropy
+                </div>
+                <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:#555;">
+                  <div style="width:9px;height:9px;border-radius:50%;background:#ef4444;"></div>
+                  Social
+                </div>
+                <div style="display:flex;align-items:center;gap:5px;font-size:10px;color:#555;">
+                  <div style="width:9px;height:9px;border-radius:50%;background:#0f0f1a;border:1.5px solid #60a5fa;"></div>
+                  Projected event
+                </div>
+              </div>
+            </div>
+
+            <!-- Original two cards restored below graph -->
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;">
               <div style="background:#1a1a2e;border:1px solid #222;border-radius:8px;padding:16px;"><div style="color:#aaa;font-size:12px;margin-bottom:12px;">Upcoming Events</div><div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #222;font-size:12px;"><span style="color:white;">Fall Formal</span><span style="color:#22c55e;">$4,800 budget</span></div><div style="display:flex;justify-content:space-between;padding:8px 0;font-size:12px;"><span style="color:white;">Golf Tournament</span><span style="color:#22c55e;">$1,200 budget</span></div></div>
               <div style="background:#1a1a2e;border:1px solid #222;border-radius:8px;padding:16px;"><div style="color:#aaa;font-size:12px;margin-bottom:12px;">Recent Transactions</div><div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #222;font-size:12px;"><span style="color:#aaa;">Dues — Mitchell R.</span><span style="color:#22c55e;">+$300</span></div><div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #222;font-size:12px;"><span style="color:#aaa;">Dues — Carter W.</span><span style="color:#22c55e;">+$300</span></div><div style="display:flex;justify-content:space-between;padding:8px 0;font-size:12px;"><span style="color:#aaa;">Shirt order deposit</span><span style="color:#ef4444;">–$840</span></div></div>
             </div>
@@ -452,6 +554,34 @@
 
   </div>
 
+
+  <!-- TAX CALCULATOR PROJECT -->
+  <div class="project-section" style="border-bottom:none;">
+    <div class="project-label">Free Public Tool</div>
+    <div class="project-title">2025 Federal Tax Calculator</div>
+    <div class="project-meta">HTML · CSS · JavaScript · IRS Publication 15-T · 2025</div>
+    <div class="project-desc">
+      A full-featured federal income tax calculator built from scratch using 2025 IRS parameters. Handles W-2 and self-employed filers, itemized deductions, capital gains (long and short-term), NIIT, credits, and withholding — outputting a refund or amount owed. Includes a year-end planning suite with underpayment penalty checks, remaining paycheck withholding, tax-loss harvesting analysis, Roth conversion cost, and bonus impact.
+    </div>
+
+    <div class="metrics-row">
+      <div class="metric"><div class="metric-val">W-2 + SE</div><div class="metric-label">Filer Types</div></div>
+      <div class="metric"><div class="metric-val">7+</div><div class="metric-label">Deduction & Credit Types</div></div>
+      <div class="metric"><div class="metric-val">5</div><div class="metric-label">Year-End Planning Tools</div></div>
+    </div>
+
+    <a href="tax-calculator.html" target="_blank" style="
+      display:inline-flex;align-items:center;gap:10px;
+      font-family:'Jost',sans-serif;font-size:11px;font-weight:500;
+      letter-spacing:0.16em;text-transform:uppercase;
+      color:var(--bg);background:var(--ink);
+      padding:13px 28px;text-decoration:none;
+      border:1px solid var(--ink);transition:background 0.2s, color 0.2s;
+    " onmouseover="this.style.background='var(--gold)';this.style.borderColor='var(--gold)'"
+       onmouseout="this.style.background='var(--ink)';this.style.borderColor='var(--ink)'">
+      Try the Calculator →
+    </a>
+  </div>
 
 </div>
 
