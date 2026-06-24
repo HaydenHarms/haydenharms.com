@@ -162,7 +162,7 @@
 <div class="container">
   <div class="page-header">
     <h2>Portfolio</h2>
-    <p>Roth IRA + Individual · Combined · As of June 23, 2026</p>
+    <p>Roth IRA + Individual · Combined · As of June 24, 2026</p>
   </div>
 
   <div class="portfolio-grid">
@@ -195,7 +195,7 @@
       <div class="col-label">Holdings Breakdown</div>
       <div class="inception-tag">Portfolio inception · July 2025</div>
       <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--rule-lt);">
-        <div style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:600;color:#3a6b4a;line-height:1;">+13.3%</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:600;color:#3a6b4a;line-height:1;">+11.3%</div>
         <div style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);font-weight:400;">Total portfolio gain<br>since inception</div>
       </div>
       <div id="holdings-list"></div>
@@ -224,12 +224,12 @@ if (localStorage.getItem('theme') === 'dark') {
 
 // Holdings data
 var holdings = [
-  { ticker: 'VT', name: 'Vanguard Total World Stock ETF', mktVal: 10326.39, sincePct: 11.8, color: '#2c2416', domPct: 0.58, intlPct: 0.42 },
-  { ticker: 'VOO', name: 'Vanguard S&P 500 ETF', mktVal: 7602.13, sincePct: 14.6, color: '#b8972a', domPct: 1.0, intlPct: 0.0 },
-  { ticker: 'VB', name: 'Vanguard Small-Cap ETF', mktVal: 2100.72, sincePct: 23.4, color: '#6b5c3e', domPct: 1.0, intlPct: 0.0 },
-  { ticker: 'VXUS', name: 'Vanguard Total International Stock', mktVal: 1334.39, sincePct: 19.3, color: '#a0917a', domPct: 0.0, intlPct: 1.0 },
-  { ticker: 'IAU', name: 'iShares Gold Trust', mktVal: 630.4, sincePct: 2.4, color: '#c0aa88', domPct: 0.0, intlPct: 0.0 },
-  { ticker: 'IBIT', name: 'iShares Bitcoin Trust ETF', mktVal: 109.5, sincePct: -45.0, color: '#5a5048', domPct: 0.0, intlPct: 0.0 }
+  { ticker: 'VT', name: 'Vanguard Total World Stock ETF', mktVal: 10114.7, sincePct: 9.5, color: '#2c2416', domPct: 0.58, intlPct: 0.42 },
+  { ticker: 'VOO', name: 'Vanguard S&P 500 ETF', mktVal: 7493.98, sincePct: 13.0, color: '#b8972a', domPct: 1.0, intlPct: 0.0 },
+  { ticker: 'VB', name: 'Vanguard Small-Cap ETF', mktVal: 2084.75, sincePct: 22.5, color: '#6b5c3e', domPct: 1.0, intlPct: 0.0 },
+  { ticker: 'VXUS', name: 'Vanguard Total International Stock', mktVal: 1293.77, sincePct: 15.7, color: '#a0917a', domPct: 0.0, intlPct: 1.0 },
+  { ticker: 'IAU', name: 'iShares Gold Trust', mktVal: 618.64, sincePct: 0.5, color: '#c0aa88', domPct: 0.0, intlPct: 0.0 },
+  { ticker: 'IBIT', name: 'iShares Bitcoin Trust ETF', mktVal: 105.93, sincePct: -46.8, color: '#5a5048', domPct: 0.0, intlPct: 0.0 }
 ];
 
 const portfolioTotal = holdings.reduce(function(s, h) { return s + h.mktVal; }, 0);
