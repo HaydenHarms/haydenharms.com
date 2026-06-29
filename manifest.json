@@ -1,0 +1,16 @@
+{
+  "short_name": "The Throne",
+  "name": "The Throne — Year III",
+  "start_url": ".",
+  "background_color": "#0a0a0f",
+  "theme_color": "#0a0a0f",
+  "display": "standalone",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
