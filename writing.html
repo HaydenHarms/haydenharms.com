@@ -93,13 +93,27 @@
   }
   .writing-header-right a:hover { color: var(--ink); }
 
-  .writing-grid { display: grid; grid-template-columns: 2fr 1px 1fr; padding: 50px 0; align-items: start; }
-  .articles-col { padding-right: 50px; }
-  .col-divider { background: var(--ink); }
-  .sidebar-col { padding-left: 40px; }
+  /* Perfect 50/50 Split Grid Structure */
+  .writing-grid { display: grid; grid-template-columns: 1fr 1px 1fr; padding: 50px 0; align-items: start; }
+  .articles-col { padding-right: 44px; }
+  .col-divider { background: var(--ink); align-self: stretch; }
+  .sidebar-col { padding-left: 44px; }
 
-  /* ── ARTICLES ── */
-  .article-item { padding: 28px 0; border-bottom: 1px solid var(--rule-lt); }
+  /* ── EQUAL COLUMN TITLES ── */
+  .column-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    font-weight: 500;
+    border-bottom: 1px solid var(--rule-lt);
+    padding-bottom: 10px;
+  }
+
+  /* ── ESSAYS SIDE (LEFT) ── */
+  .article-item { padding: 24px 0; border-bottom: 1px solid var(--rule-lt); }
   .article-item:first-child { padding-top: 0; }
   .article-item:last-child { border-bottom: none; }
 
@@ -108,8 +122,8 @@
     text-transform: uppercase; color: var(--gold); margin-bottom: 10px; font-weight: 400;
   }
   .article-title {
-    font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 600;
-    line-height: 1.2; color: var(--ink); margin-bottom: 10px;
+    font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600;
+    line-height: 1.25; color: var(--ink); margin-bottom: 10px;
     text-decoration: none; display: block; transition: color 0.2s;
   }
   .article-title:hover { color: var(--gold); }
@@ -120,19 +134,21 @@
   }
   .article-read:hover { color: var(--gold); }
 
-  .article-featured { border-left: 3px solid var(--gold); padding-left: 24px; }
-  .article-featured .article-title { font-size: 30px; }
+  .article-featured { border-left: 3px solid var(--gold); padding-left: 20px; }
+  .article-featured .article-title { font-size: 26px; }
 
-  /* ── SIDEBAR ── */
-  .sidebar-section { margin-bottom: 36px; padding-bottom: 36px; border-bottom: 1px solid var(--rule-lt); }
-  .sidebar-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-  .sidebar-label { font-family: 'Jost', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; font-weight: 500; }
-  .sidebar-section h3 { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
-  .sidebar-section p { font-family: 'Jost', sans-serif; font-size: 13px; line-height: 1.75; color: var(--sub); font-weight: 300; }
+  /* ── PAPERS SIDE (RIGHT) ── */
+  .paper-item { margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--rule-lt); }
+  .paper-item:first-child { padding-top: 0; }
+  .paper-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .paper-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; line-height: 1.25; color: var(--ink); margin-bottom: 6px; text-decoration: none; display: block; transition: color 0.2s; }
+  .paper-title:hover { color: var(--gold); }
+  .paper-meta { font-family: 'Jost', sans-serif; font-size: 10px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 10px; font-weight: 400; }
+  .paper-commentary { font-family: 'Jost', sans-serif; font-size: 13.5px; line-height: 1.75; color: var(--sub); font-weight: 300; }
 
-  /* ── LOADING ── */
+  /* ── LOADING & ERRORS ── */
   .loading-state {
-    padding: 60px 0; text-align: center;
+    padding: 40px 0; text-align: center;
     font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.1em;
     color: var(--muted); text-transform: uppercase; font-weight: 400;
   }
@@ -158,9 +174,9 @@
     .masthead-title { padding: 28px 20px 18px; }
     nav a { padding: 10px 16px; font-size: 10px; }
     .writing-grid { grid-template-columns: 1fr; }
-    .col-divider { height: 1px; width: 100%; margin: 0; }
-    .articles-col { padding-right: 0; }
-    .sidebar-col { padding-left: 0; padding-top: 40px; }
+    .col-divider { display: none; }
+    .articles-col { padding-right: 0; margin-bottom: 40px; }
+    .sidebar-col { padding-left: 0; }
     .container { padding: 0 20px; }
     .writing-header { flex-direction: column; align-items: flex-start; gap: 12px; }
     footer { flex-direction: column; gap: 10px; text-align: center; padding: 24px 20px; }
@@ -196,7 +212,6 @@
 </head>
 <body>
 
-<!-- TICKER -->
 <div class="ticker-wrap">
   <div class="ticker-track">
     <span class="ticker-item">Accounting Intern @ Airbus Helicopters</span><span class="ticker-sep">·</span>
@@ -218,7 +233,6 @@
   </div>
 </div>
 
-<!-- MASTHEAD -->
 <header class="masthead">
   <div class="masthead-title">
     <h1><a href="https://haydenharms.com">Hayden Harms</a></h1>
@@ -233,16 +247,15 @@
     <a href="projects.html">Projects</a>
     <a href="portfolio.html">Portfolio</a>
     <a href="https://www.linkedin.com/in/hayden-harms-046558298" target="_blank">LinkedIn</a>
-      <button class="dm-toggle-btn" onclick="toggleDark()" aria-label="Toggle dark mode"><span class="dm-icon">☀︎</span></button>
-
+    <button class="dm-toggle-btn" onclick="toggleDark()" aria-label="Toggle dark mode"><span class="dm-icon">☀︎</span></button>
   </nav>
 </header>
 
 <div class="container">
   <div class="writing-header">
     <div class="writing-header-left">
-      <h2>Writing</h2>
-      <p>Essays on politics, trade, and culture</p>
+      <h2>Writing & Curation</h2>
+      <p>Essays on politics, trade, and culture alongside curated readings</p>
     </div>
     <div class="writing-header-right">
       <a href="https://secondwitness.substack.com" target="_blank">Subscribe on Substack →</a>
@@ -250,31 +263,52 @@
   </div>
 
   <div class="writing-grid">
-    <div class="articles-col" id="articles-list">
-      <div class="loading-state">
-        Fetching articles<span class="loading-dot">.</span><span class="loading-dot">.</span><span class="loading-dot">.</span>
+    <div class="articles-col">
+      <div class="column-label">My Essays</div>
+      <div id="articles-list">
+        <div class="loading-state">
+          Fetching articles<span class="loading-dot">.</span><span class="loading-dot">.</span><span class="loading-dot">.</span>
+        </div>
       </div>
     </div>
 
     <div class="col-divider"></div>
 
     <aside class="sidebar-col">
-      <div class="sidebar-section">
-        <div class="sidebar-label">About the Writing</div>
-        <p>Essays published on Substack covering politics, trade, and culture. I believe accounting plays a broader role in civil life and seek to have a holistic understanding of the world, not just my practice.</p>
-        <p style="margin-top:12px;">
-          <a href="https://secondwitness.substack.com" target="_blank" style="color:var(--gold);text-decoration:none;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:0.08em;font-weight:400;">Read on Substack →</a>
+      <div class="column-label">Favorite Papers</div>
+      
+      <div class="paper-item">
+        <a href="https://csis.pace.edu/~marchese/CS835/Lec3/DougEnglebart.pdf" class="paper-title" target="_blank">Augmenting Human Intellect: A Conceptual Framework</a>
+        <div class="paper-meta">Douglas C. Engelbart · Stanford Research Institute (1962)</div>
+        <p class="paper-commentary">
+          A foundational text outlining how technological infrastructure should fundamentally expand human cognitive bandwidth rather than merely automate repetitive tasks. It highlights the strategic balance between structural frameworks and human insight.
         </p>
       </div>
-      <div class="sidebar-section">
-        <div class="sidebar-label">Recent Posts</div>
-        <div id="recent-list" style="font-family:'Jost',sans-serif;font-size:12px;color:var(--muted);">Loading...</div>
+
+      <div class="paper-item">
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4590406" class="paper-title" target="_blank">Beyond the Status Quo: A Criticial Assessment of Lifecycle Investment Advice</a>
+        <div class="paper-meta">Aizhan Anarkulova, Scott Cederburg, Michael S. O'Doherty · Social Science Research Network (2025)</div>
+        <p class="paper-commentary">
+          [Replace this with the exact title of the SSRN paper and your custom personal commentary regarding its takeaways or relevance to your practice.]
+        </p>
       </div>
-      <div class="sidebar-section">
-        <div class="sidebar-label">Contact</div>
-        <p style="margin-bottom:8px;"><a href="mailto:harms.e.hayden@gmail.com" style="color:var(--gold);text-decoration:none;font-family:'Jost',sans-serif;font-size:12px;font-weight:400;">harms.e.hayden@gmail.com</a></p>
-        <p><a href="https://www.linkedin.com/in/hayden-harms-046558298" target="_blank" style="color:var(--muted);text-decoration:none;font-family:'Jost',sans-serif;font-size:12px;font-weight:400;">LinkedIn →</a></p>
+
+      <div class="paper-item">
+        <a href="https://gwern.net/doc/politics/2007-thiel.pdf" class="paper-title" target="_blank">The Straussian Moment </a>
+        <div class="paper-meta">Peter Thiel · Policy Review / Gwern Archive (2007)</div>
+        <p class="paper-commentary">
+          A sharp structural evaluation challenging assumptions of linear micro-progress and globalized development. It emphasizes how standard analytical risk models consistently fail to recognize macro transformations and systemic structural changes.
+        </p>
       </div>
+
+<div class="paper-item">
+        <a href="https://www.calpers.ca.gov/sites/default/files/spf/docs/board-agendas/201607/full/day1/2_10_2035_Vision_Article3_Chapter1_of_The_Losers_Game_Background_Info3.pdf" class="paper-title" target="_blank">The Loser's Game</a>
+        <div class="paper-meta">Charles D. Ellis · Financial Analysts Journal (1975)</div>
+        <p class="paper-commentary">
+          An essential conceptual framework illustrating how institutional markets shift from offensive systems won by brilliant individual actions to risk-managed defensive structures decided by minimizing fundamental or unforced errors.
+        </p>
+      </div>
+
     </aside>
   </div>
 </div>
@@ -291,7 +325,6 @@ const PROXY = 'https://api.rss2json.com/v1/api.json?rss_url=';
 
 async function loadArticles() {
   const container = document.getElementById('articles-list');
-  const recentList = document.getElementById('recent-list');
   try {
     const res = await fetch(PROXY + encodeURIComponent(RSS_URL));
     const data = await res.json();
@@ -301,7 +334,7 @@ async function loadArticles() {
     items.forEach((item, i) => {
       const date = new Date(item.pubDate);
       const dateStr = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-      const desc = item.description ? item.description.replace(/<[^>]*>/g, '').slice(0, 200).trim() + '…' : '';
+      const desc = item.description ? item.description.replace(/<[^>]*>/g, '').slice(0, 160).trim() + '…' : '';
       const featuredClass = i === 0 ? 'article-item article-featured' : 'article-item';
       html += `<div class="${featuredClass}">
         <div class="article-meta">${dateStr}</div>
@@ -312,24 +345,11 @@ async function loadArticles() {
     });
     container.innerHTML = html;
 
-    let recentHtml = '';
-    items.slice(0, 5).forEach((item, i) => {
-      const date = new Date(item.pubDate);
-      const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-      const border = i < 4 ? 'border-bottom:1px solid #e0d8c8;' : '';
-      recentHtml += `<div style="margin-bottom:14px;padding-bottom:14px;${border}">
-        <a href="${item.link}" target="_blank" style="color:#2c2416;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;line-height:1.3;display:block;margin-bottom:3px;">${item.title}</a>
-        <span style="font-size:10px;color:#a0917a;letter-spacing:0.08em;font-family:'Jost',sans-serif;">${dateStr}</span>
-      </div>`;
-    });
-    recentList.innerHTML = recentHtml;
-
   } catch (e) {
     container.innerHTML = `<div class="error-state">
       <p style="margin-bottom:16px;">Unable to load articles. Visit Substack directly.</p>
       <a href="https://secondwitness.substack.com" target="_blank" style="color:#b8972a;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;font-weight:400;">Read all articles on Substack →</a>
     </div>`;
-    recentList.innerHTML = '<p style="font-size:11px;">Visit Substack to see all posts.</p>';
   }
 }
 loadArticles();
