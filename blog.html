@@ -214,6 +214,7 @@
 
     <!-- Editor (shown after auth) -->
     <div class="editor-wrap" id="editor-wrap">
+      <input type="hidden" id="editing-id" value="">
       <div class="editor-field">
         <label>Post Title</label>
         <input type="text" id="post-title" placeholder="Enter a title…">
@@ -222,8 +223,13 @@
         <label>Body</label>
         <textarea id="post-body" placeholder="Write your post here…"></textarea>
       </div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+        <input type="checkbox" id="post-hidden" style="width:14px;height:14px;accent-color:var(--gold);cursor:pointer;">
+        <label for="post-hidden" style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;user-select:none;">Post hidden (admin only)</label>
+      </div>
       <div class="btn-row">
         <button class="btn-publish" id="publish-btn" onclick="publishPost()">Publish Post</button>
+        <button class="btn-secondary" id="cancel-edit-btn" onclick="cancelEdit()" style="display:none;">Cancel Edit</button>
         <button class="btn-secondary" onclick="clearToken()">Sign Out</button>
         <span class="status-msg" id="publish-status"></span>
       </div>
@@ -239,10 +245,10 @@
 </footer>
 
 <script>
-// ── CONFIG ── Update these to match your GitHub repo
+// ── CONFIG ──
 const GITHUB_USER = 'HaydenHarms';
 const GITHUB_REPO = 'biography';
-const POSTS_FILE  = 'blog-posts.json'; // file that stores all posts in your repo
+const POSTS_FILE  = 'blog-posts.json';
 const BRANCH      = 'main';
 
 // ── DARK MODE ──
@@ -257,38 +263,39 @@ const isAdmin = window.location.hash === '#admin';
 if (isAdmin) {
   document.getElementById('admin-wrap').classList.add('visible');
   document.body.classList.add('admin-mode');
-  const saved = localStorage.getItem('gh_token');
-  if (saved) showEditor();
+  if (localStorage.getItem('gh_token')) showEditor();
 }
 
-// ── TOKEN MANAGEMENT ──
+// ── TOKEN ──
 function saveToken() {
   const token = document.getElementById('token-input').value.trim();
   if (!token.startsWith('ghp_') && !token.startsWith('github_pat_')) {
-    document.getElementById('token-status').textContent = 'That doesn\'t look like a valid token.';
-    document.getElementById('token-status').className = 'status-msg error';
-    return;
+    setStatus('token-status', 'That doesn\'t look like a valid token.', 'error'); return;
   }
   localStorage.setItem('gh_token', token);
-  document.getElementById('token-status').textContent = 'Authenticated.';
-  document.getElementById('token-status').className = 'status-msg success';
+  setStatus('token-status', 'Authenticated.', 'success');
   setTimeout(showEditor, 600);
 }
-
 function showEditor() {
   document.getElementById('token-gate').style.display = 'none';
   document.getElementById('editor-wrap').classList.add('visible');
 }
-
 function clearToken() {
   localStorage.removeItem('gh_token');
   document.getElementById('editor-wrap').classList.remove('visible');
   document.getElementById('token-gate').style.display = 'block';
   document.getElementById('token-input').value = '';
-  document.getElementById('token-status').textContent = '';
+  setStatus('token-status', '', '');
 }
 
-// ── GITHUB API HELPERS ──
+// ── HELPERS ──
+function setStatus(id, msg, type) {
+  const el = document.getElementById(id);
+  el.textContent = msg;
+  el.className = 'status-msg' + (type ? ' ' + type : '');
+}
+
+// ── GITHUB API ──
 async function getFileSHA() {
   const token = localStorage.getItem('gh_token');
   const res = await fetch(
@@ -301,10 +308,10 @@ async function getFileSHA() {
   return { sha: data.sha, posts: content };
 }
 
-async function savePostsToGitHub(posts, sha) {
+async function savePostsToGitHub(posts, sha, message) {
   const token = localStorage.getItem('gh_token');
   const body = {
-    message: `Blog: ${posts[0].title}`,
+    message: message || `Blog update`,
     content: btoa(unescape(encodeURIComponent(JSON.stringify(posts, null, 2)))),
     branch: BRANCH,
   };
@@ -320,83 +327,133 @@ async function savePostsToGitHub(posts, sha) {
   return res.ok;
 }
 
-// ── PUBLISH ──
+// ── PUBLISH / UPDATE ──
 async function publishPost() {
-  const title = document.getElementById('post-title').value.trim();
-  const body  = document.getElementById('post-body').value.trim();
-  const statusEl = document.getElementById('publish-status');
-  const btn = document.getElementById('publish-btn');
+  const title   = document.getElementById('post-title').value.trim();
+  const body    = document.getElementById('post-body').value.trim();
+  const hidden  = document.getElementById('post-hidden').checked;
+  const editId  = document.getElementById('editing-id').value;
+  const btn     = document.getElementById('publish-btn');
 
-  if (!title || !body) { statusEl.textContent = 'Title and body are required.'; statusEl.className = 'status-msg error'; return; }
+  if (!title || !body) { setStatus('publish-status', 'Title and body are required.', 'error'); return; }
 
   btn.disabled = true;
-  statusEl.textContent = 'Publishing…';
-  statusEl.className = 'status-msg';
+  setStatus('publish-status', editId ? 'Saving…' : 'Publishing…', '');
 
   try {
     const { sha, posts } = await getFileSHA();
-    const newPost = {
-      id: Date.now().toString(),
-      title,
-      body,
-      date: new Date().toISOString(),
-    };
-    const updated = [newPost, ...posts];
-    const ok = await savePostsToGitHub(updated, sha);
+    let updated;
+
+    if (editId) {
+      // Edit existing
+      updated = posts.map(p => p.id === editId ? { ...p, title, body, hidden, updatedAt: new Date().toISOString() } : p);
+    } else {
+      // New post
+      const newPost = { id: Date.now().toString(), title, body, hidden, date: new Date().toISOString() };
+      updated = [newPost, ...posts];
+    }
+
+    const ok = await savePostsToGitHub(updated, sha, editId ? `Blog edit: ${title}` : `Blog: ${title}`);
     if (ok) {
-      statusEl.textContent = 'Published! Reloading…';
-      statusEl.className = 'status-msg success';
-      document.getElementById('post-title').value = '';
-      document.getElementById('post-body').value = '';
-      setTimeout(() => { window.location.hash = ''; renderPosts(updated); }, 1500);
+      setStatus('publish-status', editId ? 'Saved!' : 'Published!', 'success');
+      cancelEdit();
+      setTimeout(() => renderPosts(updated), 800);
     } else {
       throw new Error('GitHub returned an error.');
     }
   } catch (e) {
-    statusEl.textContent = 'Error: ' + e.message;
-    statusEl.className = 'status-msg error';
+    setStatus('publish-status', 'Error: ' + e.message, 'error');
   }
   btn.disabled = false;
 }
 
+// ── EDIT ──
+function editPost(id, allPosts) {
+  const post = allPosts.find(p => p.id === id);
+  if (!post) return;
+  document.getElementById('editing-id').value = id;
+  document.getElementById('post-title').value = post.title;
+  document.getElementById('post-body').value = post.body;
+  document.getElementById('post-hidden').checked = !!post.hidden;
+  document.getElementById('publish-btn').textContent = 'Save Changes';
+  document.getElementById('cancel-edit-btn').style.display = 'inline-block';
+  document.getElementById('editor-wrap').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  setStatus('publish-status', '', '');
+}
+
+function cancelEdit() {
+  document.getElementById('editing-id').value = '';
+  document.getElementById('post-title').value = '';
+  document.getElementById('post-body').value = '';
+  document.getElementById('post-hidden').checked = false;
+  document.getElementById('publish-btn').textContent = 'Publish Post';
+  document.getElementById('cancel-edit-btn').style.display = 'none';
+  setStatus('publish-status', '', '');
+}
+
 // ── DELETE ──
 async function deletePost(id) {
-  if (!confirm('Delete this post?')) return;
+  if (!confirm('Delete this post? This cannot be undone.')) return;
   try {
     const { sha, posts } = await getFileSHA();
     const updated = posts.filter(p => p.id !== id);
-    await savePostsToGitHub(updated, sha);
+    await savePostsToGitHub(updated, sha, 'Blog: delete post');
     renderPosts(updated);
   } catch (e) {
-    alert('Error deleting post: ' + e.message);
+    alert('Error: ' + e.message);
   }
 }
 
-// ── RENDER POSTS ──
+// ── HIDE/UNHIDE (toggle) ──
+async function toggleHide(id, allPosts) {
+  try {
+    const { sha, posts } = await getFileSHA();
+    const updated = posts.map(p => p.id === id ? { ...p, hidden: !p.hidden } : p);
+    await savePostsToGitHub(updated, sha, 'Blog: toggle visibility');
+    renderPosts(updated);
+  } catch (e) {
+    alert('Error: ' + e.message);
+  }
+}
+
+// ── RENDER ──
 function renderPosts(posts) {
-  const wrap = document.getElementById('posts-wrap');
+  const wrap  = document.getElementById('posts-wrap');
   const empty = document.getElementById('empty-state');
-  if (!posts || posts.length === 0) {
+
+  // Public sees only visible posts; admin sees all
+  const visible = isAdmin ? posts : posts.filter(p => !p.hidden);
+
+  if (!visible || visible.length === 0) {
     wrap.innerHTML = '';
     wrap.appendChild(empty);
     empty.style.display = 'block';
     return;
   }
   empty.style.display = 'none';
-  wrap.innerHTML = posts.map(p => {
+
+  wrap.innerHTML = visible.map(p => {
     const date = new Date(p.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-    const deleteBtn = isAdmin ? `<button class="post-delete" onclick="deletePost('${p.id}')">Delete</button>` : '';
+    const hiddenBadge = p.hidden ? '<span style="font-family:\'Jost\',sans-serif;font-size:9px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);background:var(--rule-lt);padding:2px 8px;margin-left:10px;">Hidden</span>' : '';
+
+    const adminBtns = isAdmin ? `
+      <button class="post-delete" onclick="editPost('${p.id}', window.__allPosts)">Edit</button>
+      <button class="post-delete" onclick="toggleHide('${p.id}', window.__allPosts)" style="margin-left:8px;">${p.hidden ? 'Unhide' : 'Hide'}</button>
+      <button class="post-delete" onclick="deletePost('${p.id}')" style="margin-left:8px;color:#8b3a2a;">Delete</button>` : '';
+
     return `
       <div class="post-item" id="post-${p.id}">
-        <div class="post-date">${date}</div>
+        <div class="post-date">${date}${hiddenBadge}</div>
         <div class="post-title" onclick="togglePost('${p.id}')">${p.title}</div>
         <div class="post-body collapsed" id="body-${p.id}">${p.body}</div>
-        <div style="display:flex;align-items:center;">
+        <div style="display:flex;align-items:center;flex-wrap:wrap;gap:4px;">
           <button class="post-toggle" id="toggle-${p.id}" onclick="togglePost('${p.id}')">Read more →</button>
-          ${deleteBtn}
+          ${adminBtns}
         </div>
       </div>`;
   }).join('');
+
+  window.__allPosts = posts; // store for edit reference
 }
 
 function togglePost(id) {
@@ -406,7 +463,7 @@ function togglePost(id) {
   btn.textContent = collapsed ? 'Read more →' : '← Collapse';
 }
 
-// ── LOAD POSTS ──
+// ── LOAD ──
 async function loadPosts() {
   try {
     const res = await fetch(
