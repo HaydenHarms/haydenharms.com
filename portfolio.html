@@ -97,9 +97,6 @@
   .up { color: var(--green); }
   .down { color: var(--red); }
 
-  /* DISCLAIMER */
-  .disclaimer { font-family: 'Jost', sans-serif; font-size: 11px; color: var(--muted); font-style: italic; padding: 24px 0 50px; line-height: 1.7; }
-
   /* FOOTER */
   footer { border-top: 2px solid var(--ink); padding: 28px 60px; display: flex; justify-content: space-between; align-items: center; font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.12em; color: var(--muted); font-weight: 400; text-transform: uppercase; }
   footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
@@ -162,7 +159,7 @@
 <div class="container">
   <div class="page-header">
     <h2>Portfolio</h2>
-    <p>Roth IRA + Individual · Combined · As of July 09, 2026</p>
+    <p>Roth IRA + Individual · Combined · As of July 10, 2026</p>
   </div>
 
   <div class="portfolio-grid">
@@ -220,114 +217,120 @@ if (localStorage.getItem('theme') === 'dark') {
   document.documentElement.classList.add('dark');
 }
 
-// Holdings data[cite: 1]
+// Holdings data (overwritten dynamically by GitHub Actions workflow script)[cite: 1]
 var holdings = [
-  { ticker: 'VT', name: 'Vanguard Total World Stock ETF', mktVal: 10289.69, sincePct: 11.4, color: '#2c2416', domPct: 0.58, intlPct: 0.42 }, //[cite: 1]
-  { ticker: 'VOO', name: 'Vanguard S&P 500 ETF', mktVal: 7652.98, sincePct: 15.4, color: '#b8972a', domPct: 1.0, intlPct: 0.0 }, //[cite: 1]
-  { ticker: 'VB', name: 'Vanguard Small-Cap ETF', mktVal: 2110.68, sincePct: 24.0, color: '#6b5c3e', domPct: 1.0, intlPct: 0.0 }, //[cite: 1]
-  { ticker: 'VXUS', name: 'Vanguard Total International Stock', mktVal: 1301.28, sincePct: 16.4, color: '#a0917a', domPct: 0.0, intlPct: 1.0 }, //[cite: 1]
-  { ticker: 'IAU', name: 'iShares Gold Trust', mktVal: 620.08, sincePct: 0.7, color: '#c0aa88', domPct: 0.0, intlPct: 0.0 }, //[cite: 1]
-  { ticker: 'IBIT', name: 'iShares Bitcoin Trust ETF', mktVal: 107.43, sincePct: -46.1, color: '#5a5048', domPct: 0.0, intlPct: 0.0 }, //[cite: 1]
-  { ticker: 'MP', name: 'MP Materials Corp.', mktVal: 49.81, sincePct: 0.0, color: '#3a6b4a', domPct: 1.0, intlPct: 0.0 }
+  { ticker: 'VT', name: 'Vanguard Total World Stock ETF', mktVal: 10289.69, sincePct: 11.4, color: '#2c2416', domPct: 0.58, intlPct: 0.42 },[cite: 1]
+  { ticker: 'VOO', name: 'Vanguard S&P 500 ETF', mktVal: 7652.98, sincePct: 15.4, color: '#b8972a', domPct: 1.0, intlPct: 0.0 },[cite: 1]
+  { ticker: 'VB', name: 'Vanguard Small-Cap ETF', mktVal: 2110.68, sincePct: 24.0, color: '#6b5c3e', domPct: 1.0, intlPct: 0.0 },[cite: 1]
+  { ticker: 'VXUS', name: 'Vanguard Total International Stock', mktVal: 1301.28, sincePct: 16.4, color: '#a0917a', domPct: 0.0, intlPct: 1.0 },[cite: 1]
+  { ticker: 'IAU', name: 'iShares Gold Trust', mktVal: 620.08, sincePct: 0.7, color: '#c0aa88', domPct: 0.0, intlPct: 0.0 },[cite: 1]
+  { ticker: 'IBIT', name: 'iShares Bitcoin Trust ETF', mktVal: 107.43, sincePct: -46.1, color: '#5a5048', domPct: 0.0, intlPct: 0.0 },[cite: 1]
+  { ticker: 'MP', name: 'MP Materials Corp.', mktVal: 52.31, sincePct: 5.0, color: '#3a6b4a', domPct: 1.0, intlPct: 0.0 }
 ];
 
-const portfolioTotal = holdings.reduce(function(s, h) { return s + h.mktVal; }, 0); //[cite: 1]
+const portfolioTotal = holdings.reduce(function(s, h) { return s + h.mktVal; }, 0);[cite: 1]
+
+// Safe dynamic lookup helper to prevent hardcoded array index breaks
+function getMktVal(tick) {
+  var target = holdings.find(function(h) { return h.ticker === tick; });
+  return target ? target.mktVal : 0;
+}
 
 // ── PIE CHART ──[cite: 1]
-function drawPie(svgId, legendId, segs) { //[cite: 1]
-  var svg = document.getElementById(svgId); //[cite: 1]
-  var legend = document.getElementById(legendId); //[cite: 1]
-  if (!svg || !legend) return; //[cite: 1]
-  var cx = 100, cy = 100, r = 88, ir = 50; //[cite: 1]
-  var angle = -Math.PI / 2; //[cite: 1]
-  var html = ''; //[cite: 1]
+function drawPie(svgId, legendId, segs) {[cite: 1]
+  var svg = document.getElementById(svgId);[cite: 1]
+  var legend = document.getElementById(legendId);[cite: 1]
+  if (!svg || !legend) return;[cite: 1]
+  var cx = 100, cy = 100, r = 88, ir = 50;[cite: 1]
+  var angle = -Math.PI / 2;[cite: 1]
+  var html = '';[cite: 1]
 
-  segs.forEach(function(seg) { //[cite: 1]
-    var sweep = (seg.pct / 100) * 2 * Math.PI; //[cite: 1]
-    var end = angle + sweep; //[cite: 1]
-    var x1 = cx + r * Math.cos(angle); //[cite: 1]
-    var y1 = cy + r * Math.sin(angle); //[cite: 1]
-    var x2 = cx + r * Math.cos(end); //[cite: 1]
-    var y2 = cy + r * Math.sin(end); //[cite: 1]
-    var ix1 = cx + ir * Math.cos(end); //[cite: 1]
-    var iy1 = cy + ir * Math.sin(end); //[cite: 1]
-    var ix2 = cx + ir * Math.cos(angle); //[cite: 1]
-    var iy2 = cy + ir * Math.sin(angle); //[cite: 1]
-    var la = sweep > Math.PI ? 1 : 0; //[cite: 1]
-    html += '<path d="M' + x1.toFixed(2) + ',' + y1.toFixed(2) + //[cite: 1]
-            ' A' + r + ',' + r + ' 0 ' + la + ',1 ' + x2.toFixed(2) + ',' + y2.toFixed(2) + //[cite: 1]
-            ' L' + ix1.toFixed(2) + ',' + iy1.toFixed(2) + //[cite: 1]
-            ' A' + ir + ',' + ir + ' 0 ' + la + ',0 ' + ix2.toFixed(2) + ',' + iy2.toFixed(2) + //[cite: 1]
-            ' Z" fill="' + seg.color + '" opacity="0.93" stroke="var(--bg)" stroke-width="2"/>'; //[cite: 1]
-    angle = end; //[cite: 1]
-  }); //[cite: 1]
+  segs.forEach(function(seg) {[cite: 1]
+    var sweep = (seg.pct / 100) * 2 * Math.PI;[cite: 1]
+    var end = angle + sweep;[cite: 1]
+    var x1 = cx + r * Math.cos(angle);[cite: 1]
+    var y1 = cy + r * Math.sin(angle);[cite: 1]
+    var x2 = cx + r * Math.cos(end);[cite: 1]
+    var y2 = cy + r * Math.sin(end);[cite: 1]
+    var ix1 = cx + ir * Math.cos(end);[cite: 1]
+    var iy1 = cy + ir * Math.sin(end);[cite: 1]
+    var ix2 = cx + ir * Math.cos(angle);[cite: 1]
+    var iy2 = cy + ir * Math.sin(angle);[cite: 1]
+    var la = sweep > Math.PI ? 1 : 0;[cite: 1]
+    html += '<path d="M' + x1.toFixed(2) + ',' + y1.toFixed(2) +[cite: 1]
+            ' A' + r + ',' + r + ' 0 ' + la + ',1 ' + x2.toFixed(2) + ',' + y2.toFixed(2) +[cite: 1]
+            ' L' + ix1.toFixed(2) + ',' + iy1.toFixed(2) +[cite: 1]
+            ' A' + ir + ',' + ir + ' 0 ' + la + ',0 ' + ix2.toFixed(2) + ',' + iy2.toFixed(2) +[cite: 1]
+            ' Z" fill="' + seg.color + '" opacity="0.93" stroke="var(--bg)" stroke-width="2"/>';[cite: 1]
+    angle = end;[cite: 1]
+  });[cite: 1]
 
-  svg.innerHTML = html; //[cite: 1]
+  svg.innerHTML = html;[cite: 1]
 
-  legend.innerHTML = segs.map(function(s) { //[cite: 1]
-    return '<div class="legend-item">' + //[cite: 1]
-      '<div class="legend-dot" style="background:' + s.color + '"></div>' + //[cite: 1]
-      '<div style="flex:1"><div class="legend-label">' + s.label + '</div><div class="legend-sub">' + s.sub + '</div></div>' + //[cite: 1]
-      '<div class="legend-pct">' + s.pct.toFixed(1) + '%</div>' + //[cite: 1]
-      '</div>'; //[cite: 1]
-  }).join(''); //[cite: 1]
-} //[cite: 1]
+  legend.innerHTML = segs.map(function(s) {[cite: 1]
+    return '<div class="legend-item">' +[cite: 1]
+      '<div class="legend-dot" style="background:' + s.color + '"></div>' +[cite: 1]
+      '<div style="flex:1"><div class="legend-label">' + s.label + '</div><div class="legend-sub">' + s.sub + '</div></div>' +[cite: 1]
+      '<div class="legend-pct">' + s.pct.toFixed(1) + '%</div>' +[cite: 1]
+      '</div>';[cite: 1]
+  }).join('');[cite: 1]
+}[cite: 1]
 
 // Geographic segments[cite: 1]
-var geoDOM  = holdings[0].mktVal*0.58 + holdings[1].mktVal + holdings[2].mktVal + holdings[6].mktVal; //[cite: 1]
-var geoINTL = holdings[0].mktVal*0.42 + holdings[3].mktVal; //[cite: 1]
-var geoOTH  = holdings[4].mktVal + holdings[5].mktVal; //[cite: 1]
-var geoSegs = [ //[cite: 1]
-  { label: 'Domestic',      sub: 'U.S. equities',     pct: geoDOM/portfolioTotal*100,  color: '#2c2416' }, //[cite: 1]
-  { label: 'International', sub: 'Non-U.S. equities', pct: geoINTL/portfolioTotal*100, color: '#b8972a' }, //[cite: 1]
-  { label: 'Other',         sub: 'Gold + Crypto',      pct: geoOTH/portfolioTotal*100,  color: '#c0aa88' }, //[cite: 1]
-]; //[cite: 1]
+var geoDOM  = getMktVal('VT')*0.58 + getMktVal('VOO') + getMktVal('VB') + getMktVal('MP');
+var geoINTL = getMktVal('VT')*0.42 + getMktVal('VXUS');
+var geoOTH  = getMktVal('IAU') + getMktVal('IBIT');
+var geoSegs = [[cite: 1]
+  { label: 'Domestic',      sub: 'U.S. equities',     pct: geoDOM/portfolioTotal*100,  color: '#2c2416' },[cite: 1]
+  { label: 'International', sub: 'Non-U.S. equities', pct: geoINTL/portfolioTotal*100, color: '#b8972a' },[cite: 1]
+  { label: 'Other',         sub: 'Gold + Crypto',      pct: geoOTH/portfolioTotal*100,  color: '#c0aa88' },[cite: 1]
+];[cite: 1]
 
 // Market cap segments[cite: 1]
-var vtMkt   = holdings[0].mktVal; //[cite: 1]
-var vooMkt  = holdings[1].mktVal; //[cite: 1]
-var vbMkt   = holdings[2].mktVal; //[cite: 1]
-var vxusMkt = holdings[3].mktVal; //[cite: 1]
-var mpMkt   = holdings[6].mktVal;
+var vtMkt   = getMktVal('VT');
+var vooMkt  = getMktVal('VOO');
+var vbMkt   = getMktVal('VB');
+var vxusMkt = getMktVal('VXUS');
+var mpMkt   = getMktVal('MP');
 
-var capLG = vtMkt*0.70 + vooMkt + vxusMkt*0.60; //[cite: 1]
-var capMD = vtMkt*0.20 + vxusMkt*0.30 + mpMkt; //[cite: 1]
-var capSM = vtMkt*0.10 + vbMkt  + vxusMkt*0.10; //[cite: 1]
-var capOT = holdings[4].mktVal + holdings[5].mktVal; //[cite: 1]
-var capSegs = [ //[cite: 1]
-  { label: 'Large Cap', sub: 'VOO, VT, VXUS core', pct: capLG/portfolioTotal*100, color: '#2c2416' }, //[cite: 1]
-  { label: 'Mid Cap',   sub: 'VT, VXUS mid blend',  pct: capMD/portfolioTotal*100, color: '#6b5c3e' }, //[cite: 1]
-  { label: 'Small Cap', sub: 'VB, VT small blend',  pct: capSM/portfolioTotal*100, color: '#b8972a' }, //[cite: 1]
-  { label: 'Other',     sub: 'Gold + Crypto',        pct: capOT/portfolioTotal*100, color: '#c0aa88' }, //[cite: 1]
-]; //[cite: 1]
+var capLG = vtMkt*0.70 + vooMkt + vxusMkt*0.60;[cite: 1]
+var capMD = vtMkt*0.20 + vxusMkt*0.30 + mpMkt;
+var capSM = vtMkt*0.10 + vbMkt  + vxusMkt*0.10;[cite: 1]
+var capOT = getMktVal('IAU') + getMktVal('IBIT');
+var capSegs = [[cite: 1]
+  { label: 'Large Cap', sub: 'VOO, VT, VXUS core', pct: capLG/portfolioTotal*100, color: '#2c2416' },[cite: 1]
+  { label: 'Mid Cap',   sub: 'VT, VXUS mid blend',  pct: capMD/portfolioTotal*100, color: '#6b5c3e' },[cite: 1]
+  { label: 'Small Cap', sub: 'VB, VT small blend',  pct: capSM/portfolioTotal*100, color: '#b8972a' },[cite: 1]
+  { label: 'Other',     sub: 'Gold + Crypto',        pct: capOT/portfolioTotal*100, color: '#c0aa88' },[cite: 1]
+];[cite: 1]
 
-drawPie('pie-geo', 'legend-geo', geoSegs); //[cite: 1]
-drawPie('pie-cap', 'legend-cap', capSegs); //[cite: 1]
+drawPie('pie-geo', 'legend-geo', geoSegs);[cite: 1]
+drawPie('pie-cap', 'legend-cap', capSegs);[cite: 1]
 
 // ── HOLDINGS LIST ──[cite: 1]
-function drawHoldings() { //[cite: 1]
-  var list = document.getElementById('holdings-list'); //[cite: 1]
-  var maxVal = Math.max.apply(null, holdings.map(function(h) { return h.mktVal; })); //[cite: 1]
-  list.innerHTML = holdings.map(function(h) { //[cite: 1]
-    var alloc = (h.mktVal / portfolioTotal * 100).toFixed(1); //[cite: 1]
-    var barW  = (h.mktVal / maxVal * 100).toFixed(1); //[cite: 1]
-    var cls   = h.sincePct >= 0 ? 'up' : 'down'; //[cite: 1]
-    var str   = (h.sincePct >= 0 ? '+' : '') + Math.abs(h.sincePct).toFixed(1) + '%'; //[cite: 1]
-    return '<div class="holding-row">' + //[cite: 1]
-      '<div class="holding-ticker">' + h.ticker + '</div>' + //[cite: 1]
-      '<div class="holding-info">' + //[cite: 1]
-        '<div class="holding-name">' + h.name + '</div>' + //[cite: 1]
-        '<div class="holding-bar-bg"><div class="holding-bar-fill" style="width:' + barW + '%;background:' + h.color + '"></div></div>' + //[cite: 1]
-      '</div>' + //[cite: 1]
-      '<div class="holding-right">' + //[cite: 1]
-        '<div class="holding-alloc ' + cls + '">' + str + '</div>' + //[cite: 1]
-        '<div class="holding-change">' + alloc + '% of portfolio</div>' + //[cite: 1]
-      '</div>' + //[cite: 1]
-    '</div>'; //[cite: 1]
-  }).join(''); //[cite: 1]
-} //[cite: 1]
+function drawHoldings() {[cite: 1]
+  var list = document.getElementById('holdings-list');[cite: 1]
+  var maxVal = Math.max.apply(null, holdings.map(function(h) { return h.mktVal; }));[cite: 1]
+  list.innerHTML = holdings.map(function(h) {[cite: 1]
+    var alloc = (h.mktVal / portfolioTotal * 100).toFixed(1);[cite: 1]
+    var barW  = (h.mktVal / maxVal * 100).toFixed(1);[cite: 1]
+    var cls   = h.sincePct >= 0 ? 'up' : 'down';[cite: 1]
+    var str   = (h.sincePct >= 0 ? '+' : '') + Math.abs(h.sincePct).toFixed(1) + '%';[cite: 1]
+    return '<div class="holding-row">' +[cite: 1]
+      '<div class="holding-ticker">' + h.ticker + '</div>' +[cite: 1]
+      '<div class="holding-info">' +[cite: 1]
+        '<div class="holding-name">' + h.name + '</div>' +[cite: 1]
+        '<div class="holding-bar-bg"><div class="holding-bar-fill" style="width:' + barW + '%;background:' + h.color + '"></div></div>' +[cite: 1]
+      '</div>' +[cite: 1]
+      '<div class="holding-right">' +[cite: 1]
+        '<div class="holding-alloc ' + cls + '">' + str + '</div>' +[cite: 1]
+        '<div class="holding-change">' + alloc + '% of portfolio</div>' +[cite: 1]
+      '</div>' +[cite: 1]
+    '</div>';[cite: 1]
+  }).join('');[cite: 1]
+}[cite: 1]
 
-drawHoldings(); //[cite: 1]
+drawHoldings();[cite: 1]
 </script>
 
 </body>
