@@ -30,6 +30,11 @@
     display: flex; justify-content: space-between; align-items: center;
     padding: 28px 32px; border-bottom: 1px solid var(--rule-lt);
   }
+  header.masthead .back {
+    display: inline-flex; align-items: center; gap: 6px;
+    text-decoration: none; font-size: 13px; color: var(--sub);
+  }
+  header.masthead .back:hover { color: var(--ink); }
   header.masthead .mark { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 20px; }
   header.masthead .mark a { text-decoration: none; }
   header.masthead .mark span { color: var(--accent); font-style: italic; }
@@ -91,14 +96,54 @@
     .field-row { grid-template-columns: 1fr; }
     .intro h1 { font-size: 30px; }
   }
+  /* Hamburger + sidebar nav */
+  .hamburger-btn {
+    display: flex; flex-direction: column; justify-content: center; gap: 5px;
+    width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 0;
+  }
+  .hamburger-btn span { display: block; width: 24px; height: 2px; background: var(--ink); transition: 0.2s; }
+  .sidebar-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.35);
+    opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 998;
+  }
+  .sidebar-overlay.open { opacity: 1; pointer-events: auto; }
+  .sidebar-nav {
+    position: fixed; top: 0; left: 0; height: 100%; width: 260px; background: var(--bg);
+    border-right: 1px solid var(--rule-lt); transform: translateX(-100%);
+    transition: transform 0.25s ease; z-index: 999; padding: 28px 24px;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .sidebar-nav.open { transform: translateX(0); }
+  .sidebar-nav .sidebar-close {
+    align-self: flex-end; background: none; border: none; font-size: 22px;
+    color: var(--sub); cursor: pointer; margin-bottom: 16px; line-height: 1;
+  }
+  .sidebar-nav a {
+    text-decoration: none; color: var(--ink); font-family: 'Jost', sans-serif; font-size: 15px;
+    padding: 13px 4px; border-bottom: 1px solid var(--rule-lt);
+  }
+  .sidebar-nav a:last-of-type { border-bottom: none; }
+  .sidebar-nav a.active { color: var(--accent); }
 </style>
 </head>
 <body>
 
 <header class="masthead">
+  <button class="hamburger-btn" onclick="toggleSidebar(true)" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
   <div class="mark"><a href="https://haydenharms.com/tax/">Hayden Harms <span>/ tax</span></a></div>
-  <nav><a href="https://haydenharms.com/tax/">Back to tax home</a></nav>
+  <a class="back" href="https://haydenharms.com/tax/">&larr; Back</a>
 </header>
+
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar(false)"></div>
+<nav class="sidebar-nav" id="sidebarNav">
+  <button class="sidebar-close" onclick="toggleSidebar(false)" aria-label="Close menu">&times;</button>
+  <a href="https://haydenharms.com">Personal site home</a>
+  <a href="https://haydenharms.com/tax/">Tax home</a>
+  <a href="https://haydenharms.com/tax/calculator/">Calculator</a>
+  <a href="https://haydenharms.com/tax/inquiry/" class="active">Get started</a>
+</nav>
 
 <div class="intro wrap" style="padding-left:0;padding-right:0;">
   <div class="eyebrow">Step 1 of 2 — quick inquiry</div>
@@ -156,5 +201,11 @@
   <a href="https://haydenharms.com/tax/">Back to haydenharms.com/tax</a>
 </footer>
 
+<script>
+  function toggleSidebar(open) {
+    document.getElementById('sidebarNav').classList.toggle('open', open);
+    document.getElementById('sidebarOverlay').classList.toggle('open', open);
+  }
+</script>
 </body>
 </html>
