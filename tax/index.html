@@ -36,8 +36,15 @@
     display: flex; justify-content: space-between; align-items: center;
     padding: 28px 32px; border-bottom: 1px solid var(--rule-lt);
   }
-  header.masthead .mark { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 20px; }
-  header.masthead .mark a { text-decoration: none; }
+  header.masthead .mark { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 20px; display: inline-flex; align-items: baseline; }
+  header.masthead .mark a {
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+    transform-origin: center bottom;
+  }
+  header.masthead .mark a:hover { transform: scale(1.08); opacity: 0.85; }
+  header.masthead .mark .sep { padding: 0 2px; }
   header.masthead .mark span { color: var(--gold); font-style: italic; }
   header.masthead nav { display: flex; gap: 26px; align-items: center; }
   header.masthead nav a {
@@ -195,7 +202,7 @@
   <button class="hamburger-btn" onclick="toggleSidebar(true)" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
-  <div class="mark"><a href="https://haydenharms.com">Hayden Harms <span>/ tax</span></a></div>
+  <div class="mark"><a href="https://haydenharms.com">Hayden Harms</a><span class="sep">/</span><a href="https://haydenharms.com/tax/"><span>tax</span></a></div>
   <div style="width:36px;"></div>
 </header>
 
