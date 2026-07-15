@@ -157,19 +157,54 @@
     .whyme, .scope-grid { grid-template-columns: 1fr; }
     .pricetable .pt-head { display: none; }
     .pricetable .pt-row { grid-template-columns: 1fr; gap: 6px; }
+  /* Hamburger + sidebar nav */
+  .hamburger-btn {
+    display: flex; flex-direction: column; justify-content: center; gap: 5px;
+    width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 0;
   }
+  .hamburger-btn span { display: block; width: 24px; height: 2px; background: var(--ink); transition: 0.2s; }
+  .sidebar-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.35);
+    opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 998;
+  }
+  .sidebar-overlay.open { opacity: 1; pointer-events: auto; }
+  .sidebar-nav {
+    position: fixed; top: 0; left: 0; height: 100%; width: 260px; background: var(--bg);
+    border-right: 1px solid var(--rule-lt); transform: translateX(-100%);
+    transition: transform 0.25s ease; z-index: 999; padding: 28px 24px;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .sidebar-nav.open { transform: translateX(0); }
+  .sidebar-nav .sidebar-close {
+    align-self: flex-end; background: none; border: none; font-size: 22px;
+    color: var(--sub); cursor: pointer; margin-bottom: 16px; line-height: 1;
+  }
+  .sidebar-nav a {
+    text-decoration: none; color: var(--ink); font-family: 'Jost', sans-serif; font-size: 15px;
+    padding: 13px 4px; border-bottom: 1px solid var(--rule-lt);
+  }
+  .sidebar-nav a:last-of-type { border-bottom: none; }
+  .sidebar-nav a.active { color: var(--gold); }
 </style>
 </head>
 <body>
 
 <header class="masthead">
+  <button class="hamburger-btn" onclick="toggleSidebar(true)" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
   <div class="mark"><a href="https://haydenharms.com">Hayden Harms <span>/ tax</span></a></div>
-  <nav>
-    <a href="https://haydenharms.com">Home</a>
-    <a href="calculator/">Calculator</a>
-    <a href="inquiry/">Get started</a>
-  </nav>
+  <div style="width:36px;"></div>
 </header>
+
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar(false)"></div>
+<nav class="sidebar-nav" id="sidebarNav">
+  <button class="sidebar-close" onclick="toggleSidebar(false)" aria-label="Close menu">&times;</button>
+  <a href="https://haydenharms.com">Personal site home</a>
+  <a href="/" class="active">Tax home</a>
+  <a href="calculator/">Calculator</a>
+  <a href="inquiry/">Get started</a>
+</nav>
 
 <div class="hero wrap" style="padding-left:0;padding-right:0;">
   <div class="eyebrow">Independent PTIN preparer · not yet a licensed CPA</div>
@@ -263,5 +298,11 @@
   <a href="https://haydenharms.com">Back to haydenharms.com</a>
 </footer>
 
+<script>
+  function toggleSidebar(open) {
+    document.getElementById('sidebarNav').classList.toggle('open', open);
+    document.getElementById('sidebarOverlay').classList.toggle('open', open);
+  }
+</script>
 </body>
 </html>
