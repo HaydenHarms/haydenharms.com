@@ -129,19 +129,17 @@
 <body>
 
 <header class="masthead">
-  <div style="display:flex; align-items:center; gap:16px;">
-    <a class="back" href="https://haydenharms.com/tax/">&larr; Back</a>
-    <button class="hamburger-btn" onclick="toggleSidebar(true)" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
+  <button class="hamburger-btn" onclick="toggleSidebar(true)" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
   <div class="mark"><a href="https://haydenharms.com/tax/">Hayden Harms <span>/ tax</span></a></div>
-  <div style="width:88px;"></div>
+  <a class="back" href="https://haydenharms.com/tax/">&larr; Back</a>
 </header>
 
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar(false)"></div>
 <nav class="sidebar-nav" id="sidebarNav">
   <button class="sidebar-close" onclick="toggleSidebar(false)" aria-label="Close menu">&times;</button>
+  <a href="https://haydenharms.com">Personal site home</a>
   <a href="https://haydenharms.com/tax/">Tax home</a>
   <a href="https://haydenharms.com/tax/calculator/">Calculator</a>
   <a href="https://haydenharms.com/tax/inquiry/" class="active">Get started</a>
