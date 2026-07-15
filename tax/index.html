@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tax Prep · Hayden Harms</title>
+<meta name="description" content="Independent PTIN tax preparer. Flat-fee W-2, self-employed, and 1099 returns from a CPA-track accounting student at Dallas Baptist University." />
+<meta property="og:title" content="Tax Prep · Hayden Harms" />
+<meta property="og:description" content="Independent PTIN preparer · flat-fee W-2, self-employed, and 1099 returns." />
+<meta property="og:image" content="https://haydenharms.com/preview.jpg" />
+<meta property="og:url" content="https://haydenharms.com/tax/" />
+<meta property="og:type" content="website" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #f5f0e8;
+    --ink:      #2c2416;
+    --sub:      #5a5048;
+    --accent:   #6b5c3e;
+    --muted:    #a0917a;
+    --rule:     #c0aa88;
+    --rule-lt:  #e0d8c8;
+    --gold:     #b8972a;
+    --card:     #fffdf9;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 32px; }
+
+  header.masthead {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 28px 32px; border-bottom: 1px solid var(--rule-lt);
+  }
+  header.masthead .mark { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 20px; }
+  header.masthead .mark a { text-decoration: none; }
+  header.masthead .mark span { color: var(--gold); font-style: italic; }
+  header.masthead nav { display: flex; gap: 26px; align-items: center; }
+  header.masthead nav a {
+    text-decoration: none; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sub);
+  }
+  header.masthead nav a:hover { color: var(--ink); }
+
+  .hero { padding: 72px 32px 0; }
+  .hero .eyebrow {
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 20px; font-weight: 500;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 50px; line-height: 1.1;
+    margin: 0; max-width: 620px;
+  }
+  .hero h1 em { color: var(--gold); font-style: italic; }
+  .hero p.sub {
+    margin-top: 22px; max-width: 480px; font-size: 17px; line-height: 1.7; color: var(--sub);
+  }
+  .ctas { margin-top: 30px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--ink); color: var(--bg); padding: 14px 26px;
+    text-decoration: none; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    border: 1px solid var(--ink); transition: background .2s, color .2s;
+  }
+  .btn-primary:hover { background: var(--gold); border-color: var(--gold); }
+  .btn-link {
+    font-size: 13px; text-decoration: underline; text-underline-offset: 4px; color: var(--sub);
+  }
+
+  .pricetable {
+    margin: 52px 0 0; background: var(--card); border: 1px solid var(--rule-lt);
+  }
+  .pricetable .pt-head {
+    display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 14px 22px;
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+    border-bottom: 1px solid var(--rule-lt);
+  }
+  .pricetable .pt-row {
+    display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 20px 22px; align-items: center;
+    border-bottom: 1px solid var(--rule-lt); font-size: 15px;
+  }
+  .pricetable .pt-row:last-child { border-bottom: none; }
+  .pricetable .pt-row .name { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 19px; }
+  .pricetable .pt-row .desc { font-size: 13px; color: var(--sub); margin-top: 4px; }
+  .pricetable .pt-row .price { font-size: 16px; color: var(--gold); font-weight: 500; }
+
+  .note {
+    margin: 18px 0 0; font-size: 12.5px; color: var(--muted); max-width: 560px; line-height: 1.6;
+  }
+
+  .whyme {
+    padding: 76px 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
+    border-top: 1px solid var(--rule-lt); margin-top: 64px;
+  }
+  .whyme h2 { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 600; margin: 0 0 16px; }
+  .whyme p { font-size: 15px; line-height: 1.75; color: var(--sub); }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 20px;
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; background: var(--rule-lt);
+    padding: 9px 14px; color: var(--accent);
+  }
+  ul.steps { list-style: none; margin: 0; padding: 0; }
+  ul.steps li { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--rule-lt); }
+  ul.steps li:last-child { border-bottom: none; }
+  ul.steps .num { font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 17px; flex: none; width: 22px; }
+  ul.steps .txt strong { display: block; font-size: 15px; margin-bottom: 3px; font-weight: 500; }
+  ul.steps .txt span { font-size: 13px; color: var(--sub); }
+
+  .scope {
+    padding: 0 32px 76px; border-top: 1px solid var(--rule-lt); padding-top: 64px;
+  }
+  .scope h2 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; margin: 0 0 26px; }
+  .scope-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .scope-grid .col h3 {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 14px;
+  }
+  .scope-grid .col.in h3 { color: var(--gold); }
+  .scope-grid .col.out h3 { color: var(--muted); }
+  .scope-grid ul { list-style: none; padding: 0; margin: 0; }
+  .scope-grid li {
+    font-size: 14px; padding: 10px 0; border-bottom: 1px solid var(--rule-lt); color: var(--sub);
+  }
+  .scope-grid .col.out li { color: var(--muted); }
+
+  .security {
+    padding: 56px 32px; border-top: 1px solid var(--rule-lt); display: flex; gap: 28px; align-items: flex-start;
+  }
+  .security .icon {
+    width: 40px; height: 40px; flex: none; border: 1px solid var(--rule); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 15px;
+  }
+  .security h3 { font-family: 'Cormorant Garamond', serif; font-size: 19px; margin: 0 0 8px; font-weight: 600; }
+  .security p { font-size: 14px; line-height: 1.7; color: var(--sub); max-width: 540px; margin: 0; }
+
+  footer.footband {
+    padding: 40px 32px; text-align: center; border-top: 1px solid var(--rule-lt);
+    font-size: 12.5px; color: var(--muted);
+  }
+  footer.footband a { color: var(--gold); text-decoration: none; }
+
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 36px; }
+    .whyme, .scope-grid { grid-template-columns: 1fr; }
+    .pricetable .pt-head { display: none; }
+    .pricetable .pt-row { grid-template-columns: 1fr; gap: 6px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="mark"><a href="https://haydenharms.com">Hayden Harms <span>/ tax</span></a></div>
+  <nav>
+    <a href="https://haydenharms.com">Home</a>
+    <a href="calculator/">Calculator</a>
+    <a href="mailto:hello@haydenharms.com">Get started</a>
+  </nav>
+</header>
+
+<div class="hero wrap" style="padding-left:0;padding-right:0;">
+  <div class="eyebrow">Independent PTIN preparer · not yet a licensed CPA</div>
+  <h1>A tax return<br>you can actually <em>read</em>.</h1>
+  <p class="sub">I prepare W-2, self-employed, and 1099 returns myself, at a flat fee I tell you upfront — before you send me anything.</p>
+  <div class="ctas">
+    <a class="btn-primary" href="mailto:hello@haydenharms.com?subject=Tax%20prep%20inquiry">Send an inquiry →</a>
+    <a class="btn-link" href="calculator/">Try the free tax calculator</a>
+  </div>
+
+  <div class="pricetable">
+    <div class="pt-head"><span>Return type</span><span>Typical time</span><span>Flat fee</span></div>
+    <div class="pt-row">
+      <div><div class="name">W-2 only</div><div class="desc">One or more employers, standard or itemized</div></div>
+      <div>2–3 days</div><div class="price">$85</div>
+    </div>
+    <div class="pt-row">
+      <div><div class="name">W-2 + 1099</div><div class="desc">Mixed employment and contract income</div></div>
+      <div>3–5 days</div><div class="price">$135</div>
+    </div>
+    <div class="pt-row">
+      <div><div class="name">Self-employed</div><div class="desc">Schedule C, home office, mileage</div></div>
+      <div>5–7 days</div><div class="price">$185</div>
+    </div>
+  </div>
+  <p class="note">Pricing shown is a starting point for a simple, single-state return — confirmed before I take on your return, never after.</p>
+</div>
+
+<div class="whyme wrap" style="padding-left:0;padding-right:0;">
+  <div>
+    <h2>Why a student preparer</h2>
+    <p>I'm a senior BBA Accounting student at Dallas Baptist University's Carter School of Business, on track for CPA licensure in Texas. That means your return gets someone currently being tested on this material — closely, and without the overhead of an office.</p>
+    <div class="badge">Registered IRS PTIN preparer</div>
+  </div>
+  <ul class="steps">
+    <li><span class="num">1</span><div class="txt"><strong>Quick inquiry</strong><span>Email your situation — no documents yet.</span></div></li>
+    <li><span class="num">2</span><div class="txt"><strong>Encrypted intake</strong><span>If I can take you on, you'll get a one-time encrypted intake form. Nothing is retained after filing.</span></div></li>
+    <li><span class="num">3</span><div class="txt"><strong>Review &amp; file</strong><span>You review the finished return before anything is e-filed.</span></div></li>
+  </ul>
+</div>
+
+<div class="scope wrap" style="padding-left:0;padding-right:0;">
+  <h2>What I take on</h2>
+  <div class="scope-grid">
+    <div class="col in">
+      <h3>In scope</h3>
+      <ul>
+        <li>W-2 income, single or multiple employers</li>
+        <li>Self-employment income (Schedule C)</li>
+        <li>1099-NEC / 1099-K contract and gig income</li>
+        <li>Single-state returns</li>
+        <li>Second state, only if it has no income tax</li>
+      </ul>
+    </div>
+    <div class="col out">
+      <h3>Out of scope</h3>
+      <ul>
+        <li>Multi-state returns with income tax in both states</li>
+        <li>Business entity returns (S-corp, partnership)</li>
+        <li>Complex investment or trust income</li>
+        <li>Prior-year amendments or IRS disputes</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="security wrap" style="padding-left:0;padding-right:0;">
+  <div class="icon">✓</div>
+  <div>
+    <h3>Your documents, encrypted, never retained</h3>
+    <p>Intake produces an encrypted file of your tax information for my use in preparing your return. Nothing is stored after your return is filed — the process is built to forget, on purpose.</p>
+  </div>
+</div>
+
+<footer class="footband">
+  Simple returns only — W-2, 1099, self-employed, single-state (or a second no-tax state). &nbsp;·&nbsp;
+  <a href="https://haydenharms.com">Back to haydenharms.com</a>
+</footer>
+
+</body>
+</html>
