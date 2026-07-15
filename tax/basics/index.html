@@ -27,6 +27,7 @@
   .wrap { max-width: 760px; margin: 0 auto; padding: 0 32px; }
 
   header.masthead {
+    display: flex; justify-content: space-between; align-items: center;
     padding: 28px 32px; border-bottom: 1px solid var(--rule-lt);
   }
   header.masthead .mark { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 20px; }
@@ -119,6 +120,35 @@
 
   .note { font-size: 12.5px; color: var(--muted); line-height: 1.6; margin-top: 10px; }
 
+  /* Hamburger + sidebar nav */
+  .hamburger-btn {
+    display: flex; flex-direction: column; justify-content: center; gap: 5px;
+    width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 0;
+  }
+  .hamburger-btn span { display: block; width: 24px; height: 2px; background: var(--ink); transition: 0.2s; }
+  .sidebar-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.35);
+    opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 998;
+  }
+  .sidebar-overlay.open { opacity: 1; pointer-events: auto; }
+  .sidebar-nav {
+    position: fixed; top: 0; left: 0; height: 100%; width: 260px; background: var(--bg);
+    border-right: 1px solid var(--rule-lt); transform: translateX(-100%);
+    transition: transform 0.25s ease; z-index: 999; padding: 28px 24px;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .sidebar-nav.open { transform: translateX(0); }
+  .sidebar-nav .sidebar-close {
+    align-self: flex-end; background: none; border: none; font-size: 22px;
+    color: var(--sub); cursor: pointer; margin-bottom: 16px; line-height: 1;
+  }
+  .sidebar-nav a {
+    text-decoration: none; color: var(--ink); font-family: 'Jost', sans-serif; font-size: 15px;
+    padding: 13px 4px; border-bottom: 1px solid var(--rule-lt);
+  }
+  .sidebar-nav a:last-of-type { border-bottom: none; }
+  .sidebar-nav a.active { color: var(--gold); }
+
   footer.footband {
     padding: 40px 32px; text-align: center; border-top: 1px solid var(--rule-lt);
     font-size: 12.5px; color: var(--muted);
@@ -137,8 +167,20 @@
 <body>
 
 <header class="masthead">
+  <button class="hamburger-btn" onclick="toggleSidebar(true)" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
   <div class="mark"><a href="https://haydenharms.com">Hayden Harms</a><span class="sep">/</span><a href="https://haydenharms.com/tax/"><span>tax</span></a></div>
 </header>
+
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar(false)"></div>
+<nav class="sidebar-nav" id="sidebarNav">
+  <button class="sidebar-close" onclick="toggleSidebar(false)" aria-label="Close menu">&times;</button>
+  <a href="https://haydenharms.com/tax/">Tax home</a>
+  <a href="https://haydenharms.com/tax/inquiry/">Get started</a>
+  <a href="https://haydenharms.com/tax/basics/" class="active">Tax basics</a>
+  <a href="https://haydenharms.com/tax/calculator/">Calculator</a>
+</nav>
 
 <div class="hero wrap" style="padding-left:0;padding-right:0;">
   <div class="eyebrow">Client reference · Tax year 2025</div>
@@ -345,5 +387,12 @@
   <a href="https://haydenharms.com/tax/">Back to haydenharms.com/tax</a>
 </footer>
 
+<script>
+  function toggleSidebar(open) {
+    document.getElementById('sidebarNav').classList.toggle('open', open);
+    document.getElementById('sidebarOverlay').classList.toggle('open', open);
+  }
+</script>
 </body>
+
 </html>
