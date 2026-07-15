@@ -35,8 +35,15 @@
     text-decoration: none; font-size: 13px; color: var(--sub);
   }
   header.masthead .back:hover { color: var(--ink); }
-  header.masthead .mark { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 20px; }
-  header.masthead .mark a { text-decoration: none; }
+  header.masthead .mark { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 20px; display: inline-flex; align-items: baseline; }
+  header.masthead .mark a {
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+    transform-origin: center bottom;
+  }
+  header.masthead .mark a:hover { transform: scale(1.08); opacity: 0.85; }
+  header.masthead .mark .sep { padding: 0 2px; }
   header.masthead .mark span { color: var(--accent); font-style: italic; }
   header.masthead nav a {
     text-decoration: none; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sub);
@@ -135,7 +142,7 @@
     </button>
     <a class="back" href="https://haydenharms.com/tax/">&larr; Back</a>
   </div>
-  <div class="mark"><a href="https://haydenharms.com/tax/">Hayden Harms <span>/ tax</span></a></div>
+  <div class="mark"><a href="https://haydenharms.com">Hayden Harms</a><span class="sep">/</span><a href="https://haydenharms.com/tax/"><span>tax</span></a></div>
   <div style="width:88px;"></div>
 </header>
 
