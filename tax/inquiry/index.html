@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Send an Inquiry · Hayden Harms Tax</title>
+<meta name="description" content="Tell us about your tax situation. No documents needed yet — just the basics so we can confirm we're a fit." />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #f4f2ea;
+    --ink:      #20241f;
+    --sub:      #4a4f47;
+    --accent:   #2f6f5e;
+    --muted:    #8a8578;
+    --rule:     #c7c2ac;
+    --rule-lt:  #e2ddcf;
+    --card:     #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 0 32px; }
+
+  header.masthead {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 28px 32px; border-bottom: 1px solid var(--rule-lt);
+  }
+  header.masthead .mark { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 20px; }
+  header.masthead .mark a { text-decoration: none; }
+  header.masthead .mark span { color: var(--accent); font-style: italic; }
+  header.masthead nav a {
+    text-decoration: none; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sub);
+  }
+
+  .intro { padding: 64px 32px 8px; }
+  .intro .eyebrow {
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
+    margin-bottom: 16px; font-weight: 500;
+  }
+  .intro h1 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 38px; line-height: 1.15;
+    margin: 0 0 14px;
+  }
+  .intro p {
+    font-size: 15.5px; line-height: 1.7; color: var(--sub); margin: 0;
+  }
+
+  form { padding: 36px 32px 72px; }
+  .field { margin-bottom: 22px; }
+  .field label {
+    display: block; font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 8px;
+  }
+  .field input, .field select, .field textarea {
+    width: 100%; background: var(--card); border: 1px solid var(--rule-lt);
+    padding: 12px 14px; font-family: 'Jost', sans-serif; font-size: 15px; color: var(--ink);
+    border-radius: 2px;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    outline: none; border-color: var(--accent);
+  }
+  .field textarea { min-height: 110px; resize: vertical; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+  .hp { position: absolute; left: -9999px; }
+
+  button[type="submit"] {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--ink); color: var(--bg); padding: 14px 28px;
+    border: 1px solid var(--ink); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    cursor: pointer; transition: background .2s, color .2s;
+  }
+  button[type="submit"]:hover { background: var(--accent); border-color: var(--accent); }
+
+  .note {
+    margin-top: 16px; font-size: 12.5px; color: var(--muted); line-height: 1.6; max-width: 480px;
+  }
+
+  footer.footband {
+    padding: 40px 32px; text-align: center; border-top: 1px solid var(--rule-lt);
+    font-size: 12.5px; color: var(--muted);
+  }
+  footer.footband a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 560px) {
+    .field-row { grid-template-columns: 1fr; }
+    .intro h1 { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="mark"><a href="https://haydenharms.com/tax/">Hayden Harms <span>/ tax</span></a></div>
+  <nav><a href="https://haydenharms.com/tax/">Back to tax home</a></nav>
+</header>
+
+<div class="intro wrap" style="padding-left:0;padding-right:0;">
+  <div class="eyebrow">Step 1 of 2 — quick inquiry</div>
+  <h1>Tell us about your situation.</h1>
+  <p>No documents needed yet — just enough for us to confirm we're a fit and get back to you. If we can take you on, we'll send a separate, encrypted intake for your actual tax documents.</p>
+</div>
+
+<form action="https://formspree.io/f/mjgnggdw" method="POST">
+  <div class="wrap" style="padding-left:0;padding-right:0;">
+
+    <div class="field-row">
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="situation">Which describes your situation?</label>
+      <select id="situation" name="situation" required>
+        <option value="" disabled selected>Select one</option>
+        <option value="W-2 only">W-2 only</option>
+        <option value="W-2 + 1099">W-2 + 1099</option>
+        <option value="Self-employed / Schedule C">Self-employed / Schedule C</option>
+        <option value="Multiple states">Multiple states</option>
+        <option value="Not sure">Not sure</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label for="state">State(s) you file in</label>
+      <input type="text" id="state" name="state" placeholder="e.g. Texas, or Texas + Florida">
+    </div>
+
+    <div class="field">
+      <label for="message">Anything else we should know?</label>
+      <textarea id="message" name="message" placeholder="Rough income range, timeline, questions — whatever's useful."></textarea>
+    </div>
+
+    <!-- honeypot field to cut down on spam; real users never see or fill this -->
+    <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off">
+    <input type="hidden" name="_subject" value="New tax prep inquiry — haydenharms.com/tax">
+
+    <button type="submit">Send inquiry →</button>
+    <p class="note">This form is for a quick fit-check only — please don't include Social Security numbers, account numbers, or other sensitive documents here. If we take you on, we'll follow up with a separate encrypted intake for that.</p>
+
+  </div>
+</form>
+
+<footer class="footband">
+  <a href="https://haydenharms.com/tax/">Back to haydenharms.com/tax</a>
+</footer>
+
+</body>
+</html>
