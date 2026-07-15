@@ -73,6 +73,13 @@
     border: 1px solid var(--ink); transition: background .2s, color .2s;
   }
   .btn-primary:hover { background: var(--gold); border-color: var(--gold); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--ink); padding: 13px 26px;
+    text-decoration: none; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    border: 1px solid var(--ink); transition: background .2s, color .2s, border-color .2s;
+  }
+  .btn-secondary:hover { background: var(--ink); color: var(--bg); }
   .btn-link {
     font-size: 13px; text-decoration: underline; text-underline-offset: 4px; color: var(--sub);
   }
@@ -211,15 +218,17 @@
   <button class="sidebar-close" onclick="toggleSidebar(false)" aria-label="Close menu">&times;</button>
   <a href="https://haydenharms.com/tax/" class="active">Tax home</a>
   <a href="inquiry/">Get started</a>
+  <a href="basics/">Tax basics</a>
   <a href="calculator/">Calculator</a>
 </nav>
 
 <div class="hero wrap" style="padding-left:0;padding-right:0;">
-  <div class="eyebrow">Independent PTIN preparers · Simple 1040s</div>
-  <h1>A tax experience<br>as <em>simple</em> as it should be.</h1>
+  <div class="eyebrow">Independent PTIN preparer · Simple 1040s</div>
+  <h1>A tax return<br>made for no one but <em>you</em>.</h1>
   <p class="sub">Looking to cut tax costs this year? We prepare W-2, self-employed, and 1099 returns, at a flat fee you know upfront — before you send anything.</p>
   <div class="ctas">
     <a class="btn-primary" href="inquiry/">Send an inquiry →</a>
+    <a class="btn-secondary" href="basics/">Read the tax basics guide</a>
     <a class="btn-link" href="calculator/">Try the free tax calculator</a>
   </div>
 
