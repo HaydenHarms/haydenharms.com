@@ -34,6 +34,11 @@
   header.masthead .mark a { text-decoration: none; color: var(--ink); }
   header.masthead .mark span { color: var(--gold); font-style: italic; }
   header.masthead .mark .sep { padding: 0 2px; color: var(--muted); }
+  header.masthead .back {
+    display: inline-flex; align-items: center; gap: 6px;
+    text-decoration: none; font-size: 13px; color: var(--sub);
+  }
+  header.masthead .back:hover { color: var(--ink); }
 
   .hero { padding: 64px 32px 0; }
   .hero .eyebrow {
@@ -167,10 +172,14 @@
 <body>
 
 <header class="masthead">
-  <button class="hamburger-btn" onclick="toggleSidebar(true)" aria-label="Open menu">
-    <span></span><span></span><span></span>
-  </button>
+  <div style="display:flex; align-items:center; gap:16px;">
+    <button class="hamburger-btn" onclick="toggleSidebar(true)" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a class="back" href="https://haydenharms.com/tax/">&larr; Back</a>
+  </div>
   <div class="mark"><a href="https://haydenharms.com">Hayden Harms</a><span class="sep">/</span><a href="https://haydenharms.com/tax/"><span>tax</span></a></div>
+  <div style="width:88px;"></div>
 </header>
 
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar(false)"></div>
