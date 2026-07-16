@@ -220,13 +220,13 @@ if (localStorage.getItem('theme') === 'dark') {
 
 // Holdings data (overwritten dynamically by GitHub Actions workflow script)[cite: 1]
 var holdings = [
-  { ticker: 'VT', name: 'Vanguard Total World Stock ETF', mktVal: 10225.46, sincePct: 10.7, color: '#2c2416', domPct: 0.58, intlPct: 0.42 },
-  { ticker: 'VOO', name: 'Vanguard S&P 500 ETF', mktVal: 7636.47, sincePct: 15.1, color: '#b8972a', domPct: 1.0, intlPct: 0.0 },
-  { ticker: 'VB', name: 'Vanguard Small-Cap ETF', mktVal: 2101.57, sincePct: 23.5, color: '#6b5c3e', domPct: 1.0, intlPct: 0.0 },
-  { ticker: 'VXUS', name: 'Vanguard Total International Stock', mktVal: 1287.33, sincePct: 15.1, color: '#a0917a', domPct: 0.0, intlPct: 1.0 },
-  { ticker: 'IAU', name: 'iShares Gold Trust', mktVal: 599.04, sincePct: -2.7, color: '#c0aa88', domPct: 0.0, intlPct: 0.0 },
+  { ticker: 'VT', name: 'Vanguard Total World Stock ETF', mktVal: 10224.8, sincePct: 10.7, color: '#2c2416', domPct: 0.58, intlPct: 0.42 },
+  { ticker: 'VOO', name: 'Vanguard S&P 500 ETF', mktVal: 7635.26, sincePct: 15.1, color: '#b8972a', domPct: 1.0, intlPct: 0.0 },
+  { ticker: 'VB', name: 'Vanguard Small-Cap ETF', mktVal: 2101.14, sincePct: 23.5, color: '#6b5c3e', domPct: 1.0, intlPct: 0.0 },
+  { ticker: 'VXUS', name: 'Vanguard Total International Stock', mktVal: 1287.18, sincePct: 15.1, color: '#a0917a', domPct: 0.0, intlPct: 1.0 },
+  { ticker: 'IAU', name: 'iShares Gold Trust', mktVal: 598.64, sincePct: -2.7, color: '#c0aa88', domPct: 0.0, intlPct: 0.0 },
   { ticker: 'IBIT', name: 'iShares Bitcoin Trust ETF', mktVal: 109.17, sincePct: -45.2, color: '#5a5048', domPct: 0.0, intlPct: 0.0 },
-  { ticker: 'MP', name: 'MP Materials Corp.', mktVal: 45.16, sincePct: -9.3, color: '#3a6b4a', domPct: 1.0, intlPct: 0.0 }
+  { ticker: 'MP', name: 'MP Materials Corp.', mktVal: 45.23, sincePct: -9.2, color: '#3a6b4a', domPct: 1.0, intlPct: 0.0 }
 ];
 
 const portfolioTotal = holdings.reduce(function(s, h) { return s + h.mktVal; }, 0); //[cite: 1]
