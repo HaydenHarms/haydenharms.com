@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tax Prep · Hayden Harms</title>
-<meta name="description" content="Independent PTIN tax preparers. Flat-fee W-2, self-employed, and 1099 returns from a CPA-track accounting student at Dallas Baptist University." />
+<meta name="description" content="Independent PTIN tax preparer. Flat-fee W-2, self-employed, and 1099 returns from a CPA-track accounting student at Dallas Baptist University." />
 <meta property="og:title" content="Tax Prep · Hayden Harms" />
-<meta property="og:description" content="Independent PTIN preparers · flat-fee W-2, self-employed, and 1099 returns." />
-<meta property="og:image" content="https://haydenharms.com/tax/preview.jpeg" />
+<meta property="og:description" content="Independent PTIN preparer · flat-fee W-2, self-employed, and 1099 returns." />
+<meta property="og:image" content="https://haydenharms.com/tax/preview.jpg" />
 <meta property="og:url" content="https://haydenharms.com/tax/" />
 <meta property="og:type" content="website" />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -36,16 +36,11 @@
     display: flex; justify-content: space-between; align-items: center;
     padding: 28px 32px; border-bottom: 1px solid var(--rule-lt);
   }
-  header.masthead .mark { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 20px; display: inline-flex; align-items: baseline; }
-  header.masthead .mark a {
-    text-decoration: none;
-    display: inline-block;
-    transition: transform 0.18s ease, opacity 0.18s ease;
-    transform-origin: center bottom;
-  }
-  header.masthead .mark a:hover { transform: scale(1.08); opacity: 0.85; }
-  header.masthead .mark .sep { padding: 0 2px; }
+  header.masthead .mark { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 20px; }
+  header.masthead .mark a { text-decoration: none; }
   header.masthead .mark span { color: var(--gold); font-style: italic; }
+  header.masthead .mark a { transition: opacity 0.15s; }
+  header.masthead .mark a:hover { opacity: 0.7; }
   header.masthead nav { display: flex; gap: 26px; align-items: center; }
   header.masthead nav a {
     text-decoration: none; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sub);
@@ -73,13 +68,6 @@
     border: 1px solid var(--ink); transition: background .2s, color .2s;
   }
   .btn-primary:hover { background: var(--gold); border-color: var(--gold); }
-  .btn-secondary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: transparent; color: var(--ink); padding: 13px 26px;
-    text-decoration: none; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
-    border: 1px solid var(--ink); transition: background .2s, color .2s, border-color .2s;
-  }
-  .btn-secondary:hover { background: var(--ink); color: var(--bg); }
   .btn-link {
     font-size: 13px; text-decoration: underline; text-underline-offset: 4px; color: var(--sub);
   }
@@ -209,7 +197,7 @@
   <button class="hamburger-btn" onclick="toggleSidebar(true)" aria-label="Open menu">
     <span></span><span></span><span></span>
   </button>
-  <div class="mark"><a href="https://haydenharms.com/tax/"><span>Hayden Harms/tax</span></a></div>
+  <div class="mark"><a href="https://haydenharms.com/tax/">Hayden Harms <span>/ tax</span></a></div>
   <div style="width:36px;"></div>
 </header>
 
@@ -217,49 +205,46 @@
 <nav class="sidebar-nav" id="sidebarNav">
   <button class="sidebar-close" onclick="toggleSidebar(false)" aria-label="Close menu">&times;</button>
   <a href="https://haydenharms.com/tax/" class="active">Tax home</a>
-  <a href="inquiry/">Get started</a>
-  <a href="basics/">Tax basics</a>
   <a href="calculator/">Calculator</a>
+  <a href="inquiry/">Get started</a>
 </nav>
 
 <div class="hero wrap" style="padding-left:0;padding-right:0;">
-  <div class="eyebrow">Independent PTIN preparers · Simple 1040s</div>
-  <h1>A tax experience<br> as <em>simple</em> as it should be.</h1>
-  <p class="sub">Looking to cut tax costs this year? We prepare W-2, self-employed, and 1099 returns, at a flat fee you know upfront — before you send anything.</p>
+  <div class="eyebrow">Independent PTIN preparer · not yet a licensed CPA</div>
+  <h1>A tax return<br>you can actually <em>read</em>.</h1>
+  <p class="sub">I prepare W-2, self-employed, and 1099 returns myself, at a flat fee I tell you upfront — before you send me anything.</p>
   <div class="ctas">
     <a class="btn-primary" href="inquiry/">Send an inquiry →</a>
-    <a class="btn-secondary" href="basics/">Read the tax basics guide</a>
     <a class="btn-link" href="calculator/">Try the free tax calculator</a>
   </div>
 
   <div class="pricetable">
     <div class="pt-head"><span>Return type</span><span>Typical time</span><span>Flat fee</span></div>
     <div class="pt-row">
-      <div><div class="name">W-2 + 1099s</div><div class="desc">Simple employer income with dividends, interest, and capital gains.</div></div>
-      <div>2–3 days</div><div class="price">$120</div>
+      <div><div class="name">W-2 only</div><div class="desc">One or more employers, standard or itemized</div></div>
+      <div>2–3 days</div><div class="price">$85</div>
     </div>
     <div class="pt-row">
-      <div><div class="name">W-2 and Dependents</div><div class="desc">Mixed employment, dependents and credits. The Family Plan</div></div>
-      <div>3–5 days</div><div class="price">$150-200</div>
+      <div><div class="name">W-2 + 1099</div><div class="desc">Mixed employment and contract income</div></div>
+      <div>3–5 days</div><div class="price">$135</div>
     </div>
     <div class="pt-row">
       <div><div class="name">Self-employed</div><div class="desc">Schedule C, home office, mileage</div></div>
-      <div>1–2 weeks</div><div class="price">$250-400</div>
+      <div>5–7 days</div><div class="price">$185</div>
     </div>
   </div>
-  <p class="note">Pricing shown is a starting point for a simple, single-state return with minimal cleanup — confirmed before I take on your return, never after.</p>
+  <p class="note">Pricing shown is a starting point for a simple, single-state return — confirmed before I take on your return, never after.</p>
 </div>
 
 <div class="whyme wrap" style="padding-left:0;padding-right:0;">
   <div>
     <h2>Why a student preparer</h2>
-    <p>We are all BBA Accounting students at Dallas Baptist University's Carter School of Business, on track for CPA licensure in Texas. That means your return gets someone currently being tested on this material — closely, and without the overhead of an office.</p>
+    <p>I'm a senior BBA Accounting student at Dallas Baptist University's Carter School of Business, on track for CPA licensure in Texas. That means your return gets someone currently being tested on this material — closely, and without the overhead of an office.</p>
     <div class="badge">Registered IRS PTIN preparer</div>
   </div>
   <ul class="steps">
-    <h2>What to do next</h2>
     <li><span class="num">1</span><div class="txt"><strong>Quick inquiry</strong><span>Email your situation — no documents yet.</span></div></li>
-    <li><span class="num">2</span><div class="txt"><strong>Encrypted intake</strong><span>If we can take you on, you'll get a one-time encrypted intake form. Nothing is retained after filing.</span></div></li>
+    <li><span class="num">2</span><div class="txt"><strong>Encrypted intake</strong><span>If I can take you on, you'll get a one-time encrypted intake form. Nothing is retained after filing.</span></div></li>
     <li><span class="num">3</span><div class="txt"><strong>Review &amp; file</strong><span>You review the finished return before anything is e-filed.</span></div></li>
   </ul>
 </div>
@@ -272,29 +257,14 @@
       <h3>Hayden Harms</h3>
       <div class="role">Dallas, TX</div>
       <p>Senior BBA Accounting student at Dallas Baptist University, CPA-track. Takes W-2, self-employed, and 1099 returns.</p>
-      <a class="contact" href="mailto:harms.e.hayden@gmail.com">harms.e.hayden@gmail.com</a> <br>
-      <a class="contact" href="https://www.linkedin.com/in/haydenharms" target="_blank"> LinkedIn</a>
-    </div>
-    <div class="preparer-card">
-      <h3>Landon Lindsey</h3>
-      <div class="role">Dallas, TX</div>
-      <p>Senior Accounting student at Dallas Baptist University, Intern at KHA. Takes W-2, self-employed, and 1099 returns.</p>
-      <a class="contact" href="mailto:landonhlindsey@gmail.com">landonhlindsey@gmail.com</a> <br>
-      <a class="contact" href=https://www.linkedin.com/in/landon-lindsey-a37b3127b/" target="_blank"> LinkedIn</a>
-    </div>
-    <div class="preparer-card">
-      <h3>Drew Wigley</h3>
-      <div class="role">Dallas, TX</div>
-      <p>Senior Accounting student at Dallas Baptist University, Masters in Accountancy track, Intern at Saville. Takes W-2, self-employed, and 1099 returns.</p>
-      <a class="contact" href="mailto:awigley1716@dbu.edu">awigley1716@dbu.edu</a> <br>
-      <a class="contact" href=https://www.linkedin.com/in/drew-wigley-4564ba352/" target="_blank"> LinkedIn</a>
+      <a class="contact" href="mailto:hello@haydenharms.com">hello@haydenharms.com</a>
     </div>
     <!-- ADD NEXT PREPARER: duplicate the .preparer-card block above, update name / role / bio / contact -->
   </div>
 </div>
 
 <div class="scope wrap" style="padding-left:0;padding-right:0;">
-  <h2>What We take on</h2>
+  <h2>What I take on</h2>
   <div class="scope-grid">
     <div class="col in">
       <h3>In scope</h3>
