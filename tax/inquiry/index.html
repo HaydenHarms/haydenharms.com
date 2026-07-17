@@ -35,16 +35,11 @@
     text-decoration: none; font-size: 13px; color: var(--sub);
   }
   header.masthead .back:hover { color: var(--ink); }
-  header.masthead .mark { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 20px; display: inline-flex; align-items: baseline; }
-  header.masthead .mark a {
-    text-decoration: none;
-    display: inline-block;
-    transition: transform 0.18s ease, opacity 0.18s ease;
-    transform-origin: center bottom;
-  }
-  header.masthead .mark a:hover { transform: scale(1.08); opacity: 0.85; }
-  header.masthead .mark .sep { padding: 0 2px; }
+  header.masthead .mark { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 20px; }
+  header.masthead .mark a { text-decoration: none; }
   header.masthead .mark span { color: var(--accent); font-style: italic; }
+  header.masthead .mark a { transition: opacity 0.15s; }
+  header.masthead .mark a:hover { opacity: 0.7; }
   header.masthead nav a {
     text-decoration: none; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sub);
   }
@@ -142,7 +137,7 @@
     </button>
     <a class="back" href="https://haydenharms.com/tax/">&larr; Back</a>
   </div>
-  <div class="mark"><a href="https://haydenharms.com">Hayden Harms</a><span class="sep">/</span><a href="https://haydenharms.com/tax/"><span>tax</span></a></div>
+  <div class="mark"><a href="https://haydenharms.com/tax/">Hayden Harms <span>/ tax</span></a></div>
   <div style="width:88px;"></div>
 </header>
 
@@ -150,9 +145,8 @@
 <nav class="sidebar-nav" id="sidebarNav">
   <button class="sidebar-close" onclick="toggleSidebar(false)" aria-label="Close menu">&times;</button>
   <a href="https://haydenharms.com/tax/">Tax home</a>
-  <a href="https://haydenharms.com/tax/inquiry/" class="active">Get started</a>
-  <a href="https://haydenharms.com/tax/basics/">Tax basics</a>
   <a href="https://haydenharms.com/tax/calculator/">Calculator</a>
+  <a href="https://haydenharms.com/tax/inquiry/" class="active">Get started</a>
 </nav>
 
 <div class="intro wrap" style="padding-left:0;padding-right:0;">
@@ -182,6 +176,7 @@
         <option value="W-2 only">W-2 only</option>
         <option value="W-2 + 1099">W-2 + 1099</option>
         <option value="Self-employed / Schedule C">Self-employed / Schedule C</option>
+        <option value="Multiple states">Multiple states</option>
         <option value="Not sure">Not sure</option>
       </select>
     </div>
