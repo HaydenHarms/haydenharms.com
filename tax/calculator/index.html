@@ -44,8 +44,9 @@
 
   /* HEADER */
   .site-header { border-bottom: 2px solid var(--ink); background: var(--bg); padding: 28px 40px; display: flex; justify-content: space-between; align-items: center; }
-  .site-header-left a { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; color: var(--ink); text-decoration: none; }
-  .site-header-left a:hover { color: var(--gold); }
+  .site-header-left a { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; color: var(--ink); text-decoration: none; transition: opacity 0.15s; }
+  .site-header-left a:hover { opacity: 0.7; }
+  .site-header-left a span { color: #2f6f5e; font-style: italic; }
   .site-header-right { display: flex; align-items: center; gap: 20px; }
   .site-header-right a { font-family: 'Jost', sans-serif; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); text-decoration: none; }
   .site-header-right a:hover { color: var(--gold); }
@@ -169,7 +170,7 @@
 
 <header class="site-header">
   <div class="site-header-left">
-    <a href="https://haydenharms.com">Hayden Harms</a>
+    <a href="https://haydenharms.com/tax/">Hayden Harms <span>/ tax</span></a>
   </div>
   <div class="site-header-right">
     <a href="https://haydenharms.com">← Back to site</a>
