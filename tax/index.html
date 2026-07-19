@@ -100,6 +100,12 @@
   .pricetable .pt-row .name { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 19px; }
   .pricetable .pt-row .desc { font-size: 13px; color: var(--sub); margin-top: 4px; }
   .pricetable .pt-row .price { font-size: 16px; color: var(--gold); font-weight: 500; }
+  .pricetable .pt-row .price.quote { font-style: italic; color: var(--sub); font-weight: 400; font-size: 14px; }
+  .pricetable .pt-row.addon .name::after {
+    content: "Add-on"; font-family: 'Jost', sans-serif; font-weight: 500; font-size: 10px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: rgba(47,111,94,0.1);
+    padding: 3px 8px; margin-left: 10px; vertical-align: middle; border-radius: 2px;
+  }
 
   .note {
     margin: 18px 0 0; font-size: 12.5px; color: var(--muted); max-width: 560px; line-height: 1.6;
@@ -245,9 +251,16 @@
     <div class="pt-row">
       <div><div class="name">Self-employed</div><div class="desc">Schedule C, home office, mileage</div></div>
       <div>1–2 weeks</div><div class="price">$250-400</div>
+<<<<<<< HEAD
+    </div>
+    <div class="pt-row addon">
+      <div><div class="name">Bookkeeping cleanup</div><div class="desc">Disorganized records, uncategorized transactions, or missing reconciliation — sorted out before your Schedule C is prepared.</div></div>
+      <div>Scoped after review</div><div class="price quote">By quote</div>
+=======
+>>>>>>> 405145908226d62c72f1a95bd870d4e6a8c0dbe0
     </div>
   </div>
-  <p class="note">Pricing shown is a starting point for a simple, single-state return with minimal cleanup — confirmed before I take on your return, never after.</p>
+  <p class="note">Pricing shown is a starting point for a simple, single-state return with minimal cleanup — confirmed before I take on your return, never after. Returns needing bookkeeping cleanup are quoted separately once I've seen the records.</p>
 </div>
 
 <div class="whyme wrap" style="padding-left:0;padding-right:0;">
