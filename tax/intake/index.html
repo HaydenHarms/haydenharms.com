@@ -240,6 +240,7 @@
       <li>1099-NEC / 1099-MISC (business or contract income)</li>
       <li>1099-B, 1099-DIV, 1099-INT (investments, interest)</li>
       <li>Venmo / CashApp / cash income notes, if any</li>
+      <li>Bank statements, if you're self-employed</li>
     </ul>
   </div>
 </div>
@@ -302,7 +303,7 @@
   <div class="result-card">
     <div class="flag">✓ Sealed</div>
     <h2>Your file is ready.</h2>
-    <p>Everything's bundled into one encrypted file — <strong id="fname"></strong>.</p>
+    <p>Everything's bundled into one encrypted file — <strong id="fname"></strong>. It opens on its own in any browser, no app needed.</p>
 
     <div class="password-box">
       <div class="pw-label">⚠ One-time password — copy this now</div>
@@ -311,7 +312,7 @@
 
     <p>This password only exists on your screen right now — it isn't saved anywhere, including by me. <strong>Text or call me the password separately</strong> from however you send the file (a different channel than the email or upload carrying it).</p>
 
-    <button type="button" class="btn-secondary-full" id="download-btn">Download sealed file</button>
+    <button type="button" class="btn-secondary-full" id="download-btn">Download sealed HTML file</button>
     <button type="button" class="btn-link-full" id="reset-btn">Start over</button>
   </div>
 </div>
@@ -383,7 +384,7 @@
       ['encrypt']
     );
   }
-  async function encryptBlob(blob, password) {
+  async function encryptToBase64(blob, password) {
     const salt = crypto.getRandomValues(new Uint8Array(16));
     const iv = crypto.getRandomValues(new Uint8Array(12));
     const key = await deriveKey(password, salt);
@@ -391,7 +392,130 @@
     const ciphertext = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, data);
     const out = new Uint8Array(salt.length + iv.length + ciphertext.byteLength);
     out.set(salt, 0); out.set(iv, salt.length); out.set(new Uint8Array(ciphertext), salt.length + iv.length);
-    return new Blob([out], { type: 'application/octet-stream' });
+    let binary = '';
+    out.forEach(b => binary += String.fromCharCode(b));
+    return btoa(binary);
+  }
+
+  // Builds a single, self-contained HTML file that carries the encrypted
+  // data inside it. Opening it in any browser prompts for the password,
+  // decrypts client-side, and lets the person save each original file back out.
+  function buildSelfDecryptingHtml(base64Payload, clientName) {
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sealed documents — ${clientName}</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"><\/script>
+<style>
+  :root { --bg:#f4f2ea; --ink:#20241f; --sub:#4a4f47; --accent:#2f6f5e; --muted:#8a8578; --rule-lt:#e2ddcf; --card:#ffffff; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:'Jost',Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:520px; margin:60px auto; padding:0 28px; }
+  h1 { font-family:'Cormorant Garamond',Georgia,serif; font-weight:600; font-size:28px; margin:0 0 8px; }
+  p.sub { color:var(--sub); font-size:14.5px; line-height:1.6; margin:0 0 28px; }
+  .card { background:var(--card); border:1px solid var(--rule-lt); padding:26px; }
+  label { display:block; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+  input[type=password] { width:100%; border:1px solid var(--rule-lt); padding:12px 14px; font-size:15px; border-radius:2px; }
+  button { margin-top:14px; width:100%; background:var(--ink); color:var(--bg); border:1px solid var(--ink); padding:13px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; cursor:pointer; }
+  button:hover { background:var(--accent); border-color:var(--accent); }
+  .status { font-size:12.5px; color:var(--muted); margin-top:12px; }
+  .file-row { display:flex; justify-content:space-between; align-items:center; border:1px solid var(--rule-lt); padding:10px 14px; margin-top:8px; font-size:13.5px; }
+  .file-row a { color:var(--accent); text-decoration:none; font-size:12px; letter-spacing:.05em; text-transform:uppercase; }
+  .meta { margin-top:22px; font-size:13px; color:var(--sub); line-height:1.7; background:var(--bg); border:1px solid var(--rule-lt); padding:14px 16px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Sealed tax documents</h1>
+  <p class="sub">Enter the password sent separately by the client to unlock this file. Everything happens in your browser — nothing is uploaded anywhere.</p>
+  <div class="card">
+    <label for="pw">Password</label>
+    <input type="password" id="pw" autofocus>
+    <button id="unlock">Unlock →</button>
+    <div class="status" id="status"></div>
+    <div id="output"></div>
+  </div>
+</div>
+<script>
+  const PAYLOAD = "${base64Payload}";
+
+  function b64ToBytes(b64) {
+    const bin = atob(b64);
+    const arr = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+    return arr;
+  }
+  async function deriveKey(password, salt) {
+    const enc = new TextEncoder();
+    const keyMaterial = await crypto.subtle.importKey('raw', enc.encode(password), 'PBKDF2', false, ['deriveKey']);
+    return crypto.subtle.deriveKey(
+      { name:'PBKDF2', salt, iterations:250000, hash:'SHA-256' },
+      keyMaterial, { name:'AES-GCM', length:256 }, false, ['decrypt']
+    );
+  }
+
+  document.getElementById('unlock').addEventListener('click', async () => {
+    const statusEl = document.getElementById('status');
+    const outputEl = document.getElementById('output');
+    const password = document.getElementById('pw').value;
+    if (!password) { statusEl.textContent = 'Enter the password.'; return; }
+    statusEl.textContent = 'Decrypting…';
+    outputEl.innerHTML = '';
+    try {
+      const all = b64ToBytes(PAYLOAD);
+      const salt = all.slice(0, 16);
+      const iv = all.slice(16, 28);
+      const ciphertext = all.slice(28);
+      const key = await deriveKey(password, salt);
+      const plainBuf = await crypto.subtle.decrypt({ name:'AES-GCM', iv }, key, ciphertext);
+
+      const zip = await JSZip.loadAsync(plainBuf);
+      statusEl.textContent = 'Unlocked. Save the files below.';
+
+      const infoFile = zip.file('intake_info.json');
+      if (infoFile) {
+        const infoText = await infoFile.async('string');
+        try {
+          const info = JSON.parse(infoText);
+          const metaEl = document.createElement('div');
+          metaEl.className = 'meta';
+          metaEl.innerHTML = '<strong>' + (info.full_name||'') + '</strong><br>' +
+            (info.filing_status||'') + ' · ' + (info.email||'') + (info.phone ? ' · ' + info.phone : '') +
+            (info.notes ? '<br><br>' + info.notes : '');
+          outputEl.appendChild(metaEl);
+        } catch(e) {}
+      }
+
+      const docsFolder = zip.folder('documents');
+      const entries = [];
+      docsFolder.forEach((relPath, entry) => { if (!entry.dir) entries.push(entry); });
+      for (const entry of entries) {
+        const blob = await entry.async('blob');
+        const url = URL.createObjectURL(blob);
+        const row = document.createElement('div');
+        row.className = 'file-row';
+        row.innerHTML = '<span>' + entry.name + '</span>';
+        const a = document.createElement('a');
+        a.href = url; a.download = entry.name; a.textContent = 'Save →';
+        row.appendChild(a);
+        outputEl.appendChild(row);
+      }
+      if (entries.length === 0) {
+        outputEl.innerHTML += '<p style="font-size:13px;color:var(--muted);margin-top:10px;">No documents were attached.</p>';
+      }
+    } catch (err) {
+      console.error(err);
+      statusEl.textContent = 'Wrong password, or the file is corrupted — try again.';
+    }
+  });
+  document.getElementById('pw').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('unlock').click();
+  });
+<\/script>
+</body>
+</html>`;
   }
 
   const form = document.getElementById('intake-form');
@@ -428,10 +552,13 @@
 
       statusEl.textContent = 'Encrypting…';
       const password = randomPassword();
-      const encrypted = await encryptBlob(zipBlob, password);
+      const base64Payload = await encryptToBase64(zipBlob, password);
 
       const safeName = (meta.full_name || 'intake').trim().toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') || 'intake';
-      const filename = `${safeName}_tax_docs.enc`;
+      const filename = `${safeName}_tax_docs.html`;
+
+      const selfDecryptHtml = buildSelfDecryptingHtml(base64Payload, meta.full_name || 'Client');
+      const encrypted = new Blob([selfDecryptHtml], { type: 'text/html' });
 
       const url = URL.createObjectURL(encrypted);
       document.getElementById('download-btn').onclick = () => {
