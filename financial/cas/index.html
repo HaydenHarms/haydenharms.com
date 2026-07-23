@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAS · Harms Financial</title>
+<meta name="description" content="Client Advisory Services — ongoing bookkeeping and financial advising for individuals and the self-employed, from CPA-track accounting students at Dallas Baptist University." />
+<meta property="og:title" content="CAS · Harms Financial" />
+<meta property="og:description" content="Ongoing bookkeeping and advising, built on QuickBooks Online." />
+<meta property="og:url" content="https://haydenharms.com/financial/cas/" />
+<meta property="og:type" content="website" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #f4f2ea;
+    --ink:      #20241f;
+    --sub:      #4a4f47;
+    --accent:   #2f6f5e;
+    --muted:    #8a8578;
+    --rule:     #c7c2ac;
+    --rule-lt:  #e2ddcf;
+    --gold:     #2f6f5e;
+    --card:     #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 32px; }
+
+  header.masthead {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 28px 32px; border-bottom: 1px solid var(--rule-lt);
+  }
+  header.masthead .mark { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 20px; display: inline-flex; align-items: baseline; }
+  header.masthead .mark a {
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+    transform-origin: center bottom;
+  }
+  header.masthead .mark a:hover { transform: scale(1.08); opacity: 0.85; }
+  header.masthead .mark span { color: var(--gold); font-style: italic; }
+  header.masthead nav { display: flex; gap: 26px; align-items: center; }
+
+  .hero { padding: 72px 32px 0; }
+  .hero .eyebrow {
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 20px; font-weight: 500;
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 50px; line-height: 1.1;
+    margin: 0; max-width: 620px;
+  }
+  .hero h1 em { color: var(--gold); font-style: italic; }
+  .hero p.sub {
+    margin-top: 22px; max-width: 480px; font-size: 17px; line-height: 1.7; color: var(--sub);
+  }
+  .ctas { margin-top: 30px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--ink); color: var(--bg); padding: 14px 26px;
+    text-decoration: none; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    border: 1px solid var(--ink); transition: background .2s, color .2s;
+  }
+  .btn-primary:hover { background: var(--gold); border-color: var(--gold); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--ink); padding: 13px 26px;
+    text-decoration: none; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    border: 1px solid var(--ink); transition: background .2s, color .2s, border-color .2s;
+  }
+  .btn-secondary:hover { background: var(--ink); color: var(--bg); }
+
+  .pricetable {
+    margin: 52px 0 0; background: var(--card); border: 1px solid var(--rule-lt);
+  }
+  .pricetable .pt-head {
+    display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 14px 22px;
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted);
+    border-bottom: 1px solid var(--rule-lt);
+  }
+  .pricetable .pt-row {
+    display: grid; grid-template-columns: 2fr 1fr 1fr; padding: 20px 22px; align-items: center;
+    border-bottom: 1px solid var(--rule-lt); font-size: 15px;
+  }
+  .pricetable .pt-row:last-child { border-bottom: none; }
+  .pricetable .pt-row .name { font-family: 'Cormorant Garamond', serif; font-weight: 600; font-size: 19px; }
+  .pricetable .pt-row .desc { font-size: 13px; color: var(--sub); margin-top: 4px; }
+  .pricetable .pt-row .price { font-size: 16px; color: var(--gold); font-weight: 500; }
+  .pricetable .pt-row .price.quote { font-style: italic; color: var(--sub); font-weight: 400; font-size: 14px; }
+  .pricetable .pt-row.addon .name::after {
+    content: "Add-on"; font-family: 'Jost', sans-serif; font-weight: 500; font-size: 10px;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: rgba(47,111,94,0.1);
+    padding: 3px 8px; margin-left: 10px; vertical-align: middle; border-radius: 2px;
+  }
+
+  .note {
+    margin: 18px 0 0; font-size: 12.5px; color: var(--muted); max-width: 560px; line-height: 1.6;
+  }
+
+  .whyme {
+    padding: 76px 32px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
+    border-top: 1px solid var(--rule-lt); margin-top: 64px;
+  }
+  .whyme h2 { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 600; margin: 0 0 16px; }
+  .whyme p { font-size: 15px; line-height: 1.75; color: var(--sub); }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px; margin-top: 20px;
+    font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; background: var(--rule-lt);
+    padding: 9px 14px; color: var(--accent);
+  }
+  ul.steps { list-style: none; margin: 0; padding: 0; }
+  ul.steps li { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--rule-lt); }
+  ul.steps li:last-child { border-bottom: none; }
+  ul.steps .num { font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 17px; flex: none; width: 22px; }
+  ul.steps .txt strong { display: block; font-size: 15px; margin-bottom: 3px; font-weight: 500; }
+  ul.steps .txt span { font-size: 13px; color: var(--sub); }
+
+  .scope {
+    padding: 0 32px 76px; border-top: 1px solid var(--rule-lt); padding-top: 64px;
+  }
+  .scope h2 { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; margin: 0 0 26px; }
+  .scope-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .scope-grid .col h3 {
+    font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; margin: 0 0 14px;
+  }
+  .scope-grid .col.in h3 { color: var(--gold); }
+  .scope-grid .col.out h3 { color: var(--muted); }
+  .scope-grid ul { list-style: none; padding: 0; margin: 0; }
+  .scope-grid li {
+    font-size: 14px; padding: 10px 0; border-bottom: 1px solid var(--rule-lt); color: var(--sub);
+  }
+  .scope-grid .col.out li { color: var(--muted); }
+
+  footer.footband {
+    padding: 40px 32px; text-align: center; border-top: 1px solid var(--rule-lt);
+    font-size: 12.5px; color: var(--muted);
+  }
+  footer.footband a { color: var(--gold); text-decoration: none; }
+
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 36px; }
+    .whyme, .scope-grid { grid-template-columns: 1fr; }
+    .pricetable .pt-head { display: none; }
+    .pricetable .pt-row { grid-template-columns: 1fr; gap: 6px; }
+  }
+
+  /* Hamburger + sidebar nav */
+  .hamburger-btn {
+    display: flex; flex-direction: column; justify-content: center; gap: 5px;
+    width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 0;
+  }
+  .hamburger-btn span { display: block; width: 24px; height: 2px; background: var(--ink); transition: 0.2s; }
+  .sidebar-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.35);
+    opacity: 0; pointer-events: none; transition: opacity 0.2s; z-index: 998;
+  }
+  .sidebar-overlay.open { opacity: 1; pointer-events: auto; }
+  .sidebar-nav {
+    position: fixed; top: 0; left: 0; height: 100%; width: 260px; background: var(--bg);
+    border-right: 1px solid var(--rule-lt); transform: translateX(-100%);
+    transition: transform 0.25s ease; z-index: 999; padding: 28px 24px;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .sidebar-nav.open { transform: translateX(0); }
+  .sidebar-nav .sidebar-close {
+    align-self: flex-end; background: none; border: none; font-size: 22px;
+    color: var(--sub); cursor: pointer; margin-bottom: 16px; line-height: 1;
+  }
+  .sidebar-nav a {
+    text-decoration: none; color: var(--ink); font-family: 'Jost', sans-serif; font-size: 15px;
+    padding: 13px 4px; border-bottom: 1px solid var(--rule-lt);
+  }
+  .sidebar-nav a:last-of-type { border-bottom: none; }
+  .sidebar-nav a.active { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <button class="hamburger-btn" onclick="toggleSidebar(true)" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="mark"><a href="https://haydenharms.com/financial/"><span>Harms</span> Financial</a></div>
+  <div style="width:36px;"></div>
+</header>
+
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar(false)"></div>
+<nav class="sidebar-nav" id="sidebarNav">
+  <button class="sidebar-close" onclick="toggleSidebar(false)" aria-label="Close menu">&times;</button>
+  <a href="https://haydenharms.com/financial/">Home</a>
+  <a href="https://haydenharms.com/financial/cas/" class="active">CAS services</a>
+  <a href="https://haydenharms.com/financial/tax/">Tax services</a>
+</nav>
+
+<div class="hero wrap" style="padding-left:0;padding-right:0;">
+  <div class="eyebrow">Client Advisory Services · Individuals &amp; the self-employed</div>
+  <h1>Your finances, kept in <em>impeccable</em> order.</h1>
+  <p class="sub">A standing engagement for individuals and self-employed people who expect their numbers current at all times, not merely tidied once a year — maintained on QuickBooks Online, with counsel to match.</p>
+  <div class="ctas">
+    <a class="btn-primary" href="mailto:harms.e.hayden@gmail.com">Request a consultation →</a>
+    <a class="btn-secondary" href="https://haydenharms.com/financial/tax/">See tax prep instead</a>
+  </div>
+
+  <div class="pricetable">
+    <div class="pt-head"><span>Service</span><span>Cadence</span><span>Fee</span></div>
+    <div class="pt-row">
+      <div><div class="name">Bookkeeping</div><div class="desc">Meticulous categorization and reconciliation for a single account set, on QuickBooks Online.</div></div>
+      <div>Monthly</div><div class="price quote">By quote</div>
+    </div>
+    <div class="pt-row">
+      <div><div class="name">Advising</div><div class="desc">Standing counsel on tax planning, entity structure, and the decisions that shape next year's return.</div></div>
+      <div>Monthly / quarterly</div><div class="price quote">By quote</div>
+    </div>
+    <div class="pt-row addon">
+      <div><div class="name">Cleanup</div><div class="desc">Disordered records brought current and reconciled before ongoing service begins.</div></div>
+      <div>One-time</div><div class="price quote">By quote</div>
+    </div>
+  </div>
+  <p class="note">Every CAS engagement is scoped after a review of your books and circumstances — the fee is agreed upon before work begins, never after.</p>
+</div>
+
+<div class="whyme wrap" style="padding-left:0;padding-right:0;">
+  <div>
+    <h2>A practice built on rigor</h2>
+    <p>We are BBA Accounting students at Dallas Baptist University's Carter School of Business, on track for CPA licensure in Texas — currently being examined on the very material that governs your books. That standard of scrutiny is what you're retaining, without the overhead of a firm.</p>
+    <div class="badge">CPA-track · Dallas Baptist University</div>
+  </div>
+  <ul class="steps">
+    <h2>What to expect</h2>
+    <li><span class="num">1</span><div class="txt"><strong>Consultation</strong><span>Share your situation — no documents required yet.</span></div></li>
+    <li><span class="num">2</span><div class="txt"><strong>Review of your books</strong><span>We assess your current state and propose a scope and fee.</span></div></li>
+    <li><span class="num">3</span><div class="txt"><strong>Standing engagement</strong><span>Bookkeeping and advising, maintained on a cadence built around you.</span></div></li>
+  </ul>
+</div>
+
+<div class="scope wrap" style="padding-left:0;padding-right:0;">
+  <h2>The engagement</h2>
+  <div class="scope-grid">
+    <div class="col in">
+      <h3>In scope</h3>
+      <ul>
+        <li>Monthly bookkeeping for individuals and the self-employed</li>
+        <li>QuickBooks Online setup and cleanup</li>
+        <li>Recurring tax and financial planning check-ins</li>
+        <li>Entity and structure questions (sole prop, LLC)</li>
+      </ul>
+    </div>
+    <div class="col out">
+      <h3>Out of scope</h3>
+      <ul>
+        <li>Audited or reviewed financial statements</li>
+        <li>Multi-entity or consolidated bookkeeping</li>
+        <li>Investment or wealth management advice</li>
+        <li>Legal or entity formation filings</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer class="footband">
+  Client Advisory Services — bookkeeping and counsel for individuals and the self-employed. &nbsp;·&nbsp;
+  <a href="https://haydenharms.com/financial/">Back to Harms Financial</a>
+</footer>
+
+<script>
+  function toggleSidebar(open) {
+    document.getElementById('sidebarNav').classList.toggle('open', open);
+    document.getElementById('sidebarOverlay').classList.toggle('open', open);
+  }
+</script>
+</body>
+</html>
