@@ -386,14 +386,14 @@ if (localStorage.getItem('theme') === 'dark') {
 
 // Holdings data (overwritten dynamically by GitHub Actions workflow script)
 var holdings = [
-  { ticker: 'VT', name: 'Vanguard Total World Stock ETF', mktVal: 10544.63, sincePct: 14.2, color: '#2c2416', domPct: 0.58, intlPct: 0.42 },
+  { ticker: 'VT', name: 'Vanguard Total World Stock ETF', mktVal: 10567.57, sincePct: 14.4, color: '#2c2416', domPct: 0.58, intlPct: 0.42 },
   { ticker: 'VOO', name: 'Vanguard S&P 500 ETF', mktVal: 7897.74, sincePct: 19.1, color: '#b8972a', domPct: 1.0, intlPct: 0.0 },
-  { ticker: 'VB', name: 'Vanguard Small-Cap ETF', mktVal: 2057.05, sincePct: 20.9, color: '#6b5c3e', domPct: 1.0, intlPct: 0.0 },
-  { ticker: 'VXUS', name: 'Vanguard Total International Stock', mktVal: 1335.77, sincePct: 19.4, color: '#a0917a', domPct: 0.0, intlPct: 1.0 },
-  { ticker: 'IAU', name: 'iShares Gold Trust', mktVal: 653.36, sincePct: 6.2, color: '#c0aa88', domPct: 0.0, intlPct: 0.0 },
-  { ticker: 'IBIT', name: 'iShares Bitcoin Trust ETF', mktVal: 147.03, sincePct: -26.2, color: '#5a5048', domPct: 0.0, intlPct: 0.0 },
-  { ticker: 'MP', name: 'MP Materials Corp.', mktVal: 350.0, sincePct: 7.2, color: '#3a6b4a', domPct: 1.0, intlPct: 0.0 },
-  { ticker: 'SPCX', name: 'Space Exploration Technologies Corp.', mktVal: 303.7, sincePct: 13.1, color: '#1f3a52', domPct: 1.0, intlPct: 0.0 }
+  { ticker: 'VB', name: 'Vanguard Small-Cap ETF', mktVal: 2065.81, sincePct: 21.4, color: '#6b5c3e', domPct: 1.0, intlPct: 0.0 },
+  { ticker: 'VXUS', name: 'Vanguard Total International Stock', mktVal: 1340.98, sincePct: 19.9, color: '#a0917a', domPct: 0.0, intlPct: 1.0 },
+  { ticker: 'IAU', name: 'iShares Gold Trust', mktVal: 656.24, sincePct: 6.6, color: '#c0aa88', domPct: 0.0, intlPct: 0.0 },
+  { ticker: 'IBIT', name: 'iShares Bitcoin Trust ETF', mktVal: 146.49, sincePct: -26.4, color: '#5a5048', domPct: 0.0, intlPct: 0.0 },
+  { ticker: 'MP', name: 'MP Materials Corp.', mktVal: 357.28, sincePct: 9.4, color: '#3a6b4a', domPct: 1.0, intlPct: 0.0 },
+  { ticker: 'SPCX', name: 'Space Exploration Technologies Corp.', mktVal: 309.44, sincePct: 15.2, color: '#1f3a52', domPct: 1.0, intlPct: 0.0 }
 ];
 
 const portfolioTotal = holdings.reduce(function(s, h) { return s + h.mktVal; }, 0);
