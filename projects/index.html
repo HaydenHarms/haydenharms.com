@@ -216,10 +216,8 @@
     <a href="index.html#education">Education</a>
     <a href="writing.html">Writing</a>
     <a href="projects.html" class="active">Projects</a>
-    <a href="portfolio.html">Portfolio</a>
     <a href="tax/">Tax Filing</a>
     <a href="https://www.linkedin.com/in/hayden-harms-046558298" target="_blank">LinkedIn</a>
-      <button class="dm-toggle-btn" onclick="toggleDark()" aria-label="Toggle dark mode"><span class="dm-icon">☀︎</span></button>
 
   </nav>
 </header>
@@ -593,13 +591,6 @@
 </footer>
 
 <script>
-  function toggleDark() {
-    const isDark = document.documentElement.classList.toggle('dark');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  }
-  if (localStorage.getItem('theme') === 'dark') {
-    document.documentElement.classList.add('dark');
-  }
 </script>
 
 <script>

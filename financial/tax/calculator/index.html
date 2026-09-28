@@ -175,7 +175,6 @@
   </div>
   <div class="site-header-right">
     <a href="https://haydenharms.com/financial/">← Back to site</a>
-    <button class="dm-btn" onclick="toggleDark()">☀︎</button>
   </div>
 </header>
 
@@ -647,11 +646,6 @@ var NIIT_THRESHOLD = { single: 200000, mfj: 250000, mfs: 125000, hoh: 200000 };
 // ═══════════════════════════════════════════════════════
 //  UI HELPERS
 // ═══════════════════════════════════════════════════════
-function toggleDark() {
-  var isDark = document.documentElement.classList.toggle('dark');
-  localStorage.setItem('theme', isDark ? 'dark' : 'light');
-}
-if (localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
 
 var cgCount = 0;
 function addCGItem() {

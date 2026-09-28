@@ -452,11 +452,6 @@
       <a href="mailto:harms.e.hayden@gmail.com">Email <span>✉</span></a>
     </nav>
 
-    <!-- Dark Mode Toggle -->
-    <button class="dm-toggle-btn" onclick="toggleDark()" aria-label="Toggle dark mode">
-      <span>Theme</span>
-      <span class="dm-icon">☀︎</span>
-    </button>
   </aside>
 
   <!-- RIGHT MARKDOWN-STYLE CONTENT -->
@@ -486,9 +481,8 @@
       </div>
 
       <!-- PORTFOLIO -->
-      <h2><a href="https://haydenharms.com/portfolio/index.html">Portfolio</a></h2>
+      <h2>Portfolio</h2>
       <ul>
-        <li>My personal investment portfolio and philosophy</li>
       </ul>
 
       <!-- SKILLS -->
@@ -636,15 +630,6 @@
   }
 
   window.addEventListener('hashchange', checkHash);
-
-  function toggleDark() {
-    const isDark = document.documentElement.classList.toggle('dark');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  }
-
-  if (localStorage.getItem('theme') === 'dark') {
-    document.documentElement.classList.add('dark');
-  }
 
   fetchEssays();
 </script>
